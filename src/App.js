@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import NavBar from './components/NavBar'
+import PlayerCard from './components/PlayerCard'
+import RosterCard from './components/RosterCard'
+import TradeCard from './components/TradeCard'
+import TradeList from './components/TradeList'
+import UserProfile from './components/UserProfile'
+import MachineCard from './components/MachineCard'
+import TeamList from './components/TeamList'
+// import RosterList from './components/RosterList'
 
-function App() {
+class App extends Component {
+  state = {
+    players: [],
+    teams: [],
+    trades: [],
+    trading: false
+  }
+
+  componentDidMount(){
+    fetch("http://localhost:5000/players")
+    .then(r=>r.json())
+    .then(players=>this.setState({
+      players
+    }))
+    fetch("http://localhost:5000/teams")
+    .then(r=>r.json())
+    .then(teams=>this.setState({
+      teams
+    }))
+    // fetch("http://localhost:5000/trades")
+    // .then(r=>r.json())
+    // .then(trades=>this.setState({
+    //   trades
+    // }))
+  }
+
+  fireUpTradeMachine = ()=>{
+    this.setState({
+      trading: true}
+    )
+  }
+
+  changeTeam = ()=>{
+    console.log("check")
+  }
+
+  render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    this.state.trading === true ? <MachineCard players={this.state.players} teams={this.state.teams}/> : <button onClick={this.fireUpTradeMachine}>Ready to trade?</button>,
+    <TradeCard/>,
+    <PlayerCard/>,
+    <TeamList teams={this.state.teams} players={this.state.players} changeTeam={this.changeTeam}/>
+    // <RosterCard players={this.state.players}/>
+  )
+  }
 }
 
 export default App;
