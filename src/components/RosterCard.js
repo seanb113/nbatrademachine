@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PlayerCard from '../components/PlayerCard'
 
-class RosterCard extends React.Component {
-    render(props){
-        let these_players = props.players.map(player => 
-            player.team === props.team.name ? player : null)
+const RosterCard = props => {
+    console.log(props.team)
+    console.log(props.players)
+        // let these_players = this.props.players.map(player => 
+        //     player.team === this.props.team.name ? player : null)
         return(
             <div>
             <img src={props.team.logo}/>
             <div>Team: {props.team.name}</div>
             <div>Cap Space: {props.team.total_spent}</div>
             <div>
-            {these_players.map(player => 
-            <PlayerCard player={player}/>)}
+            {props.players.map(player => 
+            <PlayerCard player={player} selectPlayer={props.selectPlayer}/>)}
             </div>
             </div>
         )
     }
-}
 export default RosterCard

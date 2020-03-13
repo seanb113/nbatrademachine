@@ -36,6 +36,7 @@ class App extends Component {
   }
 
   fireUpTradeMachine = ()=>{
+    // debugger
     this.setState({
       trading: true}
     )
@@ -47,11 +48,14 @@ class App extends Component {
 
   render(){
   return (
-    this.state.trading === true ? <MachineCard players={this.state.players} teams={this.state.teams}/> : <button onClick={this.fireUpTradeMachine}>Ready to trade?</button>,
-    <TradeCard/>,
-    <PlayerCard/>,
-    <TeamList teams={this.state.teams} players={this.state.players} changeTeam={this.changeTeam}/>
-    // <RosterCard players={this.state.players}/>
+    <div>
+    {this.state.trading === true ? <MachineCard players={this.state.players} teams={this.state.teams}/> : <button onClick={this.fireUpTradeMachine}>Ready to trade?</button>}
+    {/* <TradeCard/>,
+    <PlayerCard/>, */}
+    {/* // <TeamList teams={this.state.teams} players={this.state.players} changeTeam={this.changeTeam}/>
+    // <RosterCard players={this.state.players}/> */}
+    </div>
+
   )
   }
 }

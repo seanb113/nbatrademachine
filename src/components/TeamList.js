@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 const TeamList  = props => {
+    console.log(props.teams)
+        const teamList = props.teams.map((team) =>
+        <li onClick={()=>props.chooseTeam(team)}>{team.name}</li>)
         return(
-            props.teams.map(team =>
-            <div onClick={props.changeTeam(team)}>
-                {team.name}
-            
-            </div>))
+            <div>
+            <ul>{teamList}</ul>
+            </div>)
+
 }
 export default TeamList
