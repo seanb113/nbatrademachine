@@ -17,6 +17,8 @@ class App extends Component {
     players: [],
     teams: [],
     trades: [],
+    users: [],
+    added: [],
     trading: true,
     look_at_trades: false,
     currentUser: null,
@@ -38,6 +40,11 @@ class App extends Component {
     .then(r=>r.json())
     .then(trades=>this.setState({
       trades
+    }))
+    fetch("http://localhost:5000/users")
+    .then(r=>r.json())
+    .then(users=>this.setState({
+      users
     }))
     .catch((error) => {
     alert(error)
@@ -62,25 +69,32 @@ class App extends Component {
     console.log("check")
   }
 
-  lookAtTrades = ()=>{
+  addedNewTrade = (trade)=>{
+    this.state.trades.push(trade)
     this.setState({
-      look_at_trades: true
+      trades: this.state.trades
     })
   }
 
+  currentUserTrades = ()=>{
+    this.state.trades.filter(t => t.user_id === this.state.currentUser.id)
+  }
+
+
   render(){
+    let currentUserArray = new Array(this.state.currentUser)
   return (
     <div>
     <Switch>
-    <Route path="/" render={() => {
+    <Route exact path="/profile" render={() => {
+      return this.state.currentUser ? <UserProfile trades={this.state.trades.filter(t => t.user_id === this.state.currentUser.id)} all_users={currentUserArray} all_teams={this.state.teams} all_players={this.state.players}/> : <Redirect to="/login"/>}}/>
+    <Route exact path="/" render={() => {
     return this.state.currentUser ? <Redirect to="/wannatrade"/> : <LoginForm loginSubmit={this.loginSubmit}/>}}/>
-    <Route exact path="/wannatrade" exact component={FireUpMachine}>
-    <FireUpMachine lookAtTrades={this.lookAtTrades}/>
-    </Route>
+    <Route exact path="/wannatrade" render={routerProps => <FireUpMachine {...routerProps} lookAtTrades={this.lookAtTrades}/>}/>
     <Route exact path="/machine" render={()=> 
-    <MachineCard players={this.state.players} teams={this.state.teams} notValid={this.state.notValid} currentUser={this.state.currentUser}/>}/>
-    <Route exact path="trades" render={()=>
-    <TradeList trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>
+    <MachineCard addedNewTrade ={this.addedNewTrade} players={this.state.players} teams={this.state.teams} notValid={this.state.notValid} currentUser={this.state.currentUser}/>}/>
+    <Route exact path="/trades" render={()=>
+    <TradeList all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>
     <Route exact path="/login" render={() => {
     return this.state.currentUser ? <Redirect to="/wannatrade"/> : <LoginForm loginSubmit={this.loginSubmit}/>}}/>
     </Switch>

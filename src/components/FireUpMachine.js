@@ -6,6 +6,9 @@ const FireUpMachine  = () => {
         <Link to="/machine">
         <button>Ready to trade?</button>
         </Link>
+        <Link to="/profile">
+        <button>Go to your profile</button>
+        </Link>
         </div>
     )
 }

@@ -16,6 +16,7 @@ const RosterCard = props => {
             {props.players.map(player => 
             <PlayerCard player={player} selectPlayer={props.selectPlayer}/>)}
             </div>
+            <button onClick={()=>props.removeTeam(props.team)}>Remove Team</button>
             </div>
         )
     }

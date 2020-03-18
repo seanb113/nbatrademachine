@@ -23,7 +23,8 @@ class MachineCard extends Component {
         beingTradedFrom: null,
         submitted: false,
         saved: false,
-        notValid: false
+        notValid: false,
+        test: true
     }
 
     componentDidMount(){
@@ -109,9 +110,11 @@ class MachineCard extends Component {
             teams: teams_array
         })
     }
-        removeTeam1 = () => {
-            let new_team1 = this.state.team3 === null ? "selecting" : this.state.team2
-            let new_team2 = this.state.team3
+        removeTeam1 = (team) => {
+            debugger
+            this.state.all_teams.push(team)
+            let new_team1 = this.state.team2
+            let new_team2 = this.state.team3 === null ? "selecting" : this.state.team3
             let new_team3 = this.state.team4
             let new_roster1 = this.state.team2Players.length > 0 ? this.state.team2Players : []
             let new_roster2 = this.state.team3Players.length > 0 ? this.state.team3Players : []
@@ -134,12 +137,13 @@ class MachineCard extends Component {
                 tradedto2: new_traded2,
                 tradedto3: new_traded3,
                 tradedto4: [],
-
+                all_teams: this.state.all_teams,
                 beingTraded: null
 
             })
         }
-        removeTeam2 = () => {
+        removeTeam2 = (team) => {
+            this.state.all_teams.push(team)
             let new_team2 = this.state.team3 === null ? "selecting" : this.state.team3
             let new_team3 = this.state.team4
             let new_traded1 = this.state.tradedto1.length > 0 ? this.state.tradedto1.filter(player => player.team_id !== this.state.team2.id) : []
@@ -158,10 +162,12 @@ class MachineCard extends Component {
                 tradedto2: new_traded2,
                 tradedto3: new_traded3,
                 tradedto4: [],
-                beingTraded: null
+                beingTraded: null,
+                all_teams: this.state.all_teams
             })
         }
-        removeTeam3 = () => {
+        removeTeam3 = (team) => {
+            this.state.all_teams.push(team)
             let new_team3 = this.state.team4
             let new_traded1 = this.state.tradedto1.length > 0 ? this.state.tradedto1.filter(player => player.team_id !== this.state.team3.id) : []
             let new_traded2 = this.state.tradedto2.length > 0 ? this.state.tradedto2.filter(player => player.team_id !== this.state.team3.id) : []
@@ -175,10 +181,12 @@ class MachineCard extends Component {
                 tradedto2: new_traded2,
                 tradedto3: new_traded3,
                 tradedto4: [],
-                beingTraded: null
+                beingTraded: null,
+                all_teams: this.state.all_teams
             })
         }
         removeTeam4 = (team) => {
+            this.state.all_teams.push(team)
             let new_traded1 = this.state.tradedto1.length > 0 ? this.state.tradedto1.filter(player => player.team_id !== this.state.team4.id) : []
             let new_traded2 = this.state.tradedto2.length > 0 ? this.state.tradedto2.filter(player => player.team_id !== this.state.team4.id) : []
             let new_traded3 = this.state.tradedto3.length > 0 ? this.state.tradedto3.filter(player => player.team_id !== this.state.team4.id) : []
@@ -189,7 +197,8 @@ class MachineCard extends Component {
                 tradedto2: new_traded2,
                 tradedto3: new_traded3,
                 tradedto4: [],
-                beingTraded: null
+                beingTraded: null,
+                all_teams: this.state.all_teams
             })
         }
 
@@ -485,6 +494,7 @@ class MachineCard extends Component {
         
         // BigInt.prototype.toJSON = function() { return this.toString()  }
         postTrade = (trade) => {
+            // debugger
             let user = this.props.currentUser
             fetch("http://localhost:5000/trades", {
                 method: "POST",
@@ -497,14 +507,16 @@ class MachineCard extends Component {
                     swap_attributes: trade
                 })
             }).then(r=>r.json())
-                .then(r=>console.log(r))
+                .then(r=>this.props.addedNewTrade(r)
+                )
         }
 
         handleSave = () => {
+            debugger
             let team1Trade = [this.state.team1, this.state.tradedto1]
             let team2Trade = [this.state.team2, this.state.tradedto2]
-            let team3Trade = this.state.tradedto3 > 0 ? [this.state.team3, this.state.tradedto3] : null
-            let team4Trade = this.state.tradedto4 > 0 ? [this.state.team4, this.state.tradedto4] : null
+            let team3Trade = this.state.tradedto3.length > 0 ? [this.state.team3, this.state.tradedto3] : null
+            let team4Trade = this.state.tradedto4.length > 0 ? [this.state.team4, this.state.tradedto4] : null
             this.postTrade([team1Trade, team2Trade, team3Trade ? team3Trade : null, team4Trade ? team4Trade : null])
             this.setState({
                 saved: true
@@ -533,7 +545,8 @@ class MachineCard extends Component {
                 tradedto4: [],
                 whereTo: null,
                 beingTraded: null,
-                submitted: false
+                submitted: false,
+                notValid: false
             })
         }
 
@@ -665,30 +678,35 @@ class MachineCard extends Component {
         let all_teams = this.state.all_teams
         return(
             <div>
-            {tradeTo && team1 !== "selecting" && tradeTo.team_id !== team1.id ? <button onClick={(e)=> this.tradetoTeam1(e)}>Trade {tradeTo.name} to the {team1.name}?</button> : null}
-            {tradeTo && team2 !== "selecting" && tradeTo.team_id !== team2.id ? <button onClick={(e)=> this.tradetoTeam2(e)}>Trade {tradeTo.name} to the {team2.name}?</button> : null}
-            {tradeTo && team3 && tradeTo.team_id !== team3.id ? <button onClick={(e)=> this.tradetoTeam3(e)}>Trade {tradeTo.name} to the {team3.name}?</button> : null}
-            {tradeTo && team4 && tradeTo.team_id !== team4.id ? <button onClick={(e)=> this.tradetoTeam4(e)}>Trade {tradeTo.name} to the {team4.name}?</button> : null}
-            <TradeCard tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
-            {team1 !== "selecting" && team1 !== null && this.state.submitted !== true ? <RosterCard team={team1} players={this.state.team1Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {team1 !== "selecting" && !this.state.submitted ? <button onClick={this.removeTeam1}>Remove Team</button> : null}
-            {team2 !== "selecting" && !this.state.submitted && team2 !== null && this.state.submitted !== true ? <RosterCard team={team2} players={this.state.team2Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {team2 !== "selecting" ? <button onClick={this.removeTeam2}>Remove Team</button> : null}
-            {team3 !== "selecting" && team3 !== null && this.state.submitted !== true ? <RosterCard team={team3} players={this.state.team3Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {team3 !== null && !this.state.submitted ? <button onClick={this.removeTeam3}>Remove Team</button> : null}
-            {team4 !== "selecting" && team4 !== null && this.state.submitted !== true ? <RosterCard team={team4} players={this.state.team4Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {team4 !== null && !this.state.submitted ? <button onClick={this.removeTeam4}>Remove Team</button> : null}
+            <br/>
+            <div className="ui four column grid">
+            <br/>
+            {tradeTo && team1 !== "selecting" && tradeTo.team_id !== team1.id ? <button class="ui button" onClick={(e)=> this.tradetoTeam1(e)}>Trade {tradeTo.name} to the {team1.name}?</button> : null}
+            {tradeTo && team2 !== "selecting" && tradeTo.team_id !== team2.id ? <button class="ui button" onClick={(e)=> this.tradetoTeam2(e)}>Trade {tradeTo.name} to the {team2.name}?</button> : null}
+            {tradeTo && team3 && tradeTo.team_id !== team3.id ? <button class="ui button" onClick={(e)=> this.tradetoTeam3(e)}>Trade {tradeTo.name} to the {team3.name}?</button> : null}
+            {tradeTo && team4 && tradeTo.team_id !== team4.id ? <button class="ui button" onClick={(e)=> this.tradetoTeam4(e)}>Trade {tradeTo.name} to the {team4.name}?</button> : null}
+            <br/>
+            <TradeCard user={this.props.currentUser} tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
+            {team1 !== "selecting" && team1 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam1} team={team1} players={this.state.team1Players} selectPlayer={this.addPlayerToTrade}/>: null}
+            {/* {team1 !== "selecting" && !this.state.submitted ? <button onClick={this.removeTeam1}>Remove Team</button> : null} */}
+            {team2 !== "selecting" && !this.state.submitted && team2 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam2} team={team2} players={this.state.team2Players} selectPlayer={this.addPlayerToTrade}/>: null}
+            {/* {team2 !== "selecting" ? <button onClick={this.removeTeam2}>Remove Team</button> : null} */}
+            {team3 !== "selecting" && team3 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam3} team={team3} players={this.state.team3Players} selectPlayer={this.addPlayerToTrade}/>: null}
+            {/* {team3 !== null && !this.state.submitted ? <button onClick={this.removeTeam3}>Remove Team</button> : null} */}
+            {team4 !== "selecting" && team4 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam4} team={team4} players={this.state.team4Players} selectPlayer={this.addPlayerToTrade}/>: null}
+            {/* {team4 !== null && !this.state.submitted ? <button onClick={this.removeTeam4}>Remove Team</button> : null} */}
             {team1 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam1} changeTeam={this.changeTeam1} removeTeam={this.removeTeam1}/>: null}
             {team2 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam2} changeTeam={this.changeTeam2} removeTeam={this.removeTeam2}/>: null}
             {team3 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam3} changeTeam={this.changeTeam3} removeTeam={this.removeTeam3}/>: null}
             {team4 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam4} changeTeam={this.changeTeam4} removeTeam={this.removeTeam4}/>: null}
-            {team3 === null ? <button onClick={this.addAThird}>Add third team</button> : null}
-            {team4 === null && this.state.team3 ? <button onClick={this.addAFourth}>Add fourth team</button> : null}
-            {!this.state.submitted && !this.state.saved ? <button onClick={this.handleSubmit}>Submit Trade</button> : null}
-            {this.state.submitted ? <button onClick={this.handleSave}>Save Trade</button> : false}
-            {this.state.submitted ? <button onClick={this.editTrade}>Edit Trade</button> : null}
-            {this.state.tradedto1.length || this.state.tradedto2.length || this.state.tradedto3.length || this.state.tradedto4.length > 0 ? <button onClick={this.resetMachine}>Reset Trade Machine</button> : null}
+            {team3 === null ? <button class="ui button" onClick={this.addAThird}>Add third team</button> : null}
+            {team4 === null && this.state.team3 ? <button class="ui button" onClick={this.addAFourth}>Add fourth team</button> : null}
+            {!this.state.submitted && !this.state.saved ? <button class="ui button" onClick={this.handleSubmit}>Submit Trade</button> : null}
+            {this.state.submitted ? <button class="ui button" onClick={this.handleSave}>Save Trade</button> : false}
+            {this.state.submitted ? <button class="ui button" onClick={this.editTrade}>Edit Trade</button> : null}
+            {this.state.tradedto1.length || this.state.tradedto2.length || this.state.tradedto3.length || this.state.tradedto4.length > 0 ? <button class="ui button" onClick={this.resetMachine}>Reset Trade Machine</button> : null}
             <Link to="/trades">See all trades</Link>
+            </div>
             </div>
         )
     }

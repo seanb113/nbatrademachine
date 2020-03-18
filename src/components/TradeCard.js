@@ -25,7 +25,11 @@ const TradeCard = props => {
     //     })
     // }
     // render(){
+        let findUser = (user) => {
+            this.props.users.filter(u => u.id === user.id)
+        }
         return(
+            // let tradeUser = this.findUser(this.props.user)
             <div>
             <div>
             {props.player1.length > 0 ? props.team1.name + " get:" : null}
@@ -39,7 +43,7 @@ const TradeCard = props => {
             </div>
             <div>
             {props.player3.length > 0 ? props.team3.name + " get:" : null}
-            {props.player3 > 0 ? props.player3.map(player =>
+            {props.player3.length > 0 ? props.player3.map(player =>
             <PlayerCard team={props.team3} player={player} selectPlayer={props.dontrade3}/>) : null}
             </div>
             <div>
@@ -48,6 +52,7 @@ const TradeCard = props => {
             <PlayerCard team={props.team4} player={player} selectPlayer={props.dontrade4}/>) : null}
             </div>
             <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.tooMuchSalary.name} taking in too much salary` : null}</div>
+            <div>{props.createdBy !== undefined ? props.user.createdBy : null}</div>
             </div>
         )
     }
