@@ -47,6 +47,7 @@ const TradeCard = props => {
             {props.player4.length > 0 ? props.player4.map(player =>
             <PlayerCard team={props.team4} player={player} selectPlayer={props.dontrade4}/>) : null}
             </div>
+            <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.tooMuchSalary.name} taking in too much salary` : null}</div>
             </div>
         )
     }

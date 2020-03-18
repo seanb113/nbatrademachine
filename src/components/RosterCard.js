@@ -12,6 +12,7 @@ const RosterCard = props => {
             <div>Team: {props.team.name}</div>
             <div>Cap Space: {props.team.total_spent}</div>
             <div>
+            {console.log(props)}
             {props.players.map(player => 
             <PlayerCard player={player} selectPlayer={props.selectPlayer}/>)}
             </div>
