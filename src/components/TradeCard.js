@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import RosterCard from '../components/RosterCard'
 import PlayerCard from '../components/PlayerCard'
+import UserProfile from '../components/UserProfile'
+import {Route, Link} from 'react-router-dom'
 const TradeCard = props => {
+    // debugger
+// const thisId = props.createdBy[0].id
     // state = {
     //     team1: null,
     //     team2: null,
@@ -25,12 +29,17 @@ const TradeCard = props => {
     //     })
     // }
     // render(){
-        let findUser = (user) => {
-            this.props.users.filter(u => u.id === user.id)
-        }
+            // console.log(props.createdBy.name)
         return(
             // let tradeUser = this.findUser(this.props.user)
             <div>
+            {props.createdBy !== undefined 
+            ?
+            <Link to={`/user/${props.createdBy[0].id}`}>
+            <div>{props.createdBy !== undefined ? "Proposed by: " + props.createdBy[0].name : null}</div>
+            </Link>
+            :
+            null}
             <div>
             {props.player1.length > 0 ? props.team1.name + " get:" : null}
             {props.player1.length > 0 ? props.player1.map(player => 
@@ -52,7 +61,6 @@ const TradeCard = props => {
             <PlayerCard team={props.team4} player={player} selectPlayer={props.dontrade4}/>) : null}
             </div>
             <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.tooMuchSalary.name} taking in too much salary` : null}</div>
-            <div>{props.createdBy !== undefined ? props.user.createdBy : null}</div>
             </div>
         )
     }

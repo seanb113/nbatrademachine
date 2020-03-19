@@ -9,6 +9,7 @@ const RosterCard = props => {
         return(
             <div>
             <img src={props.team.logo}/>
+            <button onClick={()=>props.removeTeam(props.team)}>Remove Team</button>
             <div>Team: {props.team.name}</div>
             <div>Cap Space: {props.team.total_spent}</div>
             <div>
@@ -16,7 +17,6 @@ const RosterCard = props => {
             {props.players.map(player => 
             <PlayerCard player={player} selectPlayer={props.selectPlayer}/>)}
             </div>
-            <button onClick={()=>props.removeTeam(props.team)}>Remove Team</button>
             </div>
         )
     }
