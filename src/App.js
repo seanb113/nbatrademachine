@@ -93,6 +93,13 @@ class App extends Component {
     })
   }
 
+  removeTrade =(id)=>{
+    // this.state.trades.filter(t => t.id !== id)
+    this.setState({
+      trades: this.state.trades.filter(t => t.id !== id)
+    })
+  }
+
 
   render(){
     let currentUserArray = new Array(this.state.currentUser)
@@ -106,14 +113,14 @@ class App extends Component {
               addVote={this.addVote} votes={this.state.votes} user={this.state.users.filter(u=> u.id === id)} trades={this.state.trades.filter(t => t.user_id === id)} all_users={this.state.users} all_teams={this.state.teams} all_players={this.state.players}/>
             }} />
     <Route exact path="/profile" render={() => {
-      return this.state.currentUser ? <UserProfile user={currentUserArray} trades={this.state.trades.filter(t => t.user_id === this.state.currentUser.id)} all_users={this.state.users} user={currentUserArray} all_teams={this.state.teams} all_players={this.state.players}/> : <Redirect to="/login"/>}}/>
+      return this.state.currentUser ? <UserProfile removeTrade={this.removeTrade} votes={this.state.votes} currentUser={this.state.currentUser} user={currentUserArray} trades={this.state.trades.filter(t => t.user_id === this.state.currentUser.id)} all_users={this.state.users} user={currentUserArray} all_teams={this.state.teams} all_players={this.state.players}/> : <Redirect to="/login"/>}}/>
     <Route exact path="/" render={() => {
     return this.state.currentUser ? <Redirect to="/wannatrade"/> : <LoginForm loginSubmit={this.loginSubmit}/>}}/>
     <Route exact path="/wannatrade" render={() => <FireUpMachine lookAtTrades={this.lookAtTrades} all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>
     <Route exact path="/machine" render={()=> 
     <MachineCard addedNewTrade ={this.addedNewTrade} players={this.state.players} teams={this.state.teams} notValid={this.state.notValid} currentUser={this.state.currentUser}/>}/>
     <Route exact path="/trades" render={()=>
-    <TradeList addVote={this.addVote} votes={this.state.votes} currentUser={this.state.currentUser} all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>
+    <TradeList removeTrade={this.removeTrade} addVote={this.addVote} votes={this.state.votes} currentUser={this.state.currentUser} all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>
     <Route exact path="/login" render={() => {
     return this.state.currentUser ? <Redirect to="/wannatrade"/> : <LoginForm loginSubmit={this.loginSubmit}/>}}/>
     </Switch>

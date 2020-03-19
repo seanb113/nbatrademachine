@@ -72,9 +72,23 @@ const TradeCard = props => {
                 )
         }
 
+        const deleteTrade = () => {
+            debugger
+            let id = props.trade.id
+            fetch(`http://localhost:5000/trades/${id}`, {
+                method: 'delete'
+            }).then(r => r.text())
+            .then(props.removeTrade(id)
+            )
+            }
+        
+
+            // console.log(props.createdBy[0])
+            // console.log(props.currentUser)
         return(
             // let tradeUser = this.findUser(this.props.user)
             <div>
+            <div>{props.createdBy && props.createdBy[0].id === props.currentUser.id ? <button onClick={deleteTrade}>Delete Trade</button> : null}</div>
             {props.createdBy !== undefined 
             ?
             <Link to={`/user/${props.createdBy[0].id}`}>
