@@ -24,7 +24,7 @@ const TradeCard = props => {
             let teamNames = teams.map(t=>returnNameFromId(t))
             if (!teamNames.includes(props.currentUser.team))
             alert("Sorry, Adam Silver. Only fans of the teams involved can veto a trade")
-            else if (!tv.includes(props.currentUser.id))
+            else if (!tv.includes(props.currentUser.id) && props.currentUser.id !== props.createdBy[0].id)
             console.log("You cannot vote twice")
             else
             postVote("veto")
@@ -42,7 +42,7 @@ const TradeCard = props => {
             // debugger
             !tv.includes(props.currentUser.id)
             &&
-            props.currentUser.id !== props.createdBy.id
+            props.currentUser.id !== props.createdBy[0].id
             ?
             postVote("like")
             :
@@ -81,7 +81,29 @@ const TradeCard = props => {
             .then(props.removeTrade(id)
             )
             }
+
+        const numberWithCommas = (x) => {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+        let tradeClausesInTrade = (players) => {
+            let noTrades = players.map(p=>p.name) 
+            if(players.length === 1)
+            return `${players[0].name} has a no trade clause that must be waived for this trade to go through`
+            else
+            return `${noTrades.join(", ")} have trade clauses that must be waived for this trade to go through`
+        }
+
+        // let noTradeClause = () => {
+        //     debugger
+        //     props.player1.filter(p => p.trade_clause)
+        //     props.player2.filter(p => p.trade_clause)
+        //     props.player3.filter(p => p.trade_clause)
+        //     props.player4.map(p => p.trade_clause)
+        //     return [...props.player1, ...props.player2, ...props.player3, ...props.player4]
+        // }
         
+        let tradeclauses = [...props.player1.filter(p => p.trade_clause), ...props.player2.filter(p => p.trade_clause), ...props.player3.filter(p => p.trade_clause), ...props.player4.filter(p => p.trade_clause)]
 
             // console.log(props.createdBy[0])
             // console.log(props.currentUser)
@@ -116,7 +138,10 @@ const TradeCard = props => {
             {props.player4.length > 0 ? props.player4.map(player =>
             <PlayerCard team={props.team4} player={player} selectPlayer={props.dontrade4}/>) : null}
             </div>
+            <div>{tradeclauses.length > 0 ? tradeClausesInTrade(tradeclauses) : null }</div>
             <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.tooMuchSalary.name} taking in too much salary` : null}</div>
+            <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.notValidReason}` : null}</div>
+            <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `Cut $${numberWithCommas(props.numberToCut)} from incoming salary` : null}</div>
             {props.createdBy !== undefined
             ?
             <div id="like" size="mini" class="ui labeled button" tabindex="0">

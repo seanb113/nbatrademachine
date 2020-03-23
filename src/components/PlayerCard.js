@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Divider, Image } from 'semantic-ui-react'
 const PlayerCard  = props => {
+            console.log("playercard", props.selectPlayer)
         return(
     <div class="ui-grid" z-index='1' onClick={(event)=> props.selectPlayer(props.player)}>
         <Image class="ui-image" src={props.player.player_image} size="tiny"/>

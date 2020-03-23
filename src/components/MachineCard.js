@@ -25,7 +25,8 @@ class MachineCard extends Component {
         submitted: false,
         saved: false,
         notValid: false,
-        test: true
+        notValidReason: null,
+        numberToCut: 0
     }
 
     componentDidMount(){
@@ -211,6 +212,7 @@ class MachineCard extends Component {
         }
 
         addPlayerToTrade = (player) => {
+            debugger
             let beingTradedFrom = this.state.all_teams.map(team => team.name === player.team)
             this.setState({
                 beingTraded: player,
@@ -539,6 +541,7 @@ class MachineCard extends Component {
 
         resetMachine = () => {
             this.setState({
+                all_teams: this.props.teams,
                 team1: "selecting",
                 team2: "selecting",
                 team3: null,
@@ -554,7 +557,8 @@ class MachineCard extends Component {
                 whereTo: null,
                 beingTraded: null,
                 submitted: false,
-                notValid: false
+                notValid: false,
+                notValidReason: null
             })
         }
 
@@ -638,7 +642,9 @@ class MachineCard extends Component {
 
                     return false,
                     this.setState({
-                            notValid: team
+                            notValid: team,
+                            notValidReason: 'Incoming salary is more than 150% + 100,000 of outgoing',
+                            numberToCut: Math.round(incomingSalary - (outgoingSalary * 1.5 - 100000))
                         })
                 
                 }
@@ -649,7 +655,9 @@ class MachineCard extends Component {
 
                 return false,
                 this.setState({
-                    notValid: team
+                    notValid: team,
+                    notValidReason: 'Incoming salary is greater than 125% + 100,000 of outgoing',
+                    numberToCut: Math.round(incomingSalary - (outgoingSalary * 1.25 - 100000))
                 })
             }
 
@@ -669,7 +677,8 @@ class MachineCard extends Component {
         this.validateTrade(team4, this.state.tradedto4) ?
         this.setState({
             submitted: true,
-            notValid: false
+            notValid: false,
+            notValidReason: null
         }) :
         alert("Your trade was not successful")
             // this.setState({
@@ -694,15 +703,11 @@ class MachineCard extends Component {
             {tradeTo && team3 && tradeTo.team_id !== team3.id ? <button class="ui button" size="mini" onClick={(e)=> this.tradetoTeam3(e)}>Trade {tradeTo.name} to the {team3.name}?</button> : null}
             {tradeTo && team4 && tradeTo.team_id !== team4.id ? <button class="ui button" size="mini" onClick={(e)=> this.tradetoTeam4(e)}>Trade {tradeTo.name} to the {team4.name}?</button> : null}
             <br/>
-            <TradeCard user={this.props.currentUser} tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
             {team1 !== "selecting" && team1 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam1} team={team1} players={this.state.team1Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {/* {team1 !== "selecting" && !this.state.submitted ? <button onClick={this.removeTeam1}>Remove Team</button> : null} */}
             {team2 !== "selecting" && !this.state.submitted && team2 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam2} team={team2} players={this.state.team2Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {/* {team2 !== "selecting" ? <button onClick={this.removeTeam2}>Remove Team</button> : null} */}
+            <TradeCard numberToCut={this.state.numberToCut} notValidReason={this.state.notValidReason} user={this.props.currentUser} tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
             {team3 !== "selecting" && team3 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam3} team={team3} players={this.state.team3Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {/* {team3 !== null && !this.state.submitted ? <button onClick={this.removeTeam3}>Remove Team</button> : null} */}
             {team4 !== "selecting" && team4 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam4} team={team4} players={this.state.team4Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {/* {team4 !== null && !this.state.submitted ? <button onClick={this.removeTeam4}>Remove Team</button> : null} */}
             {team1 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam1} changeTeam={this.changeTeam1} removeTeam={this.removeTeam1}/>: null}
             {team2 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam2} changeTeam={this.changeTeam2} removeTeam={this.removeTeam2}/>: null}
             {team3 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam3} changeTeam={this.changeTeam3} removeTeam={this.removeTeam3}/>: null}
