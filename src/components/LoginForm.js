@@ -1,5 +1,5 @@
 import React from "react"
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 class LoginForm extends React.Component {
     state = {
         name: "",
@@ -42,6 +42,9 @@ render(){
             <input            
             type="password" label="password" value={this.state.password} onChange={(event)=>this.setState({password: event.target.value})}/>
             <button type="submit">Login </button>
+            <div>
+            <Link to="/signup">Sign Up</Link>
+            </div>
             </form>
 
         ) 

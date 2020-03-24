@@ -9,7 +9,10 @@ import MachineCard from './components/MachineCard'
 import TeamList from './components/TeamList'
 import LoginForm from './components/LoginForm'
 import FireUpMachine from './components/FireUpMachine'
+import NewsFeed from './components/NewsFeed'
+import SignUp from './components/SignUp'
 import {Route, Switch, Redirect} from 'react-router-dom'
+
 // import RosterList from './components/RosterList'
 
 class App extends Component {
@@ -23,10 +26,14 @@ class App extends Component {
     trading: true,
     look_at_trades: false,
     currentUser: null,
+    namae: null,
+    team: null,
+    password: null,
     notValid: false
   }
 
   componentDidMount(){
+    console.log(`${process.env.REACT_APP_NEWS_API_KEY}`)
     fetch("http://localhost:5000/players")
     .then(r=>r.json())
     .then(players=>this.setState({
@@ -52,10 +59,47 @@ class App extends Component {
     .then(votes=>this.setState({
       votes
     }))
+    fetch(`http://newsapi.org/v2/everything?q="nba+trade"&from=2020-02-23&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
+    .then(r=>r.json())
+    .then(articles=>this.setState({
+      articles: articles.articles
+    }))
     .catch((error) => {
     alert(error)
     })
   }
+
+     handleOnChangeForm = (event)=>{
+        
+      let stateKey = event.target.id
+      let formValue = event.target.value
+      this.setState({
+          [stateKey]: formValue
+      })
+
+     }
+
+    handleSignupForm = (e)=>{
+      debugger
+      e.preventDefault()
+
+      let newUser = {name: this.state.name, team: this.state.team, password: this.state.password}
+      
+      fetch('http://localhost:5000/users',{
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser)
+      })
+      .then(resp => resp.json())
+      .then(r =>{
+          this.setState({
+            currentUser: r
+          })
+      } )
+      
+    }
 
   loginSubmit = (user) =>{
     // debugger
@@ -103,6 +147,7 @@ class App extends Component {
 
   render(){
     let currentUserArray = new Array(this.state.currentUser)
+    let teamNames = this.state.teams.map(t=> t.name)
   return (
     <div>
     <Switch>
@@ -123,7 +168,12 @@ class App extends Component {
     <TradeList removeTrade={this.removeTrade} addVote={this.addVote} votes={this.state.votes} currentUser={this.state.currentUser} all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>
     <Route exact path="/login" render={() => {
     return this.state.currentUser ? <Redirect to="/wannatrade"/> : <LoginForm loginSubmit={this.loginSubmit}/>}}/>
+    <Route exact path="/signup" render={() => {
+      return this.state.currentUser? <Redirect to="/wannatrade"/> : <SignUp teams={teamNames} handleSignupForm={this.handleSignupForm} handleOnChangeForm={this.handleOnChangeForm}/>}}/>
     </Switch>
+    <div>
+    {this.state.currentUser ? <NewsFeed articles={this.state.articles}/> : null}
+    </div>
     </div>
   )
   }

@@ -150,15 +150,19 @@ class TradeList extends React.Component {
     }
 
     filterTradesByTeams = (array) => {
-        debugger
+        //refactor
+        let a1 = this.state.trades.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[0]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null)
+        let a2 = array.length > 1 ? a1.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[1]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null) : null
+        let a3 = array.length > 2 ? a2.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[2]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null) : null
+        let a4 = array.length > 3 ? a3.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[3]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null) : null
         if (array.length === 1)
-        return this.state.trades.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[0]).id) ?  t : null).filter(t=>t != null)
-        if (array.length === 2)
-        return this.state.trades.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[0]).id && this.findTeamByName(array[1]).id) ?  t : null).filter(t=>t != null)
+        return a1
+        else if (array.length === 2)
+        return a2
         else if (array.length === 3)
-        return this.state.trades.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[0]).id && this.findTeamByName(array[1]).id && this.findTeamByName(array[2]).id) ?  t : null).filter(t=>t != null)
+        return a3
         else
-        return this.state.trades.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[0]).id && this.findTeamByName(array[1]).id && this.findTeamByName(array[2]).id && this.findTeamByName(array[3]).id) ?  t : null).filter(t=>t != null)
+        return a4
     }
 
     onFilterChange = (event) => {
@@ -172,6 +176,7 @@ class TradeList extends React.Component {
         let labels = this.state.value.map(v=>v.label)
         // debugger
         event.preventDefault()
+        event.target.value !== null ||
         this.state.value === "All"
         ?
         this.setState({
@@ -209,7 +214,7 @@ class TradeList extends React.Component {
         <form onSubmit={this.handleSubmit}>
             <label>
                 Filter By team
-                <Select onChange={this.onFilterChange} value={this.state.value} options={options} name="select" multi/>
+                <Select onChange={this.onFilterChange} value={this.state.value} options={options} name="select" require multi/>
                 
                 {/* // <option value={"All"}>All</option> 
                 // {this.state.teams.map(item => ( */}
