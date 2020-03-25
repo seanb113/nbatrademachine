@@ -110,7 +110,7 @@ const TradeCard = props => {
         return(
             // let tradeUser = this.findUser(this.props.user)
             <div>
-            <div>{props.createdBy && props.createdBy[0].id === props.currentUser.id ? <button onClick={deleteTrade}>Delete Trade</button> : null}</div>
+            <div>{props.currentUser !== undefined && props.createdBy !== undefined && props.createdBy[0].id === props.currentUser.id ? <button onClick={deleteTrade}>Delete Trade</button> : null}</div>
             {props.createdBy !== undefined 
             ?
             <Link to={`/user/${props.createdBy[0].id}`}>
@@ -158,7 +158,7 @@ const TradeCard = props => {
             ?
             <div id="veto" size="mini" class="ui labeled button" tabindex="0">
             <div id="veto" size="mini" class="ui basic black button" onClick={((e)=> sortVote(e))}>
-                <i id="veto" class="thumbs down icon"></i> Vetoed
+                <i id="veto" class="thumbs down icon"></i> Veto
             </div>
             <a class="ui basic left pointing black label">
                 {tradeVetoes.length}

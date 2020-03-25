@@ -15,7 +15,7 @@ const RosterCard = props => {
             <div>
             {console.log(props)}
             {props.players.map(player => 
-            <PlayerCard player={player} selectPlayer={props.selectPlayer}/>)}
+            <PlayerCard player={player} tradedPlayers={props.tradedPlayers} selectPlayer={props.selectPlayer}/>)}
             </div>
             </div>
         )

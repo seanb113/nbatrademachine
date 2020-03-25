@@ -101,10 +101,9 @@ const options = [
 class TradeList extends React.Component {
     state = {
         trades: this.props.trades,
-        displayedTrades: this.props.trades,
         players: this.props.all_players,
         teams: this.props.all_teams,
-        value: "All",
+        value: [],
         text: ""
     }
     debugIt = (t, i) =>{
@@ -151,7 +150,7 @@ class TradeList extends React.Component {
 
     filterTradesByTeams = (array) => {
         //refactor
-        let a1 = this.state.trades.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[0]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null)
+        let a1 = array.length > 0 ? this.state.trades.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[0]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null) : null
         let a2 = array.length > 1 ? a1.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[1]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null) : null
         let a3 = array.length > 2 ? a2.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[2]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null) : null
         let a4 = array.length > 3 ? a3.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[3]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null) : null
@@ -161,8 +160,10 @@ class TradeList extends React.Component {
         return a2
         else if (array.length === 3)
         return a3
-        else
+        else if (array.length === 3)
         return a4
+        else
+        return this.props.trades
     }
 
     onFilterChange = (event) => {
@@ -176,24 +177,24 @@ class TradeList extends React.Component {
         let labels = this.state.value.map(v=>v.label)
         // debugger
         event.preventDefault()
-        event.target.value !== null ||
-        this.state.value === "All"
+        console.log(event.target)
+        this.state.value === []
         ?
         this.setState({
-            displayedTrades: this.state.trades
+            trades: this.props.trades
         })
         :
         this.setState({
-            displayedTrades: this.filterTradesByTeams(labels)
+            trades: this.filterTradesByTeams(labels)
         })
     }
 
     render(){
         // let teams = this.groupToPlayers(swaps)
         // debugger
-        const swapped = this.state.displayedTrades.map(t => t.swaps)
-        let tradeUsers = this.state.displayedTrades.map(t => t.user_id)
-        let tradeIds = this.state.displayedTrades.map(t => t) 
+        const swapped = this.state.trades.map(t => t.swaps)
+        let tradeUsers = this.state.trades.map(t => t.user_id)
+        let tradeIds = this.state.trades.map(t => t) 
         // let options = this.state.teams.map(t=> t.name)
         // const dswapped = swapped.slice(1, 100)
         var groupToPlayers = swapped.map(swap => swap.reduce(function (obj, item) {

@@ -44,7 +44,7 @@ class MachineCard extends Component {
         let teams_array = this.state.all_teams.filter(checkedteam=> checkedteam !== team)
         let teamPlayers = this.props.players.filter(player =>
         player.team_id === team.id)
-    this.setState({
+        this.setState({
         team1: team,
         all_teams: teams_array,
         team1Players: teamPlayers
@@ -139,7 +139,7 @@ class MachineCard extends Component {
                 tradedto2: new_traded2,
                 tradedto3: new_traded3,
                 tradedto4: [],
-                all_teams: this.state.all_teams,
+                all_teams: this.state.all_teams.sort(),
                 beingTraded: null
 
             })
@@ -165,7 +165,7 @@ class MachineCard extends Component {
                 tradedto3: new_traded3,
                 tradedto4: [],
                 beingTraded: null,
-                all_teams: this.state.all_teams
+                all_teams: this.state.all_teams.sort()
             })
         }
         removeTeam3 = (team) => {
@@ -184,7 +184,7 @@ class MachineCard extends Component {
                 tradedto3: new_traded3,
                 tradedto4: [],
                 beingTraded: null,
-                all_teams: this.state.all_teams
+                all_teams: this.state.all_teams.sort()
             })
         }
         removeTeam4 = (team) => {
@@ -200,7 +200,7 @@ class MachineCard extends Component {
                 tradedto3: new_traded3,
                 tradedto4: [],
                 beingTraded: null,
-                all_teams: this.state.all_teams
+                all_teams: this.state.all_teams.sort()
             })
         }
 
@@ -267,6 +267,7 @@ class MachineCard extends Component {
                 tradedto1: oldArray,
                 beingTraded: null
             })
+            // this.disableDiv
         }
 
         tradetoTeam2 = () => {
@@ -693,6 +694,8 @@ class MachineCard extends Component {
         let team3 = this.state.team3
         let team4 = this.state.team4
         let all_teams = this.state.all_teams
+        let tp = []
+        let tradedPlayers = tp.concat(this.state.tradedto1, this.state.tradedto2, this.state.tradedto3, this.state.tradedto4)
         return(
             <div>
             <br/>
@@ -703,11 +706,11 @@ class MachineCard extends Component {
             {tradeTo && team3 && tradeTo.team_id !== team3.id ? <button class="ui button" size="mini" onClick={(e)=> this.tradetoTeam3(e)}>Trade {tradeTo.name} to the {team3.name}?</button> : null}
             {tradeTo && team4 && tradeTo.team_id !== team4.id ? <button class="ui button" size="mini" onClick={(e)=> this.tradetoTeam4(e)}>Trade {tradeTo.name} to the {team4.name}?</button> : null}
             <br/>
-            {team1 !== "selecting" && team1 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam1} team={team1} players={this.state.team1Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {team2 !== "selecting" && !this.state.submitted && team2 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam2} team={team2} players={this.state.team2Players} selectPlayer={this.addPlayerToTrade}/>: null}
+            {team1 !== "selecting" && team1 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam1} team={team1} players={this.state.team1Players} selectPlayer={this.addPlayerToTrade}/>: null}
+            {team2 !== "selecting" && !this.state.submitted && team2 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam2} team={team2} players={this.state.team2Players} selectPlayer={this.addPlayerToTrade}/>: null}
             <TradeCard numberToCut={this.state.numberToCut} notValidReason={this.state.notValidReason} user={this.props.currentUser} tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
-            {team3 !== "selecting" && team3 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam3} team={team3} players={this.state.team3Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {team4 !== "selecting" && team4 !== null && this.state.submitted !== true ? <RosterCard removeTeam={this.removeTeam4} team={team4} players={this.state.team4Players} selectPlayer={this.addPlayerToTrade}/>: null}
+            {team3 !== "selecting" && team3 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam3} team={team3} players={this.state.team3Players} selectPlayer={this.addPlayerToTrade}/>: null}
+            {team4 !== "selecting" && team4 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam4} team={team4} players={this.state.team4Players} selectPlayer={this.addPlayerToTrade}/>: null}
             {team1 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam1} changeTeam={this.changeTeam1} removeTeam={this.removeTeam1}/>: null}
             {team2 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam2} changeTeam={this.changeTeam2} removeTeam={this.removeTeam2}/>: null}
             {team3 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam3} changeTeam={this.changeTeam3} removeTeam={this.removeTeam3}/>: null}

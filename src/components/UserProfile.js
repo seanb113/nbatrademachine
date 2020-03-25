@@ -6,7 +6,7 @@ const UserProfile  = props => {
         return(
             <div>
             {props.user[0].name}'s trades:
-            <TradeList removeTrade={props.removeTrade} currentUser={props.currentUser} votes={props.votes} all_users={props.all_users} trades={props.trades} all_players={props.all_players} all_teams={props.all_teams}/>
+            <TradeList createdBy={props.user} removeTrade={props.removeTrade} currentUser={props.currentUser} votes={props.votes} all_users={props.all_users} trades={props.trades} all_players={props.all_players} all_teams={props.all_teams}/>
             </div>
         )
 }

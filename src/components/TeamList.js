@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 const TeamList  = props => {
     console.log(props.teams)
+    
         const teamList = props.teams.map((team) =>
-        <li onClick={()=>props.chooseTeam(team)}>{team.name}</li>)
+        <div onClick={()=>props.chooseTeam(team)}>{team.name}</div>)
         return(
             <div>
-            <ul>{teamList}</ul>
+            <div class="ui-list">{teamList}</div>
             </div>)
 
 }

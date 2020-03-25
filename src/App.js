@@ -154,8 +154,8 @@ class App extends Component {
     <Route path="/user/:id" render={(props) => {
       // debugger
            let id = parseInt(props.match.params.id)
-              return <UserProfile
-              addVote={this.addVote} votes={this.state.votes} user={this.state.users.filter(u=> u.id === id)} trades={this.state.trades.filter(t => t.user_id === id)} all_users={this.state.users} all_teams={this.state.teams} all_players={this.state.players}/>
+              return this.state.currentUser.id === id ? <Redirect to="/profile"/> : <UserProfile
+              currentUser={this.state.currentUser} createdBy={this.state.users.filter(u=> u.id === id)} addVote={this.addVote} votes={this.state.votes} user={this.state.users.filter(u=> u.id === id)} trades={this.state.trades.filter(t => t.user_id === id)} all_users={this.state.users} all_teams={this.state.teams} all_players={this.state.players}/>
             }} />
     <Route exact path="/profile" render={() => {
       return this.state.currentUser ? <UserProfile removeTrade={this.removeTrade} votes={this.state.votes} currentUser={this.state.currentUser} user={currentUserArray} trades={this.state.trades.filter(t => t.user_id === this.state.currentUser.id)} all_users={this.state.users} user={currentUserArray} all_teams={this.state.teams} all_players={this.state.players}/> : <Redirect to="/login"/>}}/>
@@ -165,7 +165,7 @@ class App extends Component {
     <Route exact path="/machine" render={()=> 
     <MachineCard addedNewTrade ={this.addedNewTrade} players={this.state.players} teams={this.state.teams} notValid={this.state.notValid} currentUser={this.state.currentUser}/>}/>
     <Route exact path="/trades" render={()=>
-    <TradeList removeTrade={this.removeTrade} addVote={this.addVote} votes={this.state.votes} currentUser={this.state.currentUser} all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>
+    <TradeList removeTrade={this.removeTrade} addVote={this.addVote} votes={this.state.votes} all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>
     <Route exact path="/login" render={() => {
     return this.state.currentUser ? <Redirect to="/wannatrade"/> : <LoginForm loginSubmit={this.loginSubmit}/>}}/>
     <Route exact path="/signup" render={() => {
