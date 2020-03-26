@@ -18,7 +18,7 @@ const PlayerCard  = props => {
 
         return(
     <div class= {props.tradedPlayers !== undefined && disableCard(props.player) === true ? "ui-item-disabled" : "item"} onClick={(event)=> props.selectPlayer(props.player)}>
-        <img class="ui tiny circular image" src={props.player.player_image}/>
+        <img class="ui avatar image" src={props.player.player_image}/>
         <div class="content">
     <div class="header">{props.player.name} {getInitials(props.player.position)}</div>
     <div class="description">{props.player.salary === "-" ? "Two Way Contract" : "Salary: " + props.player.salary}</div>

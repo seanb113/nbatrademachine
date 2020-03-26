@@ -7,7 +7,7 @@ const RosterCard = props => {
         // let these_players = this.props.players.map(player => 
         //     player.team === this.props.team.name ? player : null)
         return(
-            <div>
+            <div class="column">
             <img src={props.team.logo}/>
             <button onClick={()=>props.removeTeam(props.team)}>Remove Team</button>
             <div>Team: {props.team.name}</div>

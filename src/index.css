@@ -21,6 +21,12 @@ code {
   opacity: 0.4;
 }
 
+.img.mini-avatar-image {
+  width: 5em;
+  height: 6em;
+  border-radius: 400rem;
+}
+
 .ui-center-dimmer:hover{
   transition: 'fade down'
 }

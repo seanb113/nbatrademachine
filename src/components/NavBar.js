@@ -11,8 +11,7 @@ class NavBar extends Component {
     const { activeItem } = this.state
 
     return (
-    // <div class="ui sticky">
-      <Menu icon='labeled' vertical>
+      <Menu class="ui inverted left vertical menu sidebar" icon='labeled' vertical>
       <Sticky>
         <Menu.Item
           as={Link} to='/profile'
@@ -45,7 +44,12 @@ class NavBar extends Component {
         </Menu.Item>
         </Sticky>
       </Menu>
-    //   </div>
+    //     <div class="pusher">
+    //     <button id="left-sidebar-toggle" class="ui black big launch right attached fixed toggle button">
+    //         <i class="content icon"></i>
+    //         <span class="text">Menu</span>
+    //     </button>
+    //  </div>
     )
   }
 }
