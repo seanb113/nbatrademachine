@@ -17,11 +17,10 @@ const PlayerCard  = props => {
     }
 
         return(
-    <div class= {props.tradedPlayers !== undefined && disableCard(props.player) === true ? "ui-card-disabled" : "ui card"} onClick={(event)=> props.selectPlayer(props.player)}>
+    <div class= {props.tradedPlayers !== undefined && disableCard(props.player) === true ? "ui-item-disabled" : "item"} onClick={(event)=> props.selectPlayer(props.player)}>
+        <img class="ui tiny circular image" src={props.player.player_image}/>
         <div class="content">
-        <Image class="image" src={props.player.player_image}/>
-    <div class="header">{props.player.name}</div>
-    <div class="meta">{getInitials(props.player.position)}</div>
+    <div class="header">{props.player.name} {getInitials(props.player.position)}</div>
     <div class="description">{props.player.salary === "-" ? "Two Way Contract" : "Salary: " + props.player.salary}</div>
     <div class="description">{parseInt(props.player.final_year_of_contract) - 2020} years</div>
     <div class="extra content"> 

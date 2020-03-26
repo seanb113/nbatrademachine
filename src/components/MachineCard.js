@@ -222,41 +222,6 @@ class MachineCard extends Component {
             this.noTradeClause(player)
         }
 
-        // removeFromRoster = () => {
-        //     debugger
-        //     let playerDiv = document.getElementById(`${this.state.beingTraded.id}`)
-        //     playerDiv.style.opacity = 0
-        //     playerDiv.style.filter = "alpha(opacity = 0)"
-        //     playerDiv.style.position = 'absolute'
-        //     playerDiv.style.top = 0
-        //     playerDiv.style.bottom = 0
-        //     playerDiv.style.left = 0
-        //     playerDiv.style.right = 0
-        //     playerDiv.style.display = 'block'
-        //     playerDiv.style.zindex = 2
-        // }
-        // removeFrom2Roster = () => {
-        //     return this.state.team2Players.filter(p => p !== this.state.beingTraded)
-        // }
-        // removeFrom3Roster = () => {
-        //     return this.state.team3Players.filter(p => p !== this.state.beingTraded)
-        // }
-        // removeFrom4Roster = () => {
-        //     return this.state.team4Players.filter(p => p !== this.state.beingTraded)
-        // }
-        // whiteOutDiv  = () => {
-        //     `<div opacity: 0; filter: alpha(opacity = 0); position:absolute; top:0; bottom:0; left:0; right:0; display:block; z-index:2; background:transparent;></div>`
-        // }
-
-        // removingFromallRosters = () => {
-        //     this.setState({
-        //         team1Players: this.removeFrom1Roster(),
-        //         team2Players: this.removeFrom2Roster(),
-        //         team3Players: this.removeFrom3Roster(),
-        //         team4Players: this.removeFrom4Roster()
-        //     })
-        // }
-
         tradetoTeam1 = () => {
             debugger
             // this.removeFromRoster()
@@ -304,41 +269,6 @@ class MachineCard extends Component {
             })
         }
 
-        // returnToRoster1 = (player) => {
-        //     if (player.team_id !== this.state.team1.id)
-        //     return this.state.team1Players
-        //     else
-        //     this.state.team1Players.push(player)
-        // }
-        // returnToRoster2 = (player) => {
-        //     // debugger
-        //     if (player.team_id !== this.state.team2.id)
-        //     return this.state.team2Players
-        //     else
-        //     this.state.team2Players.push(player)
-        // }
-        // returnToRoster3 = (player) => {
-        //     if (this.state.team3 && player.team_id !== this.state.team3.id)
-        //     return this.state.team3Players
-        //     else
-        //     this.state.team3Players.push(player)
-        // }
-        // returnToRoster4 = (player) => {
-        //     if (this.state.team4 && player.team_id == this.state.team4.id)
-        //     return this.state.team4Players
-        //     else
-        //     this.state.team4Players.push(player)
-        // }
-
-        // returningToAllRosters = (player) => {
-        //     this.setState({
-        //         team1Players: this.returnToRoster1(player),
-        //         team2Players: this.returnToRoster2(player),
-        //         team3Players: this.returnToRoster3(player),
-        //         team4Players: this.returnToRoster4(player)
-        //     })
-        // }
-
         donttradetoTeam1 = (playerObj, team, event) => {
             let oldArray = this.state.tradedto1
             let newArray = oldArray.filter(player => player !== playerObj)
@@ -376,107 +306,6 @@ class MachineCard extends Component {
             })
             // this.returningToAllRosters(playerObj)
         }
-
-
-        // pickaTeam = (e) => {
-        //     debugger
-        // let new1Array = this.state.tradedto1.push(this.state.beingTraded)
-        // let new2Array = this.state.tradedto2.push(this.state.beingTraded)
-        // let new3Array = this.state.tradedto3.push(this.state.beingTraded)
-        // let new4Array = this.state.tradedto4.push(this.state.beingTraded)
-        //   if (e.target.innerText.includes(this.state.team1)){
-        //     this.setState({
-        //         tradedto1: new1Array,
-        //         beingTraded: false
-        //     })}
-        //     else if (e.target.innerText.includes(this.state.team2)){
-        //     this.setState({
-        //         tradedto2: new2Array,
-        //         beingTraded: false
-        //     })}
-        //     else if (e.target.innerText.includes(this.state.team3)){
-        //     this.setState({
-        //         tradedto3: new3Array,
-        //         beingTraded: false
-        //     })}
-        //     else if (e.target.innerText.includes(this.state.team4)){
-        //     this.setState({
-        //         tradedto4: new4Array,
-        //         beingTraded: false
-        //     })}
-
-
-        // }
-
-        // whatabout2 = (e) => {
-        //     let newArray = this.state.tradedto2.push(this.state.beingTraded)
-        //     !e.target.innerText.includes(this.state.team2))
-        //     return (
-        //     this.whatabout3(e))
-        //     else
-        //     return (
-        //     this.setState({
-        //         tradedto2: newArray,
-        //         beingTraded: false
-        //     }))
-        // }
-
-        // whatabout3 = (e) => {
-        //     let newArray = this.state.tradedto3.push(this.state.beingTraded)
-        //     if (!e.target.innerText.includes(this.state.team3))
-        //     return (
-        //     this.fineits4(e))
-        //     else 
-        //     return (
-        //     this.setState({
-        //         tradedto3: newArray,
-        //         beingTraded: false
-        //     }))
-        // }
-
-        // fineits4 = (e) => {
-        //     let newArray = this.state.tradedto4.push(this.state.beingTraded)
-        //     this.setState({
-        //         tradedto3: newArray,
-        //         beingTraded: false
-        //     })
-        // }
-
-        // swapTeams = (player) => {
-        //     debugger
-        //     // if (player.team_id === this.state.team1.id) 
-        //     let old1 = this.state.tradedto1
-        //     let old2 = this.state.tradedto2
-        //     const newArray1 = old1.push(player)
-        //     const newArray2 = old2.push(player)
-        //     // let newArray3 = this.state.tradedto2.push(player)
-        //     // let newArray4 = this.state.tradedto2.push(player)
-        //     this.setState({
-        //         tradedto1: player.team_id === this.state.team1.id ? old1 : newArray1,
-        //         tradedto2: player.tead_id === this.state.team2.id ? old2 : newArray2
-        //     })
-        //     }
-
-        // pickaTeam = (e) => {
-        //     const player = this.state.trading
-        //     const teamName = e.target.innertext
-        //     let old1 = this.state.tradedto1
-        //     let old2 = this.state.tradedto2
-        //     let old3 = this.state.tradedto3
-        //     let old4 = this.state.tradedto4
-        //     const newArray1 = old1.push(player)
-        //     const newArray2 = old2.push(player)
-        //     const newArray3 = old3.push(player)
-        //     const newArray4 = old4.push(player)
-        //     this.setState({
-        //         tradedto1: this.state.team1.name === teamName ? newArray1 : old1,
-        //         tradedto2: this.state.team2.name === teamName ? newArray2 : old2,
-        //         tradedto3: this.state.team3.name === teamName ? newArray3 : old3,
-        //         tradedto4: this.state.team4.name === teamName ? newArray4 : old4,
-        //         whereTo: false,
-        //         trading: null
-        //     })
-        //     }
 
         addAThird = () => {
             this.setState({
@@ -563,41 +392,6 @@ class MachineCard extends Component {
             })
         }
 
-//           isUnderCap = (salary) => {
-//     return salary < this.props.salaryCap;
-//   };
-
-//   isUnderTax = (team) => {
-//     return this.salaryOfTeam(team) < this.props.luxuryTax;
-//   };
-
-//   salaryToNumber = (salaryString) => {
-//     return parseInt(salaryString.replace(/\$|\,/g, ''));
-//   };
-
-//   salaryOfTeam = (team) => {
-//     return _.reduce(team, (sum, player) => {
-//       return sum + this.salaryToNumber(player.salary);
-//     }, 0);
-//   };
-
-//   potentialSalary = (currentSalary, incomingSalary) => {
-//     return currentSalary + incomingSalary;
-//   };
-
-//   isTrade = () => {
-//     // TODO this can be shorter, refactor
-//     let check = false;
-
-//     this.props.incomingPlayers.forEach((teamIncoming) => {
-//       if(teamIncoming.length > 0) {
-//         check = true;
-//       }
-//     });
-
-//     return check;
-//   };
-
         oldCap = (team) => {
             team ==! null
             ?
@@ -606,17 +400,6 @@ class MachineCard extends Component {
             parseInt(0)
         }
 
-        // incomingSalary = (acquired) => {
-        //     acquired.map(player => parseInt(player.salary.replace(/\D/g,''))).reduce((a, b) => a + b, 0)
-        // }
-
-        // outgoingSalary(team){
-        //    this.tradedAway({team}).map(player => parseInt(player.salary.replace(/\D/g,''))).reduce((a, b) => a + b, 0))
-        // }
-
-        // newCap = (team) => {
-        //     return oldCap(team) + incomingSalaries(team) - outgoingSalaries(team)
-        // }
         validateTrade = (team, acquired) => {
             debugger
             // 1. Any team under the cap can take any amount in up to the cap level + $100,000
@@ -708,7 +491,7 @@ class MachineCard extends Component {
             <br/>
             {team1 !== "selecting" && team1 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam1} team={team1} players={this.state.team1Players} selectPlayer={this.addPlayerToTrade}/>: null}
             {team2 !== "selecting" && !this.state.submitted && team2 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam2} team={team2} players={this.state.team2Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            <TradeCard numberToCut={this.state.numberToCut} notValidReason={this.state.notValidReason} user={this.props.currentUser} tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
+            <TradeCard teams={this.props.all_teams} numberToCut={this.state.numberToCut} notValidReason={this.state.notValidReason} user={this.props.currentUser} tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
             {team3 !== "selecting" && team3 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam3} team={team3} players={this.state.team3Players} selectPlayer={this.addPlayerToTrade}/>: null}
             {team4 !== "selecting" && team4 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam4} team={team4} players={this.state.team4Players} selectPlayer={this.addPlayerToTrade}/>: null}
             {team1 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam1} changeTeam={this.changeTeam1} removeTeam={this.removeTeam1}/>: null}
@@ -721,7 +504,7 @@ class MachineCard extends Component {
             {this.state.submitted ? <button class="ui button" size="mini" onClick={this.handleSave}>Save Trade</button> : false}
             {this.state.submitted ? <button class="ui button" size="mini" onClick={this.editTrade}>Edit Trade</button> : null}
             {this.state.tradedto1.length || this.state.tradedto2.length || this.state.tradedto3.length || this.state.tradedto4.length > 0 ? <button class="ui button" size="mini" onClick={this.resetMachine}>Reset Trade Machine</button> : null}
-            <Link to="/trades">See all trades</Link>
+
             </div>
             </div>
         )

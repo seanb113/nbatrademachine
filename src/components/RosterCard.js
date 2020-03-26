@@ -12,8 +12,7 @@ const RosterCard = props => {
             <button onClick={()=>props.removeTeam(props.team)}>Remove Team</button>
             <div>Team: {props.team.name}</div>
             <div>Cap Space: {props.team.total_spent}</div>
-            <div>
-            {console.log(props)}
+            <div class="ui celled list">
             {props.players.map(player => 
             <PlayerCard player={player} tradedPlayers={props.tradedPlayers} selectPlayer={props.selectPlayer}/>)}
             </div>

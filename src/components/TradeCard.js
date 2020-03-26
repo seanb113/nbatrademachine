@@ -3,8 +3,9 @@ import RosterCard from '../components/RosterCard'
 import PlayerCard from '../components/PlayerCard'
 import UserProfile from '../components/UserProfile'
 import {Route, Link} from 'react-router-dom'
+import { Segment, Fragment, Grid } from 'semantic-ui-react'
 const TradeCard = props => {
-    console.log(props)
+    console.log(props.currentUser)
         
         let tradeVotes = props.votes !== undefined ? props.votes.filter(v=>v.trade_id === props.trade.id) : []
         
@@ -39,7 +40,7 @@ const TradeCard = props => {
 
         const checkLike = () => {
             let tv = tradeVotes.map(v => v.user_id)
-            // debugger
+            debugger
             !tv.includes(props.currentUser.id)
             &&
             props.currentUser.id !== props.createdBy[0].id
@@ -94,14 +95,10 @@ const TradeCard = props => {
             return `${noTrades.join(", ")} have trade clauses that must be waived for this trade to go through`
         }
 
-        // let noTradeClause = () => {
-        //     debugger
-        //     props.player1.filter(p => p.trade_clause)
-        //     props.player2.filter(p => p.trade_clause)
-        //     props.player3.filter(p => p.trade_clause)
-        //     props.player4.map(p => p.trade_clause)
-        //     return [...props.player1, ...props.player2, ...props.player3, ...props.player4]
-        // }
+        let findTeamLogoByName  = (name) => {
+        let team = props.teams.filter(t => t.name === name)
+        return team.logo
+    }
         
         let tradeclauses = [...props.player1.filter(p => p.trade_clause), ...props.player2.filter(p => p.trade_clause), ...props.player3.filter(p => p.trade_clause), ...props.player4.filter(p => p.trade_clause)]
 
@@ -109,41 +106,60 @@ const TradeCard = props => {
             // console.log(props.currentUser)
         return(
             // let tradeUser = this.findUser(this.props.user)
-            <div>
-            <div>{props.currentUser !== undefined && props.createdBy !== undefined && props.createdBy[0].id === props.currentUser.id ? <button onClick={deleteTrade}>Delete Trade</button> : null}</div>
+            <div class="ui centered card">
+            <div class="content">
+            <div class="right floated author">{props.currentUser !== undefined && props.createdBy !== undefined && props.createdBy[0].id === props.currentUser.id ? <button onClick={deleteTrade}>X</button> : null}</div>
+            <br/>
             {props.createdBy !== undefined 
             ?
-            <Link to={`/user/${props.createdBy[0].id}`}>
-            <div>{props.createdBy !== undefined ? "Proposed by: " + props.createdBy[0].name : null}</div>
-            </Link>
+            <Grid as={Link} to={`/user/${props.createdBy[0].id}`}>
+            <div class="extra content">
+            <div class="center floated author">{props.createdBy !== undefined ? "Proposed by: " + props.createdBy[0].name : null}
+            <img class="right floated mini ui image" src={findTeamLogoByName(props.createdBy[0].team)}/>
+            </div>
+            </div>
+            </Grid>
             :
             null}
-            <div>
+            <br/>
+            <br/>
+            <div class="header">
             {props.player1.length > 0 ? props.team1.name + " get:" : null}
+            </div>
+            <div class="ui celled list">
             {props.player1.length > 0 ? props.player1.map(player => 
             <PlayerCard team={props.team1} player={player} selectPlayer={props.dontrade1}/>): null}
             </div>
-            <div>
+            <div class="header">
             {props.player2.length > 0 ? props.team2.name + " get:" : null}
+            </div>
+            <div class="ui celled list">
             {props.player2.length > 0 ? props.player2.map(player =>
             <PlayerCard team={props.team2} player={player} selectPlayer={props.dontrade2}/>) : null}
             </div>
-            <div>
+            <div class="header">
             {props.player3.length > 0 ? props.team3.name + " get:" : null}
+            </div>
+            <div class="ui celled list">
             {props.player3.length > 0 ? props.player3.map(player =>
             <PlayerCard team={props.team3} player={player} selectPlayer={props.dontrade3}/>) : null}
             </div>
-            <div>
+            <div class="header">
             {props.player4.length > 0 ? props.team4.name + " get:" : null}
+            </div>
+            <div class="ui celled list">
             {props.player4.length > 0 ? props.player4.map(player =>
             <PlayerCard team={props.team4} player={player} selectPlayer={props.dontrade4}/>) : null}
             </div>
-            <div>{tradeclauses.length > 0 ? tradeClausesInTrade(tradeclauses) : null }</div>
+            <div class="meta">{tradeclauses.length > 0 ? tradeClausesInTrade(tradeclauses) : null }</div>
             <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.tooMuchSalary.name} taking in too much salary` : null}</div>
             <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.notValidReason}` : null}</div>
             <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `Cut $${numberWithCommas(props.numberToCut)} from incoming salary` : null}</div>
+            </div>
             {props.createdBy !== undefined
             ?
+            <div class="extra content">
+                <div class="ui two buttons">
             <div id="like" size="mini" class="ui labeled button" tabindex="0">
             <div id="like" size="mini" class="ui black button" onClick={((e)=> sortVote(e))}>
                 <i id="like" class="thumbs up icon"></i> Like
@@ -152,10 +168,6 @@ const TradeCard = props => {
                 {tradeLikes.length}
             </a>
             </div>
-            :
-            null}
-            {props.createdBy !== undefined
-            ?
             <div id="veto" size="mini" class="ui labeled button" tabindex="0">
             <div id="veto" size="mini" class="ui basic black button" onClick={((e)=> sortVote(e))}>
                 <i id="veto" class="thumbs down icon"></i> Veto
@@ -163,6 +175,8 @@ const TradeCard = props => {
             <a class="ui basic left pointing black label">
                 {tradeVetoes.length}
             </a>
+            </div>
+            </div>
             </div>
             :
             null}

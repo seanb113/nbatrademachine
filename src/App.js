@@ -12,6 +12,7 @@ import FireUpMachine from './components/FireUpMachine'
 import NewsFeed from './components/NewsFeed'
 import SignUp from './components/SignUp'
 import {Route, Switch, Redirect} from 'react-router-dom'
+import {Sticky } from 'semantic-ui-react'
 
 // import RosterList from './components/RosterList'
 
@@ -33,7 +34,12 @@ class App extends Component {
   }
 
   componentDidMount(){
-    console.log(`${process.env.REACT_APP_NEWS_API_KEY}`)
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0')
+    let mm = String(today.getMonth() + 1).padStart(2, '0')
+    let yyyy = today.getFullYear()
+    let lastMonth = yyyy + '-' + parseInt(mm) - 1 + '-' + dd
+    // let lastMonth = parseInt(mm) > 1 ? yyyy + '-' + parseInt(mm) - 1 + '-' + dd : parseInt(yyyy) - 1 + '-' + "12" + '-' + dd
     fetch("http://localhost:5000/players")
     .then(r=>r.json())
     .then(players=>this.setState({
@@ -59,7 +65,7 @@ class App extends Component {
     .then(votes=>this.setState({
       votes
     }))
-    fetch(`http://newsapi.org/v2/everything?q="nba+trade"&from=2020-02-23&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
+    fetch(`http://newsapi.org/v2/everything?q="${this.state.currentUser ? this.state.currentUser.team : "nba"}+trade"&from=${lastMonth}&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`)
     .then(r=>r.json())
     .then(articles=>this.setState({
       articles: articles.articles
@@ -150,6 +156,7 @@ class App extends Component {
     let teamNames = this.state.teams.map(t=> t.name)
   return (
     <div>
+    <div>
     <Switch>
     <Route path="/user/:id" render={(props) => {
       // debugger
@@ -165,14 +172,16 @@ class App extends Component {
     <Route exact path="/machine" render={()=> 
     <MachineCard addedNewTrade ={this.addedNewTrade} players={this.state.players} teams={this.state.teams} notValid={this.state.notValid} currentUser={this.state.currentUser}/>}/>
     <Route exact path="/trades" render={()=>
-    <TradeList removeTrade={this.removeTrade} addVote={this.addVote} votes={this.state.votes} all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>
+    <TradeList removeTrade={this.removeTrade} addVote={this.addVote} votes={this.state.votes} all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams} currentUser={this.state.currentUser}/>}/>
     <Route exact path="/login" render={() => {
     return this.state.currentUser ? <Redirect to="/wannatrade"/> : <LoginForm loginSubmit={this.loginSubmit}/>}}/>
     <Route exact path="/signup" render={() => {
       return this.state.currentUser? <Redirect to="/wannatrade"/> : <SignUp teams={teamNames} handleSignupForm={this.handleSignupForm} handleOnChangeForm={this.handleOnChangeForm}/>}}/>
     </Switch>
-    <div>
+    {/* <div>
     {this.state.currentUser ? <NewsFeed articles={this.state.articles}/> : null}
+    </div> */}
+    {this.state.currentUser ? <NavBar/> : null}
     </div>
     </div>
   )
