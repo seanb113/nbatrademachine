@@ -388,7 +388,8 @@ class MachineCard extends Component {
                 beingTraded: null,
                 submitted: false,
                 notValid: false,
-                notValidReason: null
+                notValidReason: null,
+                saved: false
             })
         }
 

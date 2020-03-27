@@ -31,6 +31,30 @@ code {
   transition: 'fade down'
 }
 
+#button-example {float: right}
+
+.ui.form.container{
+  padding-left: 10rem;
+  padding-right: 10rem;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+
+}
+
+#signupSubmit {float: center}
+/* 
+#loginLogo{
+  padding-left: 10rem;
+} */
+
+/* .ui.vertical.icon.menu{
+  display: flex
+}
+
+.ui.vertical.menu { width: 15rem; padding-left: 10rem; }
+
+pushable:not(body)>.ui.sidebar { position: sticky; } */
+
 
 
 

@@ -1,5 +1,7 @@
 import React from "react"
 import {Link} from 'react-router-dom'
+import Logo from '../logo_transparent.png'
+
 class LoginForm extends React.Component {
     state = {
         name: "",
@@ -34,18 +36,23 @@ class LoginForm extends React.Component {
 render(){
      
         return(
-
-        <form onSubmit={this.handleLoginSubmit}>
-            <input
+            <div>
+            <div class="ui form container">
+        <form class="ui form" onSubmit={this.handleLoginSubmit}>
+            {/* <img id="loginLogo" class="ui image" src={Logo}></img> */}
+            <input placeholder="name"
             label="username" value={this.state.name} onChange={(event)=>this.setState({name: event.target.value})}
             />
-            <input            
+            <input placeholder="password"       
             type="password" label="password" value={this.state.password} onChange={(event)=>this.setState({password: event.target.value})}/>
-            <button type="submit">Login </button>
+            <br></br>
+            <button id="signupSubmit" class="ui button" type="submit" value="Submit">Login </button>
             <div>
             <Link to="/signup">Sign Up</Link>
             </div>
             </form>
+            </div>
+            </div>
 
         ) 
     }

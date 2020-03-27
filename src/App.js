@@ -12,7 +12,7 @@ import FireUpMachine from './components/FireUpMachine'
 import NewsFeed from './components/NewsFeed'
 import SignUp from './components/SignUp'
 import {Route, Switch, Redirect} from 'react-router-dom'
-import {Sticky } from 'semantic-ui-react'
+import {Sticky, Sidebar} from 'semantic-ui-react'
 
 // import RosterList from './components/RosterList'
 
@@ -30,7 +30,8 @@ class App extends Component {
     namae: null,
     team: null,
     password: null,
-    notValid: false
+    notValid: false,
+    visibleMenu: false
   }
 
   componentDidMount(){
@@ -144,10 +145,19 @@ class App extends Component {
   }
 
   removeTrade =(id)=>{
+    debugger
     // this.state.trades.filter(t => t.id !== id)
     this.setState({
       trades: this.state.trades.filter(t => t.id !== id)
     })
+  }
+
+  showMenu = ()=>{
+    debugger
+    if (this.state.visbileMenu === true)
+    return this.setState({visibleMenu: false})
+    else 
+    return this.setState({visibleMenu: true})
   }
 
 
@@ -155,8 +165,9 @@ class App extends Component {
     let currentUserArray = new Array(this.state.currentUser)
     let teamNames = this.state.teams.map(t=> t.name)
   return (
-    <div>
-    <div>
+    <div className="App" style={{height: '100%'}}>
+    {this.state.currentUser ? <NavBar visibleMenu={this.state.visibleMenu}/> : null}
+    <Sidebar.Pusher>
     <Switch>
     <Route path="/user/:id" render={(props) => {
       // debugger
@@ -178,11 +189,10 @@ class App extends Component {
     <Route exact path="/signup" render={() => {
       return this.state.currentUser? <Redirect to="/wannatrade"/> : <SignUp teams={teamNames} handleSignupForm={this.handleSignupForm} handleOnChangeForm={this.handleOnChangeForm}/>}}/>
     </Switch>
+    </Sidebar.Pusher>
     {/* <div>
     {this.state.currentUser ? <NewsFeed articles={this.state.articles}/> : null}
     </div> */}
-    {this.state.currentUser ? <NavBar/> : null}
-    </div>
     </div>
   )
   }

@@ -7,94 +7,94 @@ import { Button, Dropdown, Form, Input } from 'semantic-ui-react'
 
 const options = [
     {
-      label: "Atlanta Hawks", value: "Atlanta Hawks"
+      value: "Atlanta Hawks", text: "Atlanta Hawks"
     },
     {
-      label: "Boston Celtics", value: "Boston Celtics"
+      value: "Boston Celtics", text: "Boston Celtics"
     },
     {
-      label: "Brooklyn Nets", value: "Brooklyn Nets"
+      value: "Brooklyn Nets", text: "Brooklyn Nets"
     },
     {
-      label: "Charlotte Hornets", value: "Charlotte Hornets"
+      value: "Charlotte Hornets", text: "Charlotte Hornets"
     },
     {
-      label: "Chicago Bulls", value: "Chicago Bulls"
+      value: "Chicago Bulls", text: "Chicago Bulls"
     },
     {
-      label: "Cleveland Cavaliers", value: "Cleveland Cavaliers"
+      value: "Cleveland Cavaliers", text: "Cleveland Cavaliers"
     },
     {
-      label: "Dallas Mavericks", value: "Dallas Mavericks"
+      value: "Dallas Mavericks", text: "Dallas Mavericks"
     },
     {
-        label: "Denver Nuggets", value: "Denver Nuggets"
+        value: "Denver Nuggets", text: "Denver Nuggets"
     },
     {
-      label: "Detroit Pistons", value: "Detroit Pistons"
+      value: "Detroit Pistons", text: "Detroit Pistons"
     },
     {
-      label: "Golden State Warriors", value: "Golden State Warriors"
+      value: "Golden State Warriors", text: "Golden State Warriors"
     },
     {
-      label: "Houston Rockets", value: "Houston Rockets",
+      value: "Houston Rockets", text: "Houston Rockets",
     },
     {
-      label: "Indiana Pacers", value: "Indiana Pacers"
+      value: "Indiana Pacers", text: "Indiana Pacers"
     },
     {
-      label: "Los Angeles Clippers", value: "Los Angeles Clippers"
+      value: "Los Angeles Clippers", text: "Los Angeles Clippers"
     },
     {
-      label: "Los Angeles Lakers", value: "Los Angeles Lakers"
+      value: "Los Angeles Lakers", text: "Los Angeles Lakers"
     },
     {
-      label: "Memphis Grizzlies", value: "Memphis Grizzlies"
+      value: "Memphis Grizzlies", text: "Memphis Grizzlies"
     },
     {
-      label: "Miami Heat", value: "Miami Heat"
+      value: "Miami Heat", text: "Miami Heat"
     },
     {
-      label: "Milwaukee Bucks", value: "Milwaukee Bucks"
+      value: "Milwaukee Bucks", text: "Milwaukee Bucks"
     },
     {
-      label: "Minnesota Timberwolves", value: "Minnesota Timberwolves"
+      value: "Minnesota Timberwolves", text: "Minnesota Timberwolves"
     },
     {
-      label: "New Orleans Pelicans", value: "New Orleans Pelicans"
+      value: "New Orleans Pelicans", text: "New Orleans Pelicans"
     },
     {
-      label: "New York Knicks", value: "New York Knicks"
+      value: "New York Knicks", text: "New York Knicks"
     },
     {
-      label: "Oklahoma City Thunder", value: "Oklahoma City Thunder"
+      value: "Oklahoma City Thunder", text: "Oklahoma City Thunder"
     },
     {
-      label: "Orlando Magic", value: "Orlando Magic"
+      value: "Orlando Magic", text: "Orlando Magic"
     },
     {
-      label: "Philadelphia 76ers", value: "Philadelphia 76ers" 
+      value: "Philadelphia 76ers", text: "Philadelphia 76ers" 
     },
     {
-      label: "Phoenix Suns", value: "Phoenix Suns"
+      value: "Phoenix Suns", text: "Phoenix Suns"
     },
     {
-      label: "Portland Trail Blazers", value: "Portland Trail Blazers"
+      value: "Portland Trail Blazers", text: "Portland Trail Blazers"
     },
     {
-      label: "Sacramento Kings", value: "Sacramento Kings"
+      value: "Sacramento Kings", text: "Sacramento Kings"
     },
     {
-      label: "San Antonio Spurs", value: "San Antonio Spurs"
+      value: "San Antonio Spurs", text: "San Antonio Spurs"
     },
     {
-      label: "Toronto Raptors", value: "Toronto Raptors"
+      value: "Toronto Raptors", text: "Toronto Raptors"
     },
     {
-      label: "Utah Jazz", value: "Utah Jazz"
+      value: "Utah Jazz", text: "Utah Jazz"
     },
     {
-      label: "Washington Wizards", value: "Washington Wizards"}
+      value: "Washington Wizards", text: "Washington Wizards"}
   ]
 
 
@@ -103,8 +103,7 @@ class TradeList extends React.Component {
         trades: this.props.trades,
         players: this.props.all_players,
         teams: this.props.all_teams,
-        value: [],
-        text: ""
+        value: []
     }
     debugIt = (t, i) =>{
         console.log(t, i)
@@ -167,15 +166,18 @@ class TradeList extends React.Component {
     }
 
     onFilterChange = (event) => {
-        // debugger
+        let prevElem = event.target.previousElementSibling ? event.target.previousElementSibling : null
+        let teamName = prevElem !== null && event.target.previousElementSibling.innerText !== undefined ? event.target.previousElementSibling.innerText : null
+        let arr = prevElem !== null && teamName !== null ? this.state.value.push(teamName) : this.state.value
+        debugger
         this.setState({
-            value: event
+            value: this.state.value
         })
     }
 
     handleSubmit = (event) => {
-        let labels = this.state.value.map(v=>v.label)
-        // debugger
+        let teamNames = this.state.value
+        debugger
         event.preventDefault()
         console.log(event.target)
         this.state.value === []
@@ -185,7 +187,13 @@ class TradeList extends React.Component {
         })
         :
         this.setState({
-            trades: this.filterTradesByTeams(labels)
+            trades: this.filterTradesByTeams(teamNames)
+        })
+    }
+
+    resetSearch = (event) => {
+        this.setState({
+            trades: this.props.trades
         })
     }
 
@@ -204,17 +212,37 @@ class TradeList extends React.Component {
             }, {}))
             return(
                 <div>
+        {/* <form onSubmit={this.handleSubmit}> */}
+              <Dropdown
+                    placeholder='team'
+                    fluid
+                    multiple
+                    search
+                    selection
+                    options={options}
+                    onSelect={this.onFilterChange}
+                    onEnter={this.handleSubmit}
+                />
+                <div class="icon buttons">
+                <button id="button-example" class="ui button" onClick={this.handleSubmit}><i class="search icon"></i></button>{this.state.trades !== this.props.trades ? <button id="button-example" class="ui button" onClick={this.resetSearch}><i class="undo icon"></i></button>: null}
+                </div>
+            {/* </form> */}
+
+
+            {/* <label>
+                Filter By team
+                <select class="ui fluid search dropdown" multiple="" onSelect={this.onFilterChange}>
+                {options.map(o =>
+                <option value={o.value}>{o.label}</option>)}
+                {/* <Select onChange={this.onFilterChange} value={this.state.value} options={options} name="select" require multi/> */}
+                {/* </select>
+            </label>
+            <button>Submit</button>
+            </form> */}
                 <br/>
             <div className="ui cards">
         <br/>
         <br/>
-        <form onSubmit={this.handleSubmit}>
-            <label>
-                Filter By team
-                <Select onChange={this.onFilterChange} value={this.state.value} options={options} name="select" require multi/>
-            </label>
-            <button>Submit</button>
-            </form>
             <br />
         {groupToPlayers.map((t, i) => Object.keys(t).length === 2 ?
         <TradeCard teams={this.props.all_teams} dontrade1={this.selectPlayer} dontrade2={this.selectPlayer} dontrade3={this.selectPlayer} dontrade4={this.selectPlayer} removeTrade={this.props.removeTrade} all_teams={this.props.all_teams} addVote={this.props.addVote} votes={this.props.votes} currentUser={this.props.currentUser} trade={tradeIds[i]} all_users={this.props.all_users} createdBy={this.props.all_users.filter(u => u.id === tradeUsers[i])} team1={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[0]))[0]} player1={t[Object.keys(t)[0]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}

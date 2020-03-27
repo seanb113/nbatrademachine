@@ -2,14 +2,18 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 const FireUpMachine  = () => {
     return(
-        <div>
-        About Page Will Go here.
-        {/* <Link to="/machine">
-        <button>Ready to trade?</button>
-        </Link>
-        <Link to="/profile">
-        <button>Go to your profile</button>
-        </Link> */}
+        <div class="ui container">
+        <br></br>
+        <br></br>
+        <div class="ui header"> Welcome to the NBA trade machine. Try and share your trades and vote on others trades.</div>
+        <div class="ui fifth header"> To get started: </div>
+        <ol class="ui list">
+        <li>Go to the machine in your sidebar menu</li>
+        <li>Select 2 to 4 Teams</li>
+        <li>Trade Players</li>
+        <li>Try Your Trade</li>
+        <li>Share Your Trade</li>
+        </ol>
         </div>
     )
 }

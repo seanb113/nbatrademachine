@@ -14,18 +14,19 @@ const TradeCard = props => {
         let tradeVetoes = tradeVotes.filter(v=> v.category === "veto")
 
         const returnNameFromId = (id) => {
-            debugger
+            // debugger
             let team = props.all_teams.filter(t => t.id === id)
             return team[0].name
         }
 
         const checkVeto = () => {
+            debugger
             let teams = props.trade.swaps.map(s=> s.team_id)
-            let tv = tradeVotes.map(v => v.user_id)
+            let tradev = tradeVotes.map(v => v.user_id)
             let teamNames = teams.map(t=>returnNameFromId(t))
             if (!teamNames.includes(props.currentUser.team))
             alert("Sorry, Adam Silver. Only fans of the teams involved can veto a trade")
-            else if (!tv.includes(props.currentUser.id) && props.currentUser.id !== props.createdBy[0].id)
+            else if (tradev.includes(props.currentUser.id) && props.currentUser.id !== props.createdBy[0].id)
             console.log("You cannot vote twice")
             else
             postVote("veto")
@@ -108,6 +109,8 @@ const TradeCard = props => {
             // let tradeUser = this.findUser(this.props.user)
             <div class="ui centered card">
             <div class="content">
+            <div class="meta">{!props.createdBy ? "Your trade..." : null}
+            </div>
             <div class="right floated author">{props.currentUser !== undefined && props.createdBy !== undefined && props.createdBy[0].id === props.currentUser.id ? <button onClick={deleteTrade}>X</button> : null}</div>
             <br/>
             {props.createdBy !== undefined 

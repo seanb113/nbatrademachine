@@ -3,7 +3,7 @@ import { Divider, Image } from 'semantic-ui-react'
 const PlayerCard  = props => {
             console.log("playercard", props.tradedPlayers)
     let disableCard = (player) => {
-        debugger
+        // debugger
         if (props.tradedPlayers.includes(player))
         return true
         else
@@ -11,7 +11,7 @@ const PlayerCard  = props => {
     }
 
     let getInitials = (string) => {
-        debugger
+        // debugger
         let initials = string.match(/\b\w/g) || []
         return ((initials.shift() || '') + (initials.pop() || '')).toUpperCase()
     }
