@@ -13,9 +13,9 @@ class SignUp extends React.Component {
                 <label for="name">Name:</label>
                 <input type = 'text' id = 'name'onChange ={this.props.handleOnChangeForm }/><br></br>
                 <label for="team"  >Favorite Team:</label>
-                <select class="ui selection dropdown">
+                <select onChange={this.props.handleOnChangeForm} class="ui selection dropdown">
                 {this.props.teams.map(t => {
-                    return <option value="t">{t}</option>
+                    return <option id='team' value={t}>{t}</option>
                 })}
                 </select>
                 <label for="password">Password:</label>

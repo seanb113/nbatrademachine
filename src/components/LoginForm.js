@@ -39,7 +39,7 @@ render(){
             <div>
             <div class="ui form container">
         <form class="ui form" onSubmit={this.handleLoginSubmit}>
-            {/* <img id="loginLogo" class="ui image" src={Logo}></img> */}
+            <img id="loginLogo" class="ui small image" src={Logo}></img>
             <input placeholder="name"
             label="username" value={this.state.name} onChange={(event)=>this.setState({name: event.target.value})}
             />

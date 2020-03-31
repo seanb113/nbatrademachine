@@ -77,8 +77,8 @@ class App extends Component {
   }
 
      handleOnChangeForm = (event)=>{
-        
-      let stateKey = event.target.id
+      // debugger
+      let stateKey = event.target.id.length > 0 ? event.target.id : 'team'
       let formValue = event.target.value
       this.setState({
           [stateKey]: formValue
@@ -102,10 +102,10 @@ class App extends Component {
       .then(resp => resp.json())
       .then(r =>{
           this.setState({
-            currentUser: r
+            currentUser: r,
+            password: null
           })
       } )
-      
     }
 
   loginSubmit = (user) =>{

@@ -361,6 +361,7 @@ class MachineCard extends Component {
             this.setState({
                 saved: true
             })
+            alert("Trade saved")
         }
 
         editTrade = () => {

@@ -29,7 +29,7 @@ class NavBar extends Component {
     <div>
     <Sticky>
     <Button color="black" onClick={this.handleShowClick}> 
-        <i className="content icon"></i> Menu
+        <i className="content icon"></i>
     </Button>
     </Sticky>
       <Sidebar
