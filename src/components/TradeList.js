@@ -165,37 +165,31 @@ class TradeList extends React.Component {
         return this.props.trades
     }
 
-    onFilterChange = (event) => {
-        let prevElem = event.target.previousElementSibling ? event.target.previousElementSibling : null
-        let teamName = prevElem !== null && event.target.previousElementSibling.innerText !== undefined ? event.target.previousElementSibling.innerText : null
-        let arr = prevElem !== null && teamName !== null ? this.state.value.push(teamName) : this.state.value
+    deleteFilter = (event) => {
         debugger
+        let arr2 = this.state.value.filter(t => t !== event.target.parentElement.innerText)
+        let teamNames = arr2.length > 0 ? arr2 : []
         this.setState({
-            value: this.state.value
+            value: arr2,
+            trades: this.filterTradesByTeams(teamNames)
+
         })
     }
 
-    handleSubmit = (event) => {
-        let teamNames = this.state.value
+    onFilterChange = (event) => {
         debugger
-        event.preventDefault()
-        console.log(event.target)
-        this.state.value === []
+        let teamName = event.target.innerText
+        let arr = teamName !== "" && event.target.className !== "delete icon" ? this.state.value.push(teamName) : this.state.value
+        event.target.className === "delete icon"
         ?
-        this.setState({
-            trades: this.props.trades
-        })
+        this.deleteFilter(event)
         :
         this.setState({
-            trades: this.filterTradesByTeams(teamNames)
+            value: this.state.value,
+            trades: this.filterTradesByTeams(this.state.value)
         })
     }
 
-    resetSearch = (event) => {
-        this.setState({
-            trades: this.props.trades
-        })
-    }
 
     render(){
         // let teams = this.groupToPlayers(swaps)
@@ -220,12 +214,9 @@ class TradeList extends React.Component {
                     search
                     selection
                     options={options}
-                    onSelect={this.onFilterChange}
+                    onChange={this.onFilterChange.bind(this)}
                     onEnter={this.handleSubmit}
                 />
-                <div class="icon buttons">
-                <button id="button-example" class="ui button" onClick={this.handleSubmit}><i class="search icon"></i></button>{this.state.trades !== this.props.trades ? <button id="button-example" class="ui button" onClick={this.resetSearch}><i class="undo icon"></i></button>: null}
-                </div>
             {/* </form> */}
 
 
