@@ -488,13 +488,13 @@ class MachineCard extends Component {
             <br/>
             <div class="ui centered grid">
             <div class="ui buttons">
-            {tradeTo && team1 !== "selecting" && tradeTo.team_id !== team1.id ? <button class="small ui button" onClick={(e)=> this.tradetoTeam1(e)}>Trade {tradeTo.name} to the {team1.name}?</button> : null}
-            {tradeTo && team3 !== null && team3 !== "selecting" && tradeTo.team_id !== team1.id ? <div class="or"></div> : null}
-            {tradeTo && team2 !== "selecting" && tradeTo.team_id !== team2.id ? <button class="small ui button" onClick={(e)=> this.tradetoTeam2(e)}>Trade {tradeTo.name} to the {team2.name}?</button> : null}
-            {tradeTo && team3 !== null && team4 !== "selecting" && tradeTo.team_id !== team3.id ? <div class="or"></div> : null}
-            {tradeTo && team3 && tradeTo.team_id !== team3.id && team3 !== "selecting" ? <button class="small ui button" onClick={(e)=> this.tradetoTeam3(e)}>Trade {tradeTo.name} to the {team3.name}?</button> : null}
-            {tradeTo && team4 !== null && team4 !== "selecting" && tradeTo.team_id !== team4.id ? <div class="or"></div> : null}
-            {tradeTo && team4 && tradeTo.team_id !== team4.id && team4 !== "selecting" ? <button class="small ui button" onClick={(e)=> this.tradetoTeam4(e)}>Trade {tradeTo.name} to the {team4.name}?</button> : null}
+            {tradeTo && team1 !== "selecting" && tradeTo.team_id !== team1.id ? <button id="pickTeamGrid" class="small ui button" onClick={(e)=> this.tradetoTeam1(e)}>Trade {tradeTo.name} to the {team1.name}?</button> : null}
+            {tradeTo && team3 !== null && team3 !== "selecting" && tradeTo.team_id !== team1.id ? <div id="pickTeamGrid" class="or"></div> : null}
+            {tradeTo && team2 !== "selecting" && tradeTo.team_id !== team2.id ? <button id="pickTeamGrid" class="small ui button" onClick={(e)=> this.tradetoTeam2(e)}>Trade {tradeTo.name} to the {team2.name}?</button> : null}
+            {tradeTo && team3 !== null && team4 !== "selecting" && tradeTo.team_id !== team3.id ? <div id="pickTeamGrid" class="or"></div> : null}
+            {tradeTo && team3 && tradeTo.team_id !== team3.id && team3 !== "selecting" ? <button id="pickTeamGrid" class="small ui button" onClick={(e)=> this.tradetoTeam3(e)}>Trade {tradeTo.name} to the {team3.name}?</button> : null}
+            {tradeTo && team4 !== null && team4 !== "selecting" && tradeTo.team_id !== team4.id ? <div id="pickTeamGrid" class="or"></div> : null}
+            {tradeTo && team4 && tradeTo.team_id !== team4.id && team4 !== "selecting" ? <button id="pickTeamGrid" class="small ui button" onClick={(e)=> this.tradetoTeam4(e)}>Trade {tradeTo.name} to the {team4.name}?</button> : null}
             </div>
             </div>
             <br/>
@@ -513,6 +513,8 @@ class MachineCard extends Component {
             <div class="ui buttons">
             </div>
             </div>
+            <br/>
+            <br/>
             <div class="ui centered grid">
             {team3 === null ? <button class="small ui button" onClick={this.addAThird}>Add third team</button> : null}
             {team4 === null && this.state.team3 ? <button class="small ui button" onClick={this.addAFourth}>Add fourth team</button> : null}

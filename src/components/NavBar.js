@@ -28,11 +28,10 @@ class NavBar extends Component {
     return (     
     <div>
     <Sticky>
-    <Button id="menuTab" color="black" size="mini" onClick={this.handleShowClick}> 
-        <i className="content icon"></i>
-    </Button>
+        <i id="menuTab" className="content icon" onClick={this.handleShowClick}></i>
     </Sticky>
       <Sidebar
+            id="slideout"
             as={Menu}
             animation='push'
             direction='left'

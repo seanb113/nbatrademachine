@@ -7,7 +7,7 @@ const RosterCard = props => {
         // let these_players = this.props.players.map(player => 
         //     player.team === this.props.team.name ? player : null)
         return(
-            <div class="ui column">
+            <div id="rosterColumn" class="ui column">
             <div>
             <i class="close icon" id="cardCloseIcon" onClick={()=>props.removeTeam(props.team)}> </i>
             </div>

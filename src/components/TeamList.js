@@ -9,8 +9,8 @@ const TeamList  = props => {
         </div>
         </div>)
         return(
-            <div>
-            <div id="teamList" class="content">
+            <div id="teamList">
+            <div class="content">
             <div class="ui centered header">Pick a team</div>
             <div class="ui list">{teamList}</div>
             </div>
