@@ -17,7 +17,7 @@ const PlayerCard  = props => {
     }
 
         return(
-    <div class= {props.tradedPlayers !== undefined && disableCard(props.player) === true ? "ui-item-disabled" : "item"} onClick={(event)=> props.selectPlayer(props.player)}>
+    <div id= {props.tradedPlayers !== undefined && disableCard(props.player) === true ? "ui-item-disabled" : "ui-item"} class="item" onClick={(event)=> props.selectPlayer(props.player)}>
         <img class="ui avatar image" src={props.player.player_image}/>
         <div class="content">
     <div class="header">{props.player.name} {getInitials(props.player.position)}</div>

@@ -9,7 +9,9 @@ const RosterCard = props => {
         return(
             <div class="ui column">
             <img class="ui image" src={props.team.logo}/>
-            <button class="ui button" onClick={()=>props.removeTeam(props.team)}>Remove Team</button>
+            <div>
+            <button class="ui mini black button" onClick={()=>props.removeTeam(props.team)}>Remove Team</button>
+            </div>
             <div class="ui header">Team: {props.team.name}</div>
             <div class="ui celled list">
             {props.players.map(player => 

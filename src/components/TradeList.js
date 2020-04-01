@@ -105,15 +105,15 @@ class TradeList extends React.Component {
         teams: this.props.all_teams,
         value: []
     }
-    debugIt = (t, i) =>{
-        console.log(t, i)
-        let x = this.props
-        debugger
-    }
 
-    selectPlayer(){
-        console.log("clicked")
-    }
+    removeTrade =(id)=>{
+        debugger
+       let arra = this.state.trades.filter(t => t.id !== id)
+    this.setState({
+      trades: arra
+    })
+    this.props.removeTrade(id)
+  }
 
     parsedTeams = () => {
        let teams = this.props["trades"].map(t => t.swaps.map(s=> s.team_id).filter)
@@ -166,7 +166,6 @@ class TradeList extends React.Component {
     }
 
     deleteFilter = (event) => {
-        debugger
         let arr2 = this.state.value.filter(t => t !== event.target.parentElement.innerText)
         let teamNames = arr2.length > 0 ? arr2 : []
         this.setState({
@@ -177,7 +176,6 @@ class TradeList extends React.Component {
     }
 
     onFilterChange = (event) => {
-        debugger
         let teamName = event.target.innerText
         let arr = teamName !== "" && event.target.className !== "delete icon" ? this.state.value.push(teamName) : this.state.value
         event.target.className === "delete icon"
@@ -192,21 +190,16 @@ class TradeList extends React.Component {
 
 
     render(){
-        // let teams = this.groupToPlayers(swaps)
-        // debugger
         const swapped = this.state.trades.map(t => t.swaps)
-        let tradeUsers = this.state.trades.map(t => t.user_id)
-        let tradeIds = this.state.trades.map(t => t) 
-        // let options = this.state.teams.map(t=> t.name)
-        // const dswapped = swapped.slice(1, 100)
-        var groupToPlayers = swapped.map(swap => swap.reduce(function (obj, item) {
+        const tradeUsers = this.state.trades.map(t => t.user_id)
+        const tradeIds = this.state.trades.map(t => t) 
+        const groupToPlayers = swapped.map(swap => swap.reduce(function (obj, item) {
         obj[item.team_id] = obj[item.team_id] || [];
         obj[item.team_id].push(item.player_id);
         return obj;
             }, {}))
             return(
                 <div>
-        {/* <form onSubmit={this.handleSubmit}> */}
               <Dropdown
                     placeholder='team'
                     fluid
@@ -217,33 +210,20 @@ class TradeList extends React.Component {
                     onChange={this.onFilterChange.bind(this)}
                     onEnter={this.handleSubmit}
                 />
-            {/* </form> */}
-
-
-            {/* <label>
-                Filter By team
-                <select class="ui fluid search dropdown" multiple="" onSelect={this.onFilterChange}>
-                {options.map(o =>
-                <option value={o.value}>{o.label}</option>)}
-                {/* <Select onChange={this.onFilterChange} value={this.state.value} options={options} name="select" require multi/> */}
-                {/* </select>
-            </label>
-            <button>Submit</button>
-            </form> */}
                 <br/>
             <div className="ui cards">
         <br/>
         <br/>
             <br />
         {groupToPlayers.map((t, i) => Object.keys(t).length === 2 ?
-        <TradeCard teams={this.props.all_teams} dontrade1={this.selectPlayer} dontrade2={this.selectPlayer} dontrade3={this.selectPlayer} dontrade4={this.selectPlayer} removeTrade={this.props.removeTrade} all_teams={this.props.all_teams} addVote={this.props.addVote} votes={this.props.votes} currentUser={this.props.currentUser} trade={tradeIds[i]} all_users={this.props.all_users} createdBy={this.props.all_users.filter(u => u.id === tradeUsers[i])} team1={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[0]))[0]} player1={t[Object.keys(t)[0]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}
+        <TradeCard teams={this.props.all_teams} dontrade1={this.selectPlayer} dontrade2={this.selectPlayer} dontrade3={this.selectPlayer} dontrade4={this.selectPlayer} deleteThisTrade={this.removeTrade} all_teams={this.props.all_teams} addVote={this.props.addVote} votes={this.props.votes} currentUser={this.props.currentUser} trade={tradeIds[i]} all_users={this.props.all_users} createdBy={this.props.all_users.filter(u => u.id === tradeUsers[i])} team1={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[0]))[0]} player1={t[Object.keys(t)[0]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}
         team2={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[1]))[0]} player2={t[Object.keys(t)[1]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)} team3={null} player3={[]} team4={null} player4={[]}/>
         :
         Object.keys(t).length === 3 ? 
-        <TradeCard teams={this.props.all_teams} dontrade1={this.selectPlayer} dontrade2={this.selectPlayer} dontrade3={this.selectPlayer} dontrade4={this.selectPlayer} removeTrade={this.props.removeTrade} all_teams={this.props.all_teams} addVote={this.props.addVote} votes={this.props.votes} currentUser={this.props.currentUser}  trade={tradeIds[i]} all_users={this.props.all_users} createdBy={this.props.all_users.filter(u => u.id === tradeUsers[i])} team1={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[0]))[0]} player1={t[Object.keys(t)[0]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}
+        <TradeCard teams={this.props.all_teams} dontrade1={this.selectPlayer} dontrade2={this.selectPlayer} dontrade3={this.selectPlayer} dontrade4={this.selectPlayer} deleteThisTrade={this.removeTrade} all_teams={this.props.all_teams} addVote={this.props.addVote} votes={this.props.votes} currentUser={this.props.currentUser}  trade={tradeIds[i]} all_users={this.props.all_users} createdBy={this.props.all_users.filter(u => u.id === tradeUsers[i])} team1={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[0]))[0]} player1={t[Object.keys(t)[0]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}
         team2={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[1]))[0]} player2={t[Object.keys(t)[1]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)} team3={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[2]))[0]} player3={t[Object.keys(t)[2]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)} team4={null} player4={[]}/>
         :
-        <TradeCard teams={this.props.all_teams} dontrade1={this.selectPlayer} dontrade2={this.selectPlayer} dontrade3={this.selectPlayer} dontrade4={this.selectPlayer} removeTrade={this.props.removeTrade} all_teams={this.props.all_teams} addVote={this.props.addVote} votes={this.props.votes} currentUser={this.props.currentUser} trade={tradeIds[i]} all_users={this.props.all_users} createdBy={this.props.all_users.filter(u => u.id === tradeUsers[i])} team1={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[0]))[0]} player1={t[Object.keys(t)[0]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}
+        <TradeCard teams={this.props.all_teams} dontrade1={this.selectPlayer} dontrade2={this.selectPlayer} dontrade3={this.selectPlayer} dontrade4={this.selectPlayer} deleteThisTrade={this.removeTrade} all_teams={this.props.all_teams} addVote={this.props.addVote} votes={this.props.votes} currentUser={this.props.currentUser} trade={tradeIds[i]} all_users={this.props.all_users} createdBy={this.props.all_users.filter(u => u.id === tradeUsers[i])} team1={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[0]))[0]} player1={t[Object.keys(t)[0]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}
         team2={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[1]))[0]} player2={t[Object.keys(t)[1]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}
         team3={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[2]))[0]} player3={t[Object.keys(t)[2]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}
         team4={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[3]))[0]} player4={t[Object.keys(t)[3]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}/>

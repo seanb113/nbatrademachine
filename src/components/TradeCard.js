@@ -80,7 +80,7 @@ const TradeCard = props => {
             fetch(`http://localhost:5000/trades/${id}`, {
                 method: 'delete'
             }).then(r => r.text())
-            .then(props.removeTrade(id)
+            .then(props.deleteThisTrade(id)
             )
             }
 
@@ -111,7 +111,7 @@ const TradeCard = props => {
             <div class="content">
             <div class="meta">{!props.createdBy ? "Your trade..." : null}
             </div>
-            <div class="right floated author">{props.currentUser !== undefined && props.createdBy !== undefined && props.createdBy[0].id === props.currentUser.id ? <button onClick={deleteTrade}>X</button> : null}</div>
+            <div class="right floated author">{props.currentUser !== undefined && props.createdBy !== undefined && props.createdBy[0].id === props.currentUser.id ? <button class="circular ui mini black icon button" onClick={deleteTrade}><i class="icon trash alternate outline"></i></button> : null}</div>
             <br/>
             {props.createdBy !== undefined 
             ?

@@ -146,7 +146,6 @@ class App extends Component {
 
   removeTrade =(id)=>{
     debugger
-    // this.state.trades.filter(t => t.id !== id)
     this.setState({
       trades: this.state.trades.filter(t => t.id !== id)
     })
