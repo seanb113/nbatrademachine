@@ -28,7 +28,7 @@ class NavBar extends Component {
     return (     
     <div>
     <Sticky>
-    <Button color="black" onClick={this.handleShowClick}> 
+    <Button id="menuTab" color="black" size="mini" onClick={this.handleShowClick}> 
         <i className="content icon"></i>
     </Button>
     </Sticky>

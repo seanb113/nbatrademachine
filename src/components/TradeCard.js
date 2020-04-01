@@ -108,11 +108,11 @@ const TradeCard = props => {
             // console.log(props.currentUser)
         return(
             // let tradeUser = this.findUser(this.props.user)
-            <div class="ui centered card">
+            <div id="tradingCard" class="ui centered card">
             <div class="content">
             <div class="meta">{!props.createdBy ? "Your trade..." : null}
             </div>
-            <div class="right floated author">{props.currentUser !== undefined && props.createdBy !== undefined && props.createdBy[0].id === props.currentUser.id ? <button class="circular ui mini black icon button" onClick={deleteTrade}><i class="icon trash alternate outline"></i></button> : null}</div>
+            <div class="right floated author">{props.currentUser !== undefined && props.createdBy !== undefined && props.createdBy[0].id === props.currentUser.id ? <i onClick={deleteTrade} class="icon trash alternate outline"></i> : null}</div>
             <br/>
             {props.createdBy !== undefined 
             ?
@@ -156,9 +156,13 @@ const TradeCard = props => {
             <PlayerCard team={props.team4} player={player} selectPlayer={props.dontrade4}/>) : null}
             </div>
             <div class="meta">{tradeclauses.length > 0 ? tradeClausesInTrade(tradeclauses) : null }</div>
-            <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.tooMuchSalary.name} taking in too much salary` : null}</div>
+            <div class= {props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? "ui error message" : null}>
+            <ul class="list">{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.tooMuchSalary.name} taking in too much salary` : null}</ul>
+            <br/>
             <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.notValidReason}` : null}</div>
+            <br/>
             <div>{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `Cut $${numberWithCommas(props.numberToCut)} from incoming salary` : null}</div>
+            </div>
             </div>
             {props.createdBy !== undefined
             ?

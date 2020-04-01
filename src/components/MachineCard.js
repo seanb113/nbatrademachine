@@ -485,6 +485,7 @@ class MachineCard extends Component {
             <div>
             <TradeCard teams={this.props.all_teams} numberToCut={this.state.numberToCut} notValidReason={this.state.notValidReason} user={this.props.currentUser} tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
             <br/>
+            <br/>
             <div class="ui centered grid">
             <div class="ui buttons">
             {tradeTo && team1 !== "selecting" && tradeTo.team_id !== team1.id ? <button class="small ui button" onClick={(e)=> this.tradetoTeam1(e)}>Trade {tradeTo.name} to the {team1.name}?</button> : null}
