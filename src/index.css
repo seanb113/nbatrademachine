@@ -17,6 +17,11 @@ code {
   padding-left: 65rem;
 }
 
+#trade-dropdown {
+  padding-left: 25rem;
+  padding-right: 25rem
+}
+
 #ui-item-disabled {
   pointer-events: none;
   opacity: 0.4;

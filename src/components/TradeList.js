@@ -200,8 +200,9 @@ class TradeList extends React.Component {
             }, {}))
             return(
                 <div>
+                <div id="trade-dropdown">
               <Dropdown
-                    placeholder='team'
+                    placeholder='search by teams'
                     fluid
                     multiple
                     search
@@ -210,6 +211,7 @@ class TradeList extends React.Component {
                     onChange={this.onFilterChange.bind(this)}
                     onEnter={this.handleSubmit}
                 />
+                </div>
                 <br/>
             <div className="ui cards">
         <br/>

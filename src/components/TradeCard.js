@@ -97,8 +97,9 @@ const TradeCard = props => {
         }
 
         let findTeamLogoByName  = (name) => {
+        debugger
         let team = props.teams.filter(t => t.name === name)
-        return team.logo
+        return team[0].logo
     }
         
         let tradeclauses = [...props.player1.filter(p => p.trade_clause), ...props.player2.filter(p => p.trade_clause), ...props.player3.filter(p => p.trade_clause), ...props.player4.filter(p => p.trade_clause)]
@@ -117,8 +118,8 @@ const TradeCard = props => {
             ?
             <Grid as={Link} to={`/user/${props.createdBy[0].id}`}>
             <div class="extra content">
-            <div class="center floated author">{props.createdBy !== undefined ? "Proposed by: " + props.createdBy[0].name : null}
-            <img class="right floated mini ui image" src={findTeamLogoByName(props.createdBy[0].team)}/>
+            <div class="center floated author">{props.createdBy !== undefined ? props.createdBy[0].name : null}
+            <img class="right floated mini ui avatar image" src={findTeamLogoByName(props.createdBy[0].team)}/>
             </div>
             </div>
             </Grid>
