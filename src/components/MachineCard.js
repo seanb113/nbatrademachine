@@ -483,7 +483,7 @@ class MachineCard extends Component {
         let tradedPlayers = tp.concat(this.state.tradedto1, this.state.tradedto2, this.state.tradedto3, this.state.tradedto4)
         return(
             <div>
-            <TradeCard teams={this.props.all_teams} numberToCut={this.state.numberToCut} notValidReason={this.state.notValidReason} user={this.props.currentUser} tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
+            <TradeCard submitted={this.state.submitted} teams={this.props.all_teams} numberToCut={this.state.numberToCut} notValidReason={this.state.notValidReason} user={this.props.currentUser} tooMuchSalary={this.state.notValid} team1={team1} team2={team2} team3={team3} team4={team4} player1={this.state.tradedto1} player2={this.state.tradedto2} player3={this.state.tradedto3} player4={this.state.tradedto4} dontrade1={this.donttradetoTeam1} dontrade2={this.donttradetoTeam2} dontrade3={this.donttradetoTeam3} dontrade4={this.donttradetoTeam4}/>
             <br/>
             <br/>
             <div class="ui centered grid">

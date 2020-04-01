@@ -156,6 +156,12 @@ const TradeCard = props => {
             <PlayerCard team={props.team4} player={player} selectPlayer={props.dontrade4}/>) : null}
             </div>
             <div class="meta">{tradeclauses.length > 0 ? tradeClausesInTrade(tradeclauses) : null }</div>
+            <div class={props.submitted !== null && props.submitted === true && props.tooMuchSalary === false ? "ui positive message" : null}>
+            <div class="header">
+                {props.submitted !== null && props.submitted === true && props.tooMuchSalary === false ? "Your trade was successful!" : null}
+            </div>
+            {props.submitted !== null && props.submitted === true && props.tooMuchSalary === false ? <p>You can <b>save</b>, <b>edit</b> or start a new trade below.</p> : null}
+            </div>
             <div class= {props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? "ui error message" : null}>
             <ul class="list">{props.tooMuchSalary !== false && props.tooMuchSalary !== undefined ? `${props.tooMuchSalary.name} taking in too much salary` : null}</ul>
             <br/>
