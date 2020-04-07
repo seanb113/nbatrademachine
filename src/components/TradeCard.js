@@ -108,6 +108,7 @@ const TradeCard = props => {
             // console.log(props.currentUser)
         return(
             // let tradeUser = this.findUser(this.props.user)
+            console.log(props.createdBy),
             <div id="tradingCard" class="ui centered card">
             <div class="content">
             <div class="meta">{!props.createdBy ? "Your trade..." : null}

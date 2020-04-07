@@ -213,7 +213,7 @@ class TradeList extends React.Component {
                 />
                 </div>
                 <br/>
-            <div className="ui cards">
+            <div id="tradeLists" className="ui cards">
         <br/>
         <br/>
             <br />

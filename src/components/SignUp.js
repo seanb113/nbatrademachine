@@ -21,7 +21,7 @@ class SignUp extends React.Component {
                 <label for="password">Password:</label>
                 <input type = 'password' id = 'password'onChange ={this.props.handleOnChangeForm }/><br></br>
                 <br></br>
-                <button id="signupSubmit" class="ui button" type="submit" value="Submit">Submit</button>
+                <button id="machineButtonGrid" class="ui button" type="submit" value="Submit">Submit</button>
         </form> 
         </div>
         );

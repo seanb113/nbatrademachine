@@ -46,7 +46,9 @@ render(){
             <input placeholder="password"       
             type="password" label="password" value={this.state.password} onChange={(event)=>this.setState({password: event.target.value})}/>
             <br></br>
-            <button id="signupSubmit" class="ui button" type="submit" value="Submit">Login </button>
+            <div id="loginButton">
+            <button id="machineButtonGrid" class="ui button" type="submit" value="Submit">Login </button>
+            </div>
             <div>
             <Link to="/signup">Sign Up</Link>
             </div>

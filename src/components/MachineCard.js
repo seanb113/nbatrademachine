@@ -515,13 +515,13 @@ class MachineCard extends Component {
             </div>
             <br/>
             <br/>
-            <div class="ui centered grid">
-            {team3 === null ? <button class="small ui button" onClick={this.addAThird}>Add third team</button> : null}
-            {team4 === null && this.state.team3 ? <button class="small ui button" onClick={this.addAFourth}>Add fourth team</button> : null}
-            {!this.state.submitted && !this.state.saved ? <button class="small ui button" onClick={this.handleSubmit}>Submit Trade</button> : null}
-            {this.state.submitted ? <button class="small ui button" onClick={this.handleSave}>Save Trade</button> : false}
-            {this.state.submitted ? <button class="small ui button" onClick={this.editTrade}>Edit Trade</button> : null}
-            {this.state.tradedto1.length || this.state.tradedto2.length || this.state.tradedto3.length || this.state.tradedto4.length > 0 ? <button class="small ui button" onClick={this.resetMachine}>Reset Trade Machine</button> : null}
+            <div id="bottomButtons" class="ui centered grid">
+            {team3 === null ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAThird}>Add third team</button> : null}
+            {team4 === null && this.state.team3 ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAFourth}>Add fourth team</button> : null}
+            {!this.state.submitted && !this.state.saved ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSubmit}>Submit Trade</button> : null}
+            {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSave}>Save Trade</button> : false}
+            {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.editTrade}>Edit Trade</button> : null}
+            {this.state.tradedto1.length || this.state.tradedto2.length || this.state.tradedto3.length || this.state.tradedto4.length > 0 ? <button id="machineButtonGrid" class="small ui button" onClick={this.resetMachine}>Reset Trade Machine</button> : null}
             </div>
             </div>
         )

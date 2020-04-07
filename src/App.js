@@ -27,7 +27,6 @@ class App extends Component {
     trading: true,
     look_at_trades: false,
     currentUser: null,
-    namae: null,
     team: null,
     password: null,
     notValid: false,
@@ -172,7 +171,7 @@ class App extends Component {
       // debugger
            let id = parseInt(props.match.params.id)
               return this.state.currentUser.id === id ? <Redirect to="/profile"/> : <UserProfile
-              currentUser={this.state.currentUser} createdBy={this.state.users.filter(u=> u.id === id)} addVote={this.addVote} votes={this.state.votes} user={this.state.users.filter(u=> u.id === id)} trades={this.state.trades.filter(t => t.user_id === id)} all_users={this.state.users} all_teams={this.state.teams} all_players={this.state.players}/>
+              currentUser={this.state.currentUser} addVote={this.addVote} votes={this.state.votes} user={this.state.users.filter(u=> u.id === id)} trades={this.state.trades.filter(t => t.user_id === id)} all_users={this.state.users} all_teams={this.state.teams} all_players={this.state.players}/>
             }} />
     <Route exact path="/profile" render={() => {
       return this.state.currentUser ? <UserProfile removeTrade={this.removeTrade} votes={this.state.votes} currentUser={this.state.currentUser} user={currentUserArray} trades={this.state.trades.filter(t => t.user_id === this.state.currentUser.id)} all_users={this.state.users} user={currentUserArray} all_teams={this.state.teams} all_players={this.state.players}/> : <Redirect to="/login"/>}}/>

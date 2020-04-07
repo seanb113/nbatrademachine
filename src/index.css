@@ -80,8 +80,29 @@ code {
   box-shadow: 5px 10px 8px #888888
 }
 
+#machineButtonGrid{
+border: .5px solid;
+box-shadow: 5px 10px 8px #888888;
+}
+
+#loginButton{
+  padding-top: 1rem;
+  padding-bottom: 1rem
+}
+
+#bottomButtons{
+  padding-bottom: 10rem;
+}
+
 #cardCloseIcon {
   float: right
+}
+
+#tradelists{
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 #signupSubmit {float: center}
