@@ -76,7 +76,7 @@ class App extends Component {
   }
 
      handleOnChangeForm = (event)=>{
-      // debugger
+      
       let stateKey = event.target.id.length > 0 ? event.target.id : 'team'
       let formValue = event.target.value
       this.setState({
@@ -86,7 +86,7 @@ class App extends Component {
      }
 
     handleSignupForm = (e)=>{
-      debugger
+      
       e.preventDefault()
 
       let newUser = {name: this.state.name, team: this.state.team, password: this.state.password}
@@ -108,14 +108,14 @@ class App extends Component {
     }
 
   loginSubmit = (user) =>{
-    // debugger
+    
     this.setState({
       currentUser: user
     })
   }
 
   fireUpTradeMachine = ()=>{
-    // debugger
+    
     this.setState({
       trading: true}
     )
@@ -144,14 +144,14 @@ class App extends Component {
   }
 
   removeTrade =(id)=>{
-    debugger
+    
     this.setState({
       trades: this.state.trades.filter(t => t.id !== id)
     })
   }
 
   showMenu = ()=>{
-    debugger
+    
     if (this.state.visbileMenu === true)
     return this.setState({visibleMenu: false})
     else 
@@ -168,7 +168,7 @@ class App extends Component {
     <Sidebar.Pusher>
     <Switch>
     <Route path="/user/:id" render={(props) => {
-      // debugger
+      
            let id = parseInt(props.match.params.id)
               return this.state.currentUser.id === id ? <Redirect to="/profile"/> : <UserProfile
               currentUser={this.state.currentUser} addVote={this.addVote} votes={this.state.votes} user={this.state.users.filter(u=> u.id === id)} trades={this.state.trades.filter(t => t.user_id === id)} all_users={this.state.users} all_teams={this.state.teams} all_players={this.state.players}/>

@@ -1,5 +1,6 @@
 body {
   background: url("/bckground.jpg");
+  background-size: 400%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -111,24 +112,24 @@ box-shadow: 5px 10px 8px #888888;
 
 #signupSubmit {float: center}
 
-/* 
-#loginLogo{
-  padding-left: 10rem;
-} */
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
 
-/* .ui.vertical.icon.menu{
-  display: flex
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
 }
 
-.ui.vertical.menu { width: 15rem; padding-left: 10rem; }
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
-pushable:not(body)>.ui.sidebar { position: sticky; } */
-
-
-
-
-/* .ui-sticky {
-  width: 272px !important; 
-  height: 262.531px !important;
-  left: 43px;
-} */
+.hidden {
+  visibility: hidden
+}

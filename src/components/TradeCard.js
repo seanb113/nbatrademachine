@@ -14,13 +14,13 @@ const TradeCard = props => {
         let tradeVetoes = tradeVotes.filter(v=> v.category === "veto")
 
         const returnNameFromId = (id) => {
-            // debugger
+            
             let team = props.all_teams.filter(t => t.id === id)
             return team[0].name
         }
 
         const checkVeto = () => {
-            debugger
+            
             let teams = props.trade.swaps.map(s=> s.team_id)
             let tradev = tradeVotes.map(v => v.user_id)
             let teamNames = teams.map(t=>returnNameFromId(t))
@@ -41,7 +41,7 @@ const TradeCard = props => {
 
         const checkLike = () => {
             let tv = tradeVotes.map(v => v.user_id)
-            debugger
+            
             !tv.includes(props.currentUser.id)
             &&
             props.currentUser.id !== props.createdBy[0].id
@@ -52,7 +52,7 @@ const TradeCard = props => {
         }
 
         const postVote = (vote) => {
-            // debugger
+            
             // event.preventDefault()
             let user_id = props.currentUser.id
             let trade_id = props.trade.id
@@ -75,7 +75,7 @@ const TradeCard = props => {
         }
 
         const deleteTrade = () => {
-            debugger
+            
             let id = props.trade.id
             fetch(`http://localhost:5000/trades/${id}`, {
                 method: 'delete'
@@ -97,7 +97,6 @@ const TradeCard = props => {
         }
 
         let findTeamLogoByName  = (name) => {
-        debugger
         let team = props.teams.filter(t => t.name === name)
         return team[0].logo
     }

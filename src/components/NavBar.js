@@ -15,7 +15,7 @@ class NavBar extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleShowClick = () => {
-    //   debugger
+    //   
       this.setState({ visible: !this.state.visible })
   }
 

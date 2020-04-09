@@ -107,7 +107,7 @@ class TradeList extends React.Component {
     }
 
     removeTrade =(id)=>{
-        debugger
+        
        let arra = this.state.trades.filter(t => t.id !== id)
     this.setState({
       trades: arra
@@ -127,18 +127,18 @@ class TradeList extends React.Component {
     // }, {}))}
 
     findTeam = (id) => {
-        debugger
+        
         let teamid = parseInt(id)
         this.props.all_teams.filter(team => team.id === teamid)
     }
 
     findPlayer = (id) => {
-        debugger
+        
         let playerid = parseInt(id)
         this.props.all_players.filter(player => player.id === playerid)
     }
     findUser = (userid) => {
-        // debugger
+        
         this.props.all_users.filter(u => u.id === userid)
     }
 

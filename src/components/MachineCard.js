@@ -39,7 +39,7 @@ class MachineCard extends Component {
     }
 
     chooseTeam1 = (team) => {
-        // debugger
+        
         // let old_team = this.state.team1
         let teams_array = this.state.all_teams.filter(checkedteam=> checkedteam !== team)
         let teamPlayers = this.props.players.filter(player =>
@@ -113,7 +113,7 @@ class MachineCard extends Component {
         })
     }
         removeTeam1 = (team) => {
-            debugger
+            
             this.state.all_teams.push(team)
             let new_team1 = this.state.team2
             let new_team2 = this.state.team3 === null ? "selecting" : this.state.team3
@@ -122,8 +122,8 @@ class MachineCard extends Component {
             let new_roster2 = this.state.team3Players.length > 0 ? this.state.team3Players : []
             let new_roster3 = this.state.team4Players.length > 0 ? this.state.team4Players : []
             let new_traded1 = this.state.tradedto2.length > 0 ? this.state.tradedto2.filter(player => player.team_id !== this.state.team1.id) : []
-            let new_traded2 = this.state.tradedto3.length > 0 ? this.state.tradedto3.filter(player => player.team_id !== this.state.team2.id) : []
-            let new_traded3 = this.state.tradedto4.length > 0 ? this.state.tradedto4.filter(player => player.team_id !== this.state.team3.id) : []
+            let new_traded2 = this.state.tradedto3.length > 0 ? this.state.tradedto3.filter(player => player.team_id !== this.state.team1.id) : []
+            let new_traded3 = this.state.tradedto4.length > 0 ? this.state.tradedto4.filter(player => player.team_id !== this.state.team1.id) : []
             // let new_traded1 = this.state.tradedto2.length > 0 ? this.state.tradedto2 : []
             // let new_traded2 = this.state.tradedto3.length > 0 ? this.state.tradedto3 : []
             // let new_traded3 = this.state.tradedto4.length > 0 ? this.state.tradedto4 : []
@@ -212,7 +212,7 @@ class MachineCard extends Component {
         }
 
         addPlayerToTrade = (player) => {
-            debugger
+            
             let beingTradedFrom = this.state.all_teams.map(team => team.name === player.team)
             this.setState({
                 beingTraded: player,
@@ -223,7 +223,7 @@ class MachineCard extends Component {
         }
 
         tradetoTeam1 = () => {
-            debugger
+            
             // this.removeFromRoster()
             let oldArray = this.state.tradedto1
             let playerObj = this.state.beingTraded
@@ -279,7 +279,7 @@ class MachineCard extends Component {
         }
 
         donttradetoTeam2 = (playerObj, team, event) => {
-            debugger
+            
             let oldArray = this.state.tradedto2
             let newArray = oldArray.filter(player => player !== playerObj)
             this.setState({
@@ -321,7 +321,7 @@ class MachineCard extends Component {
 
 
         tradedAway = (team) => {
-            // debugger
+            
             let arr = []
             let arr1 = team !== null ? arr.concat(this.state.tradedto1.filter(player => player.team_id === team.id)) : []
             let arr2 = team !== null ? arr1.concat(this.state.tradedto2.filter(player => player.team_id === team.id)) : []
@@ -334,7 +334,7 @@ class MachineCard extends Component {
         
         // BigInt.prototype.toJSON = function() { return this.toString()  }
         postTrade = (trade) => {
-            // debugger
+            
             let user = this.props.currentUser
             fetch("http://localhost:5000/trades", {
                 method: "POST",
@@ -352,7 +352,7 @@ class MachineCard extends Component {
         }
 
         handleSave = () => {
-            debugger
+            
             let team1Trade = [this.state.team1, this.state.tradedto1]
             let team2Trade = [this.state.team2, this.state.tradedto2]
             let team3Trade = this.state.tradedto3.length > 0 ? [this.state.team3, this.state.tradedto3] : null
@@ -366,7 +366,8 @@ class MachineCard extends Component {
 
         editTrade = () => {
             this.setState({
-                submitted: false
+                submitted: false,
+                saved: false
             })
         }
 
@@ -403,7 +404,7 @@ class MachineCard extends Component {
         }
 
         validateTrade = (team, acquired) => {
-            debugger
+            
             // 1. Any team under the cap can take any amount in up to the cap level + $100,000
             // 2. Teams under tax but over cap. It's 150%???????
             // 3. Under 9.8M in incoming: 150+100 else : 125 + 100000

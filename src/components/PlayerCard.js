@@ -3,7 +3,7 @@ import { Divider, Image } from 'semantic-ui-react'
 const PlayerCard  = props => {
             console.log("playercard", props.tradedPlayers)
     let disableCard = (player) => {
-        // debugger
+        
         if (props.tradedPlayers.includes(player))
         return true
         else
@@ -11,13 +11,13 @@ const PlayerCard  = props => {
     }
 
     let getInitials = (string) => {
-        // debugger
+        
         let initials = string.match(/\b\w/g) || []
         return ((initials.shift() || '') + (initials.pop() || '')).toUpperCase()
     }
 
         return(
-    <div id= {props.tradedPlayers !== undefined && disableCard(props.player) === true ? "ui-item-disabled" : "ui-item"} class="item" onClick={(event)=> props.selectPlayer(props.player)}>
+    <div class="tooltip" id={props.tradedPlayers !== undefined && disableCard(props.player) === true ? "ui-item-disabled" : "ui-item"} class="item" onClick={(event)=> props.selectPlayer(props.player)}>
         <img class="ui avatar image" src={props.player.player_image}/>
         <div class="content">
     <div class="header">{props.player.name} {getInitials(props.player.position)}</div>

@@ -3,7 +3,7 @@ import TradeList from '../components/TradeList'
 const UserProfile  = props => {
     console.log(props)
     let findTeamLogoByName  = (name) => {
-        debugger
+        
         let team = props.all_teams.filter(t => t.name === name)
         return team[0].logo
     }
