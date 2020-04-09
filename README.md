@@ -13,6 +13,7 @@ Available features:
 - First cd into the nbatrademachine_backend directory in the backend repo
   - Run `$ rails db:create`
   - Run `$ rails db:migrate`
+  - Run `$ rails db:seed`
   - Run `$ rails s -p 5000`
 - After the backend is up, cd into the nbatrademachine directory in the frontend repo
   - Run `$ npm install`
@@ -42,7 +43,7 @@ Available features:
 ![All Trades Screen](./public/img/nbaalltrades.png)
 
 #### User Profile Screen With Multi Search
-![User Profile Screen](./public/img/nbaprofilepagewithsearch.png) 
+![User Profile Screen](./public/img/nbaprofilesearch.png) 
 
 ## Frameworks and Libraries Used
 
