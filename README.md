@@ -24,7 +24,7 @@ Available features:
 ![Login Screen](./public/img/nbaLogin.png) 
 
 #### Sign Up Screen
-![Sign Up Screen](./public/img/nbaSignUp.png)
+![Sign Up Screen](./public/img/nbasignUp.png)
 
 #### Instructions Screen With Menu
 ![Instructions Screen With Menu](./public/img/nbaInstructionsWithMenu.png) 
