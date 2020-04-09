@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# NBA Trade Machine
+Welcome to the NBA Trade Machine, where you can test potential trades by NBA rules and share them with other users. 
+Available features:
+- **Users can sign up and log in**
+- **Users can test trades of up to 4 NBA teams to see if they would be legal under the NBA's salary cap rules**
+- **Users can save and share trades with other users**
+- **Users can like other users trades**
+- **Users can 'veto' other users trades if their favorite team is involved**
+## Installation
 
-## Available Scripts
+- Fork and clone this repo and [the backend repo](https://github.com/seanb113/nbatrademachine_backend)
 
-In the project directory, you can run:
+- First cd into the nbatrademachine_backend directory in the backend repo
+  - Run `$ rails db:create`
+  - Run `$ rails db:migrate`
+  - Run `$ rails s -p 5000`
+- After the backend is up, cd into the nbatrademachine directory in the frontend repo
+  - Run `$ npm install`
+  - Run `$ npm start`
 
-### `yarn start`
+## Screenshots of App Experience
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Login Screen
+![Login Screen](./public/img/nbaLogin.png) 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Sign Up Screen
+![Sign Up Screen](./public/img/nbaSignUp.png)
 
-### `yarn test`
+#### Instructions Screen With Menu
+![Instructions Screen With Menu](./public/img/nbaInstructionsWithMenu.png) 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Trade Machine Screen
+![Trade Machine Screen](./public/img/nbatrademachine.png) 
 
-### `yarn build`
+#### Failed Trade Screen
+![Failed Trade Screen](./public/img/nbafailedtrade.png) 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Successful Trade Screen
+![Successful Trade Screen](./public/img/nbasuccesfultrade.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### All Trades Screen
+![All Trades Screen](./public/img/nbaalltrades.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### User Profile Screen With Multi Search
+![User Profile Screen](./public/img/nbaprofilepagewithsearch.png) 
 
-### `yarn eject`
+## Frameworks and Libraries Used
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Front-end: React.js
+- Back-end: [Ruby on Rails](https://github.com/rails/rails)
+- [Semantic-UI](https://semantic-ui.com/)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Author
+- Sean Beach (https://github.com/seanb113)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/seanb113/nbatrademachine/issues. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The code is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

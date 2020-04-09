@@ -90,6 +90,10 @@ box-shadow: 5px 10px 8px #888888;
   padding-bottom: 1rem
 }
 
+#loginSignupInput{
+  padding-bottom: 1rem;
+}
+
 #bottomButtons{
   padding-bottom: 10rem;
 }
@@ -98,7 +102,7 @@ box-shadow: 5px 10px 8px #888888;
   float: right
 }
 
-#tradelists{
+#tradeLists{
   padding-left: 5rem;
   padding-right: 5rem;
   padding-top: 5rem;

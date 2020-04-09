@@ -40,10 +40,10 @@ render(){
             <div class="ui form container">
         <form class="ui form" onSubmit={this.handleLoginSubmit}>
             <img id="loginLogo" class="ui small image" src={Logo}></img>
-            <input placeholder="name"
+            <input placeholder="name" id="loginSignupInput"
             label="username" value={this.state.name} onChange={(event)=>this.setState({name: event.target.value})}
             />
-            <input placeholder="password"       
+            <input id="loginSignupInput" placeholder="password"       
             type="password" label="password" value={this.state.password} onChange={(event)=>this.setState({password: event.target.value})}/>
             <br></br>
             <div id="loginButton">
