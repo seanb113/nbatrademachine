@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import TradeCard from '../components/TradeCard'
-import {Link, Fragment} from 'react-router-dom'
-import Select from "react-dropdown-select"
-import { Button, Dropdown, Form, Input } from 'semantic-ui-react'
+import TradeCard from '../containers/TradeCard'
+import { Dropdown } from 'semantic-ui-react'
 
 
 const options = [
@@ -98,7 +96,7 @@ const options = [
   ]
 
 
-class TradeList extends React.Component {
+class TradeList extends Component {
     state = {
         trades: this.props.trades,
         players: this.props.all_players,
@@ -115,30 +113,21 @@ class TradeList extends React.Component {
     this.props.removeTrade(id)
   }
 
-    parsedTeams = () => {
-       let teams = this.props["trades"].map(t => t.swaps.map(s=> s.team_id).filter)
-    }
-
-    // var groupToPlayers = (swapped) => {
-    //     swapped.map(swap => swap.reduce(function (obj, item) {
-    //     obj[item.team_id] = obj[item.team_id] || [];
-    //     obj[item.team_id].push(item.player_id);
-    //     return obj;
-    // }, {}))}
+    // parsedTeams = () => {
+    //    let teams = this.props["trades"].map(t => t.swaps.map(s=> s.team_id).filter)
+    // }
 
     findTeam = (id) => {
-        
         let teamid = parseInt(id)
         this.props.all_teams.filter(team => team.id === teamid)
     }
 
     findPlayer = (id) => {
-        
         let playerid = parseInt(id)
         this.props.all_players.filter(player => player.id === playerid)
     }
+
     findUser = (userid) => {
-        
         this.props.all_users.filter(u => u.id === userid)
     }
 
@@ -178,6 +167,7 @@ class TradeList extends React.Component {
     onFilterChange = (event) => {
         let teamName = event.target.innerText
         let arr = teamName !== "" && event.target.className !== "delete icon" ? this.state.value.push(teamName) : this.state.value
+        console.log(arr)
         event.target.className === "delete icon"
         ?
         this.deleteFilter(event)

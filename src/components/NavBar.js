@@ -1,29 +1,20 @@
 import React, { Component } from 'react'
-import { Icon, Menu, Sticky, Sidebar, Segment, Button, Header } from 'semantic-ui-react'
-import {Route, Link} from 'react-router-dom'
-import App from '../App'
+import { Icon, Menu, Sticky, Sidebar} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
 class NavBar extends Component {
   state = { activeItem: 'about',
-            // animation: 'overlay',
-            // direction: 'left',
-            // dimmed: false,
             visible: false
-
     }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
-  handleShowClick = () => {
-    //   
+  handleShowClick = () => { 
       this.setState({ visible: !this.state.visible })
   }
 
   render() {
     const { activeItem } = this.state.activeItem
-    const {visible} = this.state.visible
-    // const setVisible = (visible) => this.setState({visible})
-    
 
     return (     
     <div>
@@ -43,8 +34,6 @@ class NavBar extends Component {
             width='thin'
             class="ui inverted left vertical menu sidebar"
       >
-      {/* <Menu class="ui inverted left vertical menu sidebar" icon='labeled' vertical> */}
-      {/* <Sticky> */}
         <Menu.Item
           as={Link} to='/profile'
           name='profile'
@@ -74,7 +63,6 @@ class NavBar extends Component {
           <Icon name='clipboard list' />
           All Trades
         </Menu.Item>
-        {/* </Sticky> */}
         </Sidebar>
     </div>
     )
@@ -84,19 +72,3 @@ class NavBar extends Component {
 export default () => (
 	<div><NavBar/></div>
 )
-// export default class SidebarTransition extends Component {
-//     state = {
-//         animation: 'overlay',
-//         direction: 'left',
-//         dimmed: false,
-//         visible: false,
-
-//     }
-//     handleAnimationChange = (animation) => () =>
-//     this.setState((prevState) => ({ animation, visible: !prevState.visible }))
-//   render() {
-//       return(
-//     <button id="left-sidebar-toggle" class="ui black big launch right attached fixed toggle button" onClick={this.handleAnimationChange('overlay')}>Menu</button>
-//       )
-//   }
-// }

@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
-import RosterCard from '../components/RosterCard'
-import PlayerCard from '../components/PlayerCard'
-import UserProfile from '../components/UserProfile'
-import {Route, Link} from 'react-router-dom'
-import { Segment, Fragment, Grid } from 'semantic-ui-react'
+import React from 'react'
+import PlayerCard from '../containers/PlayerCard'
+import {Link} from 'react-router-dom'
+import { Grid } from 'semantic-ui-react'
 const TradeCard = props => {
     console.log(props.currentUser)
         
@@ -52,8 +50,6 @@ const TradeCard = props => {
         }
 
         const postVote = (vote) => {
-            
-            // event.preventDefault()
             let user_id = props.currentUser.id
             let trade_id = props.trade.id
             console.log(props)
@@ -103,10 +99,7 @@ const TradeCard = props => {
         
         let tradeclauses = [...props.player1.filter(p => p.trade_clause), ...props.player2.filter(p => p.trade_clause), ...props.player3.filter(p => p.trade_clause), ...props.player4.filter(p => p.trade_clause)]
 
-            // console.log(props.createdBy[0])
-            // console.log(props.currentUser)
         return(
-            // let tradeUser = this.findUser(this.props.user)
             console.log(props.createdBy),
             <div id="tradingCard" class="ui centered card">
             <div class="content">
@@ -119,7 +112,7 @@ const TradeCard = props => {
             <Grid as={Link} to={`/user/${props.createdBy[0].id}`}>
             <div class="extra content">
             <div class="center floated author">{props.createdBy !== undefined ? props.createdBy[0].name : null}
-            <img class="right floated mini ui avatar image" src={findTeamLogoByName(props.createdBy[0].team)}/>
+            <img alt="" class="right floated mini ui avatar image" src={findTeamLogoByName(props.createdBy[0].team)}/>
             </div>
             </div>
             </Grid>
@@ -178,17 +171,17 @@ const TradeCard = props => {
             <div id="like" size="mini" class="ui black button" onClick={((e)=> sortVote(e))}>
                 <i id="like" class="thumbs up icon"></i> Like
             </div>
-            <a class="ui basic black left pointing label">
+            <div class="ui basic black left pointing label">
                 {tradeLikes.length}
-            </a>
+            </div>
             </div>
             <div id="veto" size="mini" class="ui labeled button" tabindex="0">
             <div id="veto" size="mini" class="ui basic black button" onClick={((e)=> sortVote(e))}>
                 <i id="veto" class="thumbs down icon"></i> Veto
             </div>
-            <a class="ui basic left pointing black label">
+            <div class="ui basic left pointing black label">
                 {tradeVetoes.length}
-            </a>
+            </div>
             </div>
             </div>
             </div>

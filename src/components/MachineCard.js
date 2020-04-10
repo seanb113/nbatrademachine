@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import TeamList from '../components/TeamList'
-import TradeCard from '../components/TradeCard'
-import RosterCard from '../components/RosterCard'
-import {Route, Link} from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
+import TeamList from '../containers/TeamList'
+import TradeCard from '../containers/TradeCard'
+import RosterCard from '../containers/RosterCard'
+
 class MachineCard extends Component {
     state = {
         team1: null,
@@ -212,7 +211,6 @@ class MachineCard extends Component {
         }
 
         addPlayerToTrade = (player) => {
-            
             let beingTradedFrom = this.state.all_teams.map(team => team.name === player.team)
             this.setState({
                 beingTraded: player,
@@ -223,8 +221,6 @@ class MachineCard extends Component {
         }
 
         tradetoTeam1 = () => {
-            
-            // this.removeFromRoster()
             let oldArray = this.state.tradedto1
             let playerObj = this.state.beingTraded
             oldArray.push(playerObj)
@@ -236,7 +232,6 @@ class MachineCard extends Component {
         }
 
         tradetoTeam2 = () => {
-            // this.removeFromRoster()
             let oldArray = this.state.tradedto2
             let playerObj = this.state.beingTraded
             oldArray.push(playerObj)
@@ -248,7 +243,6 @@ class MachineCard extends Component {
 
 
         tradetoTeam3 = () => {
-            // this.removeFromRoster()
             let oldArray = this.state.tradedto3
             let playerObj = this.state.beingTraded
             oldArray.push(playerObj)
@@ -259,7 +253,6 @@ class MachineCard extends Component {
         }
 
         tradetoTeam4 = () => {
-            // this.removeFromaRoster()
             let playerObj = this.state.beingTraded
             let oldArray = this.state.tradedto4
             oldArray.push(playerObj)
@@ -275,17 +268,14 @@ class MachineCard extends Component {
             this.setState({
                 tradedto1: newArray
             })
-            // this.returningToAllRosters(playerObj)
         }
 
         donttradetoTeam2 = (playerObj, team, event) => {
-            
             let oldArray = this.state.tradedto2
             let newArray = oldArray.filter(player => player !== playerObj)
             this.setState({
                 tradedto2: newArray
             })
-            // this.returningToAllRosters(playerObj)
         }
 
 
@@ -295,7 +285,6 @@ class MachineCard extends Component {
             this.setState({
                 tradedto3: newArray
             })
-            // this.returningToAllRosters(playerObj)
         }
 
         donttradetoTeam4 = (playerObj, team, event) => {
@@ -304,7 +293,6 @@ class MachineCard extends Component {
             this.setState({
                 tradedto4: newArray
             })
-            // this.returningToAllRosters(playerObj)
         }
 
         addAThird = () => {
@@ -320,8 +308,7 @@ class MachineCard extends Component {
         }
 
 
-        tradedAway = (team) => {
-            
+        tradedAway = (team) => { 
             let arr = []
             let arr1 = team !== null ? arr.concat(this.state.tradedto1.filter(player => player.team_id === team.id)) : []
             let arr2 = team !== null ? arr1.concat(this.state.tradedto2.filter(player => player.team_id === team.id)) : []
@@ -331,10 +318,7 @@ class MachineCard extends Component {
         }
 
 
-        
-        // BigInt.prototype.toJSON = function() { return this.toString()  }
         postTrade = (trade) => {
-            
             let user = this.props.currentUser
             fetch("http://localhost:5000/trades", {
                 method: "POST",
@@ -352,7 +336,6 @@ class MachineCard extends Component {
         }
 
         handleSave = () => {
-            
             let team1Trade = [this.state.team1, this.state.tradedto1]
             let team2Trade = [this.state.team2, this.state.tradedto2]
             let team3Trade = this.state.tradedto3.length > 0 ? [this.state.team3, this.state.tradedto3] : null
@@ -396,15 +379,14 @@ class MachineCard extends Component {
         }
 
         oldCap = (team) => {
-            team ==! null
+            team !== null
             ?
             parseInt(team.cap_spent.replace(/\D/g,''))
             :
             parseInt(0)
         }
 
-        validateTrade = (team, acquired) => {
-            
+        validateTrade = (team, acquired) => {  
             // 1. Any team under the cap can take any amount in up to the cap level + $100,000
             // 2. Teams under tax but over cap. It's 150%???????
             // 3. Under 9.8M in incoming: 150+100 else : 125 + 100000
@@ -468,9 +450,6 @@ class MachineCard extends Component {
             notValidReason: null
         }) :
         alert("Your trade was not successful")
-            // this.setState({
-            //     submitted: true
-            // })
         }
 
     render(){

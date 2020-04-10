@@ -9,7 +9,7 @@ class LoginForm extends React.Component {
     }
 
       handleLoginSubmit = (e) => {
-          e.preventDefault()
+        e.preventDefault()
         fetch('http://localhost:5000/login', {
         method: "POST",
         headers: {
@@ -39,7 +39,7 @@ render(){
             <div>
             <div class="ui form container">
         <form class="ui form" onSubmit={this.handleLoginSubmit}>
-            <img id="loginLogo" class="ui small image" src={Logo}></img>
+            <img alt="" id="loginLogo" class="ui small image" src={Logo}></img>
             <input placeholder="name" id="loginSignupInput"
             label="username" value={this.state.name} onChange={(event)=>this.setState({name: event.target.value})}
             />

@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 const TeamList  = props => {
     console.log(props.teams)
-    
-        const teamList = props.teams.map((team) =>
-        <div class="item" onClick={()=>props.chooseTeam(team)}> <img class="ui avatar image" src={team.logo}/> 
+    const teamList = props.teams.map((team) =>
+        <div class="item" onClick={()=>props.chooseTeam(team)}> <img alt="" class="ui avatar image" src={team.logo}/> 
         <div class="content">
-        <a>{team.name}</a>
+        <a href="#top">{team.name}</a>
         </div>
         </div>)
         return(

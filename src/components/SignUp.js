@@ -1,10 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-
-class SignUp extends React.Component {
-
-    
-  
+class SignUp extends Component {
     render() { 
         console.log(this.props)
         return (  

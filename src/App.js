@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
 import NavBar from './components/NavBar'
-import PlayerCard from './components/PlayerCard'
-import RosterCard from './components/RosterCard'
-import TradeCard from './components/TradeCard'
 import TradeList from './components/TradeList'
-import UserProfile from './components/UserProfile'
+import UserProfile from './containers/UserProfile'
 import MachineCard from './components/MachineCard'
-import TeamList from './components/TeamList'
 import LoginForm from './components/LoginForm'
-import FireUpMachine from './components/FireUpMachine'
-import NewsFeed from './components/NewsFeed'
+import FireUpMachine from './containers/FireUpMachine'
+// import NewsFeed from './components/NewsFeed'
 import SignUp from './components/SignUp'
 import {Route, Switch, Redirect} from 'react-router-dom'
-import {Sticky, Sidebar} from 'semantic-ui-react'
-
-// import RosterList from './components/RosterList'
+import {Sidebar} from 'semantic-ui-react'
 
 class App extends Component {
   state = {
@@ -174,7 +168,7 @@ class App extends Component {
               currentUser={this.state.currentUser} addVote={this.addVote} votes={this.state.votes} user={this.state.users.filter(u=> u.id === id)} trades={this.state.trades.filter(t => t.user_id === id)} all_users={this.state.users} all_teams={this.state.teams} all_players={this.state.players}/>
             }} />
     <Route exact path="/profile" render={() => {
-      return this.state.currentUser ? <UserProfile removeTrade={this.removeTrade} votes={this.state.votes} currentUser={this.state.currentUser} user={currentUserArray} trades={this.state.trades.filter(t => t.user_id === this.state.currentUser.id)} all_users={this.state.users} user={currentUserArray} all_teams={this.state.teams} all_players={this.state.players}/> : <Redirect to="/login"/>}}/>
+      return this.state.currentUser ? <UserProfile removeTrade={this.removeTrade} votes={this.state.votes} currentUser={this.state.currentUser} trades={this.state.trades.filter(t => t.user_id === this.state.currentUser.id)} all_users={this.state.users} user={currentUserArray} all_teams={this.state.teams} all_players={this.state.players}/> : <Redirect to="/login"/>}}/>
     <Route exact path="/" render={() => {
     return this.state.currentUser ? <Redirect to="/wannatrade"/> : <LoginForm loginSubmit={this.loginSubmit}/>}}/>
     <Route exact path="/wannatrade" render={() => <FireUpMachine lookAtTrades={this.lookAtTrades} all_users={this.state.users} trades={this.state.trades} all_players={this.state.players} all_teams={this.state.teams}/>}/>

@@ -1,13 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import TradeList from '../components/TradeList'
 const UserProfile  = props => {
     console.log(props)
-    let findTeamLogoByName  = (name) => {
-        
-        let team = props.all_teams.filter(t => t.name === name)
-        return team[0].logo
-    }
-
         return(
             <div>
             <br></br>
