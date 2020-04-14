@@ -37,9 +37,9 @@ render(){
      
         return(
             <div>
-            <div class="ui form container">
-        <form class="ui form" onSubmit={this.handleLoginSubmit}>
-            <img alt="" id="loginLogo" class="ui small image" src={Logo}></img>
+            <div className="ui form container">
+        <form className="ui form" onSubmit={this.handleLoginSubmit}>
+            <img alt="" id="loginLogo" className="ui small image" src={Logo}></img>
             <input placeholder="name" id="loginSignupInput"
             label="username" value={this.state.name} onChange={(event)=>this.setState({name: event.target.value})}
             />
@@ -47,7 +47,7 @@ render(){
             type="password" label="password" value={this.state.password} onChange={(event)=>this.setState({password: event.target.value})}/>
             <br></br>
             <div id="loginButton">
-            <button id="machineButtonGrid" class="ui button" type="submit" value="Submit">Login </button>
+            <button id="machineButtonGrid" className="ui button" type="submit" value="Submit">Login </button>
             </div>
             <div>
             <Link to="/signup">Sign Up</Link>
