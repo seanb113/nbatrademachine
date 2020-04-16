@@ -496,8 +496,8 @@ class MachineCard extends Component {
             <br/>
             <br/>
             <div id="bottomButtons" class="ui centered grid">
-            {team3 === null ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAThird}>Add third team</button> : null}
-            {team4 === null && this.state.team3 ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAFourth}>Add fourth team</button> : null}
+            {!this.state.submitted && team3 === null ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAThird}>Add third team</button> : null}
+            {!this.state.submitted && team4 === null && this.state.team3 ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAFourth}>Add fourth team</button> : null}
             {!this.state.submitted && !this.state.saved ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSubmit}>Submit Trade</button> : null}
             {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSave}>Save Trade</button> : false}
             {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.editTrade}>Edit Trade</button> : null}

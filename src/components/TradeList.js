@@ -105,17 +105,12 @@ class TradeList extends Component {
     }
 
     removeTrade =(id)=>{
-        
-       let arra = this.state.trades.filter(t => t.id !== id)
+    let arra = this.state.trades.filter(t => t.id !== id)
     this.setState({
       trades: arra
     })
     this.props.removeTrade(id)
   }
-
-    // parsedTeams = () => {
-    //    let teams = this.props["trades"].map(t => t.swaps.map(s=> s.team_id).filter)
-    // }
 
     findTeam = (id) => {
         let teamid = parseInt(id)
@@ -148,7 +143,7 @@ class TradeList extends Component {
         return a2
         else if (array.length === 3)
         return a3
-        else if (array.length === 3)
+        else if (array.length === 4)
         return a4
         else
         return this.props.trades
@@ -199,7 +194,7 @@ class TradeList extends Component {
                     selection
                     options={options}
                     onChange={this.onFilterChange.bind(this)}
-                    onEnter={this.handleSubmit}
+                    onEnter={this.onFilterChange.bind(this)}
                 />
                 </div>
                 <br/>
