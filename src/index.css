@@ -1,5 +1,6 @@
 body {
-  background: url("/bckground.jpg");
+  /* background: url("/bckground.jpg"); */
+  background: #EFEEEE;
   background-size: 400%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -46,10 +47,6 @@ code {
   top: 30px;
 }
 
-
-
-
-
 .ui.form.container{
   padding-left: 10rem;
   padding-right: 10rem;
@@ -60,30 +57,84 @@ code {
 
 #tradingCard{
     /* margin: 30px; */
-    background-color: rgb(243, 227, 146);
-    box-shadow: 5px 10px 8px #888888
+    /* background-color: rgb(243, 227, 146); */
+    background-color: #e7efa7;
+    /* box-shadow: 5px 10px 8px #888888 */
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f7ffb3, #d0d796);
+    box-shadow:  5px 5px 10px #9e9d9d, 
+    -5px -5px 10px #ffffff;
 }
 
 #teamList{
-  border: .5px solid;
+  /* border: .5px solid;
   border-radius: 15px;
-  box-shadow: 5px 10px 8px #888888
+  box-shadow: 5px 10px 8px #888888 */
+  border: .5px solid;
+  border-radius: 17px;
+  background: #edecec;
+  box-shadow:  13px 13px 26px #9c9c9c, 
+               -13px -13px 26px #ffffff;
+  padding-top: 1rem;
+  padding-bottom: 1rem
 }
+
+.ui.multiple.search.dropdown{
+  border-radius: 17px;
+  background: #edecec;
+  box-shadow: inset -5px 5px 10px #8e8e8e, 
+              inset 5px -5px 10px #ffffff;
+}
+
+.ui.multiple.search.dropdown:hover{
+  border-radius: 17px;
+  background: #edecec;
+  box-shadow: inset -5px 5px 10px #8e8e8e, 
+              inset 5px -5px 10px #ffffff;
+}
+
 
 #rosterColumn{
   border: .5px solid;
-  border-radius: 25px;
-  box-shadow: 5px 10px 8px #888888
+  border-radius: 17px;
+  background: #edecec;
+  box-shadow:  13px 13px 26px #9c9c9c, 
+               -13px -13px 26px #ffffff;
 }
 
 #pickTeamGrid{
-  border: .5px solid;
-  box-shadow: 5px 10px 8px #888888
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 17px;
+  background: #EFEEEE;
+  box-shadow:  5px -5px 10px #9e9d9d, 
+               -5px 5px 10px #ffffff;
+}
+#pickTeamGrid.or{
+  visibility: hidden;
+}
+
+.ui.left.push.sidebar {
+  border-radius: 17px;
+  background: #2d2d2d;
+  box-shadow: inset -38px -38px 76px #1e1e1e, 
+              inset 38px 38px 76px #3c3c3c;
+}
+
+.ui.visible.push.sidebar{
+  border-radius: 17px;
+  background: #2d2d2d;
+  box-shadow: inset -38px -38px 76px #1e1e1e, 
+              inset 38px 38px 76px #3c3c3c;
 }
 
 #machineButtonGrid{
-border: .5px solid;
-box-shadow: 5px 10px 8px #888888;
+/* border: .5px solid;
+box-shadow: 5px 10px 8px #888888; */
+border: 1px solid rgba(255,255,255,0.20);
+border-radius: 17px;
+background: #EFEEEE;
+box-shadow:  5px -5px 10px #9e9d9d, 
+             -5px 5px 10px #ffffff;
 }
 
 #loginButton{
@@ -93,6 +144,37 @@ box-shadow: 5px 10px 8px #888888;
 
 #loginSignupInput{
   padding-bottom: 1rem;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: inset 5px -5px 16px #ebebeb, 
+              inset -5px 5px 16px #ffffff;
+}
+
+select.ui.selection.dropdown{
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: inset 5px -5px 16px #ebebeb, 
+              inset -5px 5px 16px #ffffff;
+}
+
+input#password.signingUp{
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: inset 5px -5px 16px #ebebeb, 
+              inset -5px 5px 16px #ffffff;
+}
+
+input#name.signingUp{
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: inset 5px -5px 16px #ebebeb, 
+              inset -5px 5px 16px #ffffff;
+}
+.ui.form input{
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: inset 5px -5px 16px #dedede, 
+              inset -5px 5px 16px #ffffff;
 }
 
 #bottomButtons{
