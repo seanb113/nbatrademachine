@@ -84,6 +84,7 @@ code {
   background: #edecec;
   box-shadow: inset -5px 5px 10px #8e8e8e, 
               inset 5px -5px 10px #ffffff;
+              padding-top: .5rem
 }
 
 .ui.multiple.search.dropdown:hover{
