@@ -36,10 +36,15 @@ class MachineCard extends Component {
         }
         )
     }
+    dontAddNewTeam = () => {
+        let newState = this.state.team4 === "selecting" ? "selecting" : null
+        this.setState({
+            team3: newState,
+            team4: null
+        })
+    }
 
     chooseTeam1 = (team) => {
-        
-        // let old_team = this.state.team1
         let teams_array = this.state.all_teams.filter(checkedteam=> checkedteam !== team)
         let teamPlayers = this.props.players.filter(player =>
         player.team_id === team.id)
@@ -111,8 +116,8 @@ class MachineCard extends Component {
             teams: teams_array
         })
     }
-        removeTeam1 = (team) => {
-            
+    removeTeam1 = (team) => {
+        //refactor
             this.state.all_teams.push(team)
             let new_team1 = this.state.team2
             let new_team2 = this.state.team3 === null ? "selecting" : this.state.team3
@@ -123,9 +128,6 @@ class MachineCard extends Component {
             let new_traded1 = this.state.tradedto2.length > 0 ? this.state.tradedto2.filter(player => player.team_id !== this.state.team1.id) : []
             let new_traded2 = this.state.tradedto3.length > 0 ? this.state.tradedto3.filter(player => player.team_id !== this.state.team1.id) : []
             let new_traded3 = this.state.tradedto4.length > 0 ? this.state.tradedto4.filter(player => player.team_id !== this.state.team1.id) : []
-            // let new_traded1 = this.state.tradedto2.length > 0 ? this.state.tradedto2 : []
-            // let new_traded2 = this.state.tradedto3.length > 0 ? this.state.tradedto3 : []
-            // let new_traded3 = this.state.tradedto4.length > 0 ? this.state.tradedto4 : []
             this.setState({
                 team1: new_team1,
                 team2: new_team2,
@@ -433,8 +435,6 @@ class MachineCard extends Component {
             return true
             }
 
-
-
         handleSubmit = () => {
         let team1 = this.state.team1
         let team2 = this.state.team2
@@ -486,10 +486,10 @@ class MachineCard extends Component {
             {team2 !== "selecting" && team2 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam2} team={team2} players={this.state.team2Players} selectPlayer={this.addPlayerToTrade}/>: null}
             {team3 !== "selecting" && team3 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam3} team={team3} players={this.state.team3Players} selectPlayer={this.addPlayerToTrade}/>: null}
             {team4 !== "selecting" && team4 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam4} team={team4} players={this.state.team4Players} selectPlayer={this.addPlayerToTrade}/>: null}
-            {team1 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam1} changeTeam={this.changeTeam1} removeTeam={this.removeTeam1}/>: null}
-            {team2 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam2} changeTeam={this.changeTeam2} removeTeam={this.removeTeam2}/>: null}
-            {team3 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam3} changeTeam={this.changeTeam3} removeTeam={this.removeTeam3}/>: null}
-            {team4 === "selecting" ? <TeamList teams={all_teams} chooseTeam={this.chooseTeam4} changeTeam={this.changeTeam4} removeTeam={this.removeTeam4}/>: null}
+            {team1 === "selecting" ? <TeamList team={"team1"} teams={all_teams} chooseTeam={this.chooseTeam1} changeTeam={this.changeTeam1} removeTeam={this.removeTeam1}/>: null}
+            {team2 === "selecting" ? <TeamList team={"team1"} teams={all_teams} chooseTeam={this.chooseTeam2} changeTeam={this.changeTeam2} removeTeam={this.removeTeam2}/>: null}
+            {team3 === "selecting" ? <TeamList team={"team3"} dontaddteam={this.dontAddNewTeam} teams={all_teams} chooseTeam={this.chooseTeam3} changeTeam={this.changeTeam3} removeTeam={this.removeTeam3}/>: null}
+            {team4 === "selecting" ? <TeamList team={"team4"} dontaddteam={this.dontAddNewTeam} teams={all_teams} chooseTeam={this.chooseTeam4} changeTeam={this.changeTeam4} removeTeam={this.removeTeam4}/>: null}
             <div class="ui buttons">
             </div>
             </div>
@@ -497,7 +497,7 @@ class MachineCard extends Component {
             <br/>
             <div id="bottomButtons" class="ui centered grid">
             {!this.state.submitted && team3 === null ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAThird}>Add third team</button> : null}
-            {!this.state.submitted && team4 === null && this.state.team3 ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAFourth}>Add fourth team</button> : null}
+            {!this.state.submitted && team4 === null && this.state.team3 && this.state.team3 !== "selecting" ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAFourth}>Add fourth team</button> : null}
             {!this.state.submitted && !this.state.saved ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSubmit}>Submit Trade</button> : null}
             {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSave}>Save Trade</button> : false}
             {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.editTrade}>Edit Trade</button> : null}
