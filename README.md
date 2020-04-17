@@ -21,28 +21,28 @@ Available features:
 ## Screenshots of App Experience
 
 #### Login Screen
-![Login Screen](./public/img/nbaLogin.png) 
+![Login Screen](./public/img/login.png) 
 
 #### Sign Up Screen
-![Sign Up Screen](./public/img/nbasignUp.png)
+![Sign Up Screen](./public/img/signup.png)
 
 #### Instructions Screen With Menu
-![Instructions Screen With Menu](./public/img/nbaInstructionsWithMenu.png) 
+![Instructions Screen With Menu](./public/img/instruction.png) 
 
 #### Trade Machine Screen
-![Trade Machine Screen](./public/img/nbatrademachine.png) 
+![Trade Machine Screen](./public/img/machine.png) 
 
 #### Failed Trade Screen
-![Failed Trade Screen](./public/img/nbafailedtrade.png) 
+![Failed Trade Screen](./public/img/failed.png) 
 
 #### Successful Trade Screen
-![Successful Trade Screen](./public/img/nbasuccesfultrade.png)
+![Successful Trade Screen](./public/img/success.png)
 
 #### All Trades Screen
-![All Trades Screen](./public/img/nbaalltrades.png)
+![All Trades Screen](./public/img/alltrades.png)
 
 #### User Profile Screen With Multi Search
-![User Profile Screen](./public/img/nbaprofilesearch.png) 
+![User Profile Screen](./public/img/search.png) 
 
 ## Frameworks and Libraries Used
 

@@ -501,7 +501,7 @@ class MachineCard extends Component {
             {!this.state.submitted && team3 === null && this.state.team2 !== "selecting" ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAThird}>Add third team</button> : null}
             {!this.state.submitted && team4 === null && this.state.team3 && this.state.team3 !== "selecting" ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAFourth}>Add fourth team</button> : null}
             {!this.state.submitted && !this.state.saved && this.state.tradedto1.length > 0 && this.state.tradedto2.length > 0 ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSubmit}>Submit Trade</button> : null}
-            {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSave}>Save Trade</button> : false}
+            {this.state.submitted && !this.state.saved ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSave}>Save Trade</button> : false}
             {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.editTrade}>Edit Trade</button> : null}
             {this.state.tradedto1.length || this.state.tradedto2.length || this.state.tradedto3.length || this.state.tradedto4.length > 0 ? <button id="machineButtonGrid" class="small ui button" onClick={this.resetMachine}>Reset Trade Machine</button> : null}
             </div>
