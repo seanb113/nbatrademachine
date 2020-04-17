@@ -438,8 +438,8 @@ class MachineCard extends Component {
         handleSubmit = () => {
         let team1 = this.state.team1
         let team2 = this.state.team2
-        let team3 = this.state.team3
-        let team4 = this.state.team4
+        let team3 = this.state.team3 === "selecting" ? null : this.state.team3
+        let team4 = this.state.team4 === "selecting" ? null : this.state.team4
         this.validateTrade(team1, this.state.tradedto1) &&
         this.validateTrade(team2, this.state.tradedto2) &&
         this.validateTrade(team3, this.state.tradedto3) &&
@@ -447,7 +447,9 @@ class MachineCard extends Component {
         this.setState({
             submitted: true,
             notValid: false,
-            notValidReason: null
+            notValidReason: null,
+            team3: this.state.team3 === "selecting" ? null : this.state.team3,
+            team4: this.state.team4 === "selecting" ? null : this.state.team4
         }) :
         alert("Your trade was not successful")
         }
@@ -496,9 +498,9 @@ class MachineCard extends Component {
             <br/>
             <br/>
             <div id="bottomButtons" class="ui centered grid">
-            {!this.state.submitted && team3 === null ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAThird}>Add third team</button> : null}
+            {!this.state.submitted && team3 === null && this.state.team2 !== "selecting" ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAThird}>Add third team</button> : null}
             {!this.state.submitted && team4 === null && this.state.team3 && this.state.team3 !== "selecting" ? <button id="machineButtonGrid" class="small ui button" onClick={this.addAFourth}>Add fourth team</button> : null}
-            {!this.state.submitted && !this.state.saved ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSubmit}>Submit Trade</button> : null}
+            {!this.state.submitted && !this.state.saved && this.state.tradedto1.length > 0 && this.state.tradedto2.length > 0 ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSubmit}>Submit Trade</button> : null}
             {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.handleSave}>Save Trade</button> : false}
             {this.state.submitted ? <button id="machineButtonGrid" class="small ui button" onClick={this.editTrade}>Edit Trade</button> : null}
             {this.state.tradedto1.length || this.state.tradedto2.length || this.state.tradedto3.length || this.state.tradedto4.length > 0 ? <button id="machineButtonGrid" class="small ui button" onClick={this.resetMachine}>Reset Trade Machine</button> : null}
