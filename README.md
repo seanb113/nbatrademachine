@@ -21,28 +21,28 @@ Available features:
 ## Screenshots of App Experience
 
 #### Login Screen
-![Login Screen](./public/img/login.png) 
+![Login Screen](./public/img/LLogin.png) 
 
 #### Sign Up Screen
-![Sign Up Screen](./public/img/signup.png)
+![Sign Up Screen](./public/img/Signu.png)
 
 #### Instructions Screen With Menu
-![Instructions Screen With Menu](./public/img/instruction.png) 
+![Instructions Screen With Menu](./public/img/InstructionMenu.png) 
 
 #### Trade Machine Screen
-![Trade Machine Screen](./public/img/machine.png) 
+![Trade Machine Screen](./public/img/MMachine.png) 
 
 #### Failed Trade Screen
-![Failed Trade Screen](./public/img/failed.png) 
+![Failed Trade Screen](./public/img/Failure.png) 
 
 #### Successful Trade Screen
-![Successful Trade Screen](./public/img/success.png)
+![Successful Trade Screen](./public/img/Successful.png)
 
-#### All Trades Screen
-![All Trades Screen](./public/img/alltrades.png)
+#### All Trades Screen With Multi Search
+![All Trades Screen](./public/img/MSearch.png)
 
-#### User Profile Screen With Multi Search
-![User Profile Screen](./public/img/search.png) 
+#### User Profile Screen
+![User Profile Screen](./public/img/UProfile.png) 
 
 ## Frameworks and Libraries Used
 
