@@ -123,28 +123,28 @@ const TradeCard = props => {
             <div class="header">
             {props.player1.length > 0 ? props.team1.name + " get:" : null}
             </div>
-            <div class="ui celled list">
+            <div class="ui celled list t">
             {props.player1.length > 0 ? props.player1.map(player => 
             <PlayerCard team={props.team1} player={player} selectPlayer={props.dontrade1}/>): null}
             </div>
             <div class="header">
             {props.player2.length > 0 ? props.team2.name + " get:" : null}
             </div>
-            <div class="ui celled list">
+            <div class="ui celled list t">
             {props.player2.length > 0 ? props.player2.map(player =>
             <PlayerCard team={props.team2} player={player} selectPlayer={props.dontrade2}/>) : null}
             </div>
             <div class="header">
             {props.player3.length > 0 ? props.team3.name + " get:" : null}
             </div>
-            <div class="ui celled list">
+            <div class="ui celled list t">
             {props.player3.length > 0 ? props.player3.map(player =>
             <PlayerCard team={props.team3} player={player} selectPlayer={props.dontrade3}/>) : null}
             </div>
             <div class="header">
             {props.player4.length > 0 ? props.team4.name + " get:" : null}
             </div>
-            <div class="ui celled list">
+            <div class="ui celled list t">
             {props.player4.length > 0 ? props.player4.map(player =>
             <PlayerCard team={props.team4} player={player} selectPlayer={props.dontrade4}/>) : null}
             </div>
