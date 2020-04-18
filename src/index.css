@@ -145,9 +145,9 @@ box-shadow:  5px 5px 10px #605f5f,
 #machineButtonGrid:active {
   border: 1px solid rgba(255,255,255,0.20);
   border-radius: 17px;
-  background: linear-gradient(145deg, #d7d6d6, #ffffff);
-  box-shadow:  inset 5px 5px 10px #605f5f, 
-               inset -5px -5px 10px #ffffff;
+  background: #efeeee;
+  box-shadow: inset 22px 22px 44px #d9d9d9, 
+              inset -22px -22px 44px #ffffff;
 }
 
 .ui.two.buttons{
