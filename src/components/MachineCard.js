@@ -364,7 +364,7 @@ class MachineCard extends Component {
             team2: "selecting",
             team3: null,
             team4: null,
-            all_teams: [],
+            all_teams: this.props.teams,
             team1Players: [],
             team2Players: [],
             team3Players: [],
