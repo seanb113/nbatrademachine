@@ -2,100 +2,6 @@ import React, { Component } from 'react'
 import TradeCard from '../containers/TradeCard'
 import { Dropdown } from 'semantic-ui-react'
 
-
-const options = [
-    {
-      value: "Atlanta Hawks", text: "Atlanta Hawks"
-    },
-    {
-      value: "Boston Celtics", text: "Boston Celtics"
-    },
-    {
-      value: "Brooklyn Nets", text: "Brooklyn Nets"
-    },
-    {
-      value: "Charlotte Hornets", text: "Charlotte Hornets"
-    },
-    {
-      value: "Chicago Bulls", text: "Chicago Bulls"
-    },
-    {
-      value: "Cleveland Cavaliers", text: "Cleveland Cavaliers"
-    },
-    {
-      value: "Dallas Mavericks", text: "Dallas Mavericks"
-    },
-    {
-        value: "Denver Nuggets", text: "Denver Nuggets"
-    },
-    {
-      value: "Detroit Pistons", text: "Detroit Pistons"
-    },
-    {
-      value: "Golden State Warriors", text: "Golden State Warriors"
-    },
-    {
-      value: "Houston Rockets", text: "Houston Rockets",
-    },
-    {
-      value: "Indiana Pacers", text: "Indiana Pacers"
-    },
-    {
-      value: "Los Angeles Clippers", text: "Los Angeles Clippers"
-    },
-    {
-      value: "Los Angeles Lakers", text: "Los Angeles Lakers"
-    },
-    {
-      value: "Memphis Grizzlies", text: "Memphis Grizzlies"
-    },
-    {
-      value: "Miami Heat", text: "Miami Heat"
-    },
-    {
-      value: "Milwaukee Bucks", text: "Milwaukee Bucks"
-    },
-    {
-      value: "Minnesota Timberwolves", text: "Minnesota Timberwolves"
-    },
-    {
-      value: "New Orleans Pelicans", text: "New Orleans Pelicans"
-    },
-    {
-      value: "New York Knicks", text: "New York Knicks"
-    },
-    {
-      value: "Oklahoma City Thunder", text: "Oklahoma City Thunder"
-    },
-    {
-      value: "Orlando Magic", text: "Orlando Magic"
-    },
-    {
-      value: "Philadelphia 76ers", text: "Philadelphia 76ers" 
-    },
-    {
-      value: "Phoenix Suns", text: "Phoenix Suns"
-    },
-    {
-      value: "Portland Trail Blazers", text: "Portland Trail Blazers"
-    },
-    {
-      value: "Sacramento Kings", text: "Sacramento Kings"
-    },
-    {
-      value: "San Antonio Spurs", text: "San Antonio Spurs"
-    },
-    {
-      value: "Toronto Raptors", text: "Toronto Raptors"
-    },
-    {
-      value: "Utah Jazz", text: "Utah Jazz"
-    },
-    {
-      value: "Washington Wizards", text: "Washington Wizards"}
-  ]
-
-
 class TradeList extends Component {
     state = {
         trades: this.props.trades,
@@ -160,6 +66,7 @@ class TradeList extends Component {
     }
 
     onFilterChange = (event) => {
+      debugger
         let teamName = event.target.innerText
         let arr = teamName !== "" && event.target.className !== "delete icon" ? this.state.value.push(teamName) : this.state.value
         console.log(arr)
@@ -175,6 +82,11 @@ class TradeList extends Component {
 
 
     render(){
+        const options= this.state.teams.map(t => {
+          const teams ={}
+          teams.value = t.name
+          teams.text = t.name
+          return teams })
         const swapped = this.state.trades.map(t => t.swaps)
         const tradeUsers = this.state.trades.map(t => t.user_id)
         const tradeIds = this.state.trades.map(t => t) 

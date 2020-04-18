@@ -58,7 +58,7 @@ class MachineCard extends Component {
         let teams_array = this.state.all_teams.filter(checkedteam=> checkedteam !== team)
         let teamPlayers = this.props.players.filter(player =>
         player.team_id === team.id)
-    this.setState({
+        this.setState({
         team2: team,
         all_teams: teams_array,
         team2Players: teamPlayers
@@ -68,7 +68,7 @@ class MachineCard extends Component {
         let teams_array = this.state.all_teams.filter(checkedteam=> checkedteam !== team)
         let teamPlayers = this.props.players.filter(player =>
         player.team_id === team.id)
-    this.setState({
+        this.setState({
         team3: team,
         all_teams: teams_array,
         team3Players: teamPlayers
@@ -78,7 +78,7 @@ class MachineCard extends Component {
         let teams_array = this.state.all_teams.filter(checkedteam=> checkedteam !== team)
         let teamPlayers = this.props.players.filter(player =>
         player.team_id === team.id) 
-    this.setState({
+        this.setState({
         team4: team,
         all_teams: teams_array,
         team4Players: teamPlayers
@@ -360,11 +360,11 @@ class MachineCard extends Component {
 
     resetMachine = () => {
         this.setState({
-            all_teams: this.props.teams,
             team1: "selecting",
             team2: "selecting",
             team3: null,
             team4: null,
+            all_teams: [],
             team1Players: [],
             team2Players: [],
             team3Players: [],
@@ -375,10 +375,12 @@ class MachineCard extends Component {
             tradedto4: [],
             whereTo: null,
             beingTraded: null,
+            beingTradedFrom: null,
             submitted: false,
+            saved: false,
             notValid: false,
             notValidReason: null,
-            saved: false
+            numberToCut: 0
         })
     }
 
