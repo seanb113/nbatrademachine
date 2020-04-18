@@ -103,12 +103,16 @@ code {
                -13px -13px 26px #ffffff;
 }
 
+.buttonSpace{
+  padding-right: .3rem
+}
+
 #pickTeamGrid{
   border: 1px solid rgba(255,255,255,0.20);
   border-radius: 17px;
-  background: #EFEEEE;
-  box-shadow:  5px -5px 10px #9e9d9d, 
-               -5px 5px 10px #ffffff;
+  background: linear-gradient(145deg, #d7d6d6, #ffffff);
+  box-shadow:  5px 5px 10px #605f5f, 
+               -5px -5px 10px #ffffff;
 }
 #pickTeamGrid.or{
   visibility: hidden;
@@ -133,9 +137,36 @@ code {
 box-shadow: 5px 10px 8px #888888; */
 border: 1px solid rgba(255,255,255,0.20);
 border-radius: 17px;
-background: #EFEEEE;
-box-shadow:  5px -5px 10px #9e9d9d, 
-             -5px 5px 10px #ffffff;
+background: linear-gradient(145deg, #d7d6d6, #ffffff);
+box-shadow:  5px 5px 10px #605f5f, 
+             -5px -5px 10px #ffffff;
+}
+
+.ui.buttons{
+  /* border-radius: 25px;
+
+  box-shadow: inset -5px -5px 7px #5c6043, 
+               5px 5px 7px #5c6043; */
+  /* padding-left: .5rem;
+  padding-right: .5rem */
+
+}
+
+.ui.two.buttons{
+  background: linear-gradient(145deg, #d0d796, #f7ffb3);
+  box-shadow:  17px 17px 33px #cbd293, 
+               -17px -17px 33px #ffffbb;
+}
+
+.ui.labeled.button:not(.icon) {
+  background-color: red
+}
+
+.ui.card>.extra, .ui.cards>.card>.extra {
+  background: linear-gradient(225deg, #d0d796, #f7ffb3);
+  box-shadow:  -14px 14px 0px #5c6043, 
+               /* 14px -14px 0px #ffffff; */
+  
 }
 
 #loginButton{
