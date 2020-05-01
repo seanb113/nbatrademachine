@@ -133,8 +133,6 @@ code {
 }
 
 #machineButtonGrid{
-/* border: .5px solid;
-box-shadow: 5px 10px 8px #888888; */
 border: 1px solid rgba(255,255,255,0.20);
 border-radius: 17px;
 background: linear-gradient(145deg, #d7d6d6, #ffffff);
@@ -167,10 +165,12 @@ box-shadow:  5px 5px 10px #605f5f,
   
 }
 #menuTab.content.icon::before{
-
+margin-right: 1rem;
 box-shadow:  -4px 4px 9px #979696, 
              4px -4px 9px #ffffff;
 }
+
+
 
 .ui.celled.list>.item, .ui.celled.list>.list{
              box-shadow:  5px 5px 10px #edecec, 
