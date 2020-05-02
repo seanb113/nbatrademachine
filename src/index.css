@@ -70,13 +70,15 @@ code {
   /* border: .5px solid;
   border-radius: 15px;
   box-shadow: 5px 10px 8px #888888 */
-  border: .5px solid;
-  border-radius: 17px;
+  /* border: .5px solid;
+  border-radius: 17px; */
   background: #edecec;
-  box-shadow:  13px 13px 26px #9c9c9c, 
-               -13px -13px 26px #ffffff;
+  box-shadow:  -13px -13px 26px #ffffff, 
+               13px 13px 26px #9c9c9c;
   padding-top: 1rem;
-  padding-bottom: 1rem
+  padding-bottom: 1rem;
+  margin-left: 25px;
+  margin-top: 10px;
 }
 
 .ui.multiple.search.dropdown{
@@ -96,11 +98,13 @@ code {
 
 
 #rosterColumn{
-  border: .5px solid;
-  border-radius: 17px;
+  /* border: .5px solid;
+  border-radius: 17px; */
   background: #edecec;
   box-shadow:  13px 13px 26px #9c9c9c, 
                -13px -13px 26px #ffffff;
+               margin-left: 25px;
+               margin-top: 10px;
 }
 
 .buttonSpace{
