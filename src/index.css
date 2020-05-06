@@ -103,8 +103,9 @@ code {
   background: #edecec;
   box-shadow:  13px 13px 26px #9c9c9c, 
                -13px -13px 26px #ffffff;
-               margin-left: 25px;
+               margin-left: 15px;
                margin-top: 10px;
+               width: 22%
 }
 
 .buttonSpace{
