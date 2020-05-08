@@ -1,5 +1,5 @@
 # NBA Trade Machine
-Welcome to the NBA Trade Machine, where you can test potential trades by NBA rules and share them with other users. Visit the backend repo [here](https://github.com/seanb113/nbatrademachine_backend)
+Welcome to the NBA Trade Machine, where you can test potential trades by NBA rules and share them with other users. Visit the backend repo [here](https://github.com/seanb113/nbatrademachine_backend). Watch the demo [here](https://www.youtube.com/watch?v=nPGnbuXdqMQ&t).
 
 ## Screenshots of App Experience
 
