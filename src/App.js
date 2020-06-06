@@ -120,6 +120,7 @@ class App extends Component {
   }
 
   addedNewTrade = (trade)=>{
+    debugger
     this.state.trades.push(trade)
     this.setState({
       trades: this.state.trades
@@ -182,9 +183,6 @@ class App extends Component {
       return this.state.currentUser? <Redirect to="/wannatrade"/> : <SignUp teams={teamNames} handleSignupForm={this.handleSignupForm} handleOnChangeForm={this.handleOnChangeForm}/>}}/>
     </Switch>
     </Sidebar.Pusher>
-    {/* <div>
-    {this.state.currentUser ? <NewsFeed articles={this.state.articles}/> : null}
-    </div> */}
     </div>
   )
   }
