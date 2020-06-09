@@ -21,7 +21,7 @@ class App extends Component {
     trading: true,
     look_at_trades: false,
     currentUser: null,
-    team: null,
+    team: "Atlanta Hawks",
     password: null,
     notValid: false,
     visibleMenu: false
@@ -94,15 +94,19 @@ class App extends Component {
       })
       .then(resp => resp.json())
       .then(r =>{
+        debugger
+        r.id = 0
+        this.state.users.push(r)
           this.setState({
+            users: this.state.users,
             currentUser: r,
             password: null
           })
-      } )
+      })
     }
 
   loginSubmit = (user) =>{
-    
+    console.log(user)
     this.setState({
       currentUser: user
     })
