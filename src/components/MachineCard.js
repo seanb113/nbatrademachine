@@ -323,6 +323,7 @@ class MachineCard extends Component {
 
 
     postTrade = (trade) => {
+        debugger
         let user = this.props.currentUser
         fetch("http://localhost:5000/trades", {
             method: "POST",

@@ -80,11 +80,8 @@ class App extends Component {
      }
 
     handleSignupForm = (e)=>{
-      
       e.preventDefault()
-
       let newUser = {name: this.state.name, team: this.state.team, password: this.state.password}
-      
       fetch('http://localhost:5000/users',{
         method: 'POST', 
         headers: {
@@ -95,7 +92,6 @@ class App extends Component {
       .then(resp => resp.json())
       .then(r =>{
         debugger
-        r.id = 0
         this.state.users.push(r)
           this.setState({
             users: this.state.users,
@@ -184,7 +180,7 @@ class App extends Component {
     <Route exact path="/login" render={() => {
     return this.state.currentUser ? <Redirect to="/wannatrade"/> : <LoginForm loginSubmit={this.loginSubmit}/>}}/>
     <Route exact path="/signup" render={() => {
-      return this.state.currentUser? <Redirect to="/wannatrade"/> : <SignUp teams={teamNames} handleSignupForm={this.handleSignupForm} handleOnChangeForm={this.handleOnChangeForm}/>}}/>
+      return this.state.currentUser? <Redirect to="/wannatrade"/> : <SignUp teams={teamNames} handleSignup={this.handleSignupForm} handleOnChangeForm={this.handleOnChangeForm}/>}}/>
     </Switch>
     </Sidebar.Pusher>
     </div>
