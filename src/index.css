@@ -171,8 +171,6 @@ box-shadow:  5px 5px 10px #605f5f,
 }
 #menuTab.content.icon::before{
 margin-right: 1rem;
-box-shadow:  -4px 4px 9px #979696, 
-             4px -4px 9px #ffffff;
 }
 
 
