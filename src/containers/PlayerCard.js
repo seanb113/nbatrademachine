@@ -15,18 +15,6 @@ const PlayerCard  = props => {
         return ((initials.shift() || '') + (initials.pop() || '')).toUpperCase()
     }
 
-    let getButtons = () => {
-        debugger
-        if (props.tradeTo && props.team1 !== "selecting" && props.tradeTo.team_id !== props.team1.id)
-        return <button class="mini ui button" onClick={(e)=> this.props.tradeToprops.team1(e)}> Trade to {props.team1.name}? </button> 
-        if (props.tradeTo && props.team2 !== "selecting" && props.tradeTo.team_id !== props.team2.id) 
-        return <button class="mini ui button" onClick={(e)=> this.props.tradeToprops.team2(e)}>Trade to {props.team2.name}? </button>
-        if (props.tradeTo && props.team3 && props.tradeTo.team_id !== props.team3.id && props.team3 !== "selecting")
-        return <button class="mini ui button" onClick={(e)=> this.props.tradeToprops.team3(e)}>Trade to {props.team3.name}?</button>
-        if (props.tradeTo && props.team4 && props.tradeTo.team_id !== props.team4.id && props.team4 !== "selecting") 
-        return <button class="mini ui button" onClick={(e)=> this.props.tradeToprops.team4(e)}>Trade to {props.team4.name}?</button>
-    }
-
     let theTeams = [props.team1, props.team2, props.team3, props.team4].filter( team => team ? team.id !== props.player.team_id : null)
     let teamOptions = theTeams.map(team => team.name).filter(t => t !== undefined)
 
@@ -48,7 +36,7 @@ const PlayerCard  = props => {
     </div>}
     content={
         <Dropdown.Menu>
-            {teamOptions.map(team => <Dropdown.Item>Trade to {team.split(' ').slice(-1)[0]}</Dropdown.Item>)}
+            {teamOptions.map(team => <Dropdown.Item onClick={}>Trade to {team.split(' ').slice(-1)[0]}</Dropdown.Item>)}
         </Dropdown.Menu>
     }
     on='click'
