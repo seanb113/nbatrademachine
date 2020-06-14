@@ -1,8 +1,8 @@
 import React from 'react'
-import {Popup, Button} from 'semantic-ui-react'
+import {Popup, Dropdown, Button} from 'semantic-ui-react'
 
 const PlayerCard  = props => {
-    console.log("playercard", props.tradedPlayers)
+    console.log("playercard", props)
     let disableCard = (player) => {
         if (props.tradedPlayers.includes(player))
         return true
@@ -27,7 +27,12 @@ const PlayerCard  = props => {
         return <button class="mini ui button" onClick={(e)=> this.props.tradeToprops.team4(e)}>Trade to {props.team4.name}?</button>
     }
 
+    let theTeams = [props.team1, props.team2, props.team3, props.team4].filter( team => team ? team.id !== props.player.team_id : null)
+    let teamOptions = theTeams.map(team => team.name !== undefined ? team.name : null)
+
+
     return(
+        console.log(teamOptions),
         <Popup
         trigger={
     <div id={props.tradedPlayers !== undefined && disableCard(props.player) === true ? "ui-item-disabled" : "ui-item"} class="item" onClick={(event)=> props.selectPlayer(props.player)}>
@@ -42,7 +47,9 @@ const PlayerCard  = props => {
     </div>
     </div>}
     content={
-        getButtons()
+        <Dropdown.Menu>
+            {teamOptions[0] !== undefined ? teamOptions.map(team => <Dropdown.Item>Trade to {team.split(' ').slice(-1)[0]}</Dropdown.Item>) : null}
+        </Dropdown.Menu>
     }
     on='click'
     />
