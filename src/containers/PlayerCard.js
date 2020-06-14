@@ -28,7 +28,7 @@ const PlayerCard  = props => {
     }
 
     let theTeams = [props.team1, props.team2, props.team3, props.team4].filter( team => team ? team.id !== props.player.team_id : null)
-    let teamOptions = theTeams.map(team => team.name !== undefined ? team.name : null)
+    let teamOptions = theTeams.map(team => team.name).filter(t => t !== undefined)
 
 
     return(
@@ -48,7 +48,7 @@ const PlayerCard  = props => {
     </div>}
     content={
         <Dropdown.Menu>
-            {teamOptions[0] !== undefined ? teamOptions.map(team => <Dropdown.Item>Trade to {team.split(' ').slice(-1)[0]}</Dropdown.Item>) : null}
+            {teamOptions.map(team => <Dropdown.Item>Trade to {team.split(' ').slice(-1)[0]}</Dropdown.Item>)}
         </Dropdown.Menu>
     }
     on='click'
