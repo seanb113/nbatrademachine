@@ -1,5 +1,5 @@
 import React from 'react'
-import PlayerCard from '../containers/PlayerCard'
+import PlayerCard from '../components/PlayerCard'
 
 const RosterCard = props => {
     console.log(props.team)
