@@ -226,6 +226,19 @@ class MachineCard extends Component {
         this.noTradeClause(player)
     }
 
+    tradetonewTeam = (team) => {
+        debugger
+        if (team === this.state.team1.name)
+        this.tradetoTeam1()
+        else if (team === this.state.team2.name)
+        this.tradetoTeam2()
+        else if (team === this.state.team3.name)
+        this.tradetoTeam3()
+        else
+        this.tradetoTeam4()
+
+    }
+
     tradetoTeam1 = () => {
         let oldArray = this.state.tradedto1
         let playerObj = this.state.beingTraded
@@ -484,13 +497,6 @@ class MachineCard extends Component {
             {this.state.tradedto1.length || this.state.tradedto2.length || this.state.tradedto3.length || this.state.tradedto4.length > 0 ? <button id="machineButtonGrid" class="small ui button" onClick={this.resetMachine}>Reset Trade Machine</button> : null}
             <br/>
             </div>
-            {tradeTo && team1 !== "selecting" && tradeTo.team_id !== team1.id ? <button id="pickTeamGrid" class="small ui button" onClick={(e)=> this.tradetoTeam1(e)}>Trade {tradeTo.name} to the {team1.name}?</button> : null}
-            {tradeTo && team3 !== null && team3 !== "selecting" && tradeTo.team_id !== team1.id ? <div id="pickTeamGrid" class="or"></div> : null}
-            {tradeTo && team2 !== "selecting" && tradeTo.team_id !== team2.id ? <button id="pickTeamGrid" class="small ui button" onClick={(e)=> this.tradetoTeam2(e)}>Trade {tradeTo.name} to the {team2.name}?</button> : null}
-            {tradeTo && team3 !== null && team4 !== "selecting" && tradeTo.team_id !== team3.id ? <div id="pickTeamGrid" class="or"></div> : null}
-            {tradeTo && team3 && tradeTo.team_id !== team3.id && team3 !== "selecting" ? <button id="pickTeamGrid" class="small ui button" onClick={(e)=> this.tradetoTeam3(e)}>Trade {tradeTo.name} to the {team3.name}?</button> : null}
-            {tradeTo && team4 !== null && team4 !== "selecting" && tradeTo.team_id !== team4.id ? <div id="pickTeamGrid" class="or"></div> : null}
-            {tradeTo && team4 && tradeTo.team_id !== team4.id && team4 !== "selecting" ? <button id="pickTeamGrid" class="small ui button" onClick={(e)=> this.tradetoTeam4(e)}>Trade {tradeTo.name} to the {team4.name}?</button> : null}
             </div>
             </div>
             <br/>
@@ -498,10 +504,10 @@ class MachineCard extends Component {
             <div class="ui four column left floated center aligned grid">
             <br/>
             <br/>
-            {team1 !== "selecting" && team1 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam1} team={team1} players={this.state.team1Players} selectPlayer={this.addPlayerToTrade} tradeTo={tradeTo} team1={this.state.team1} team2={this.state.team2} team3={this.state.team3} team4={this.state.team4}/>: null}
-            {team2 !== "selecting" && team2 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam2} team={team2} players={this.state.team2Players} selectPlayer={this.addPlayerToTrade} tradeTo={tradeTo} team1={this.state.team1} team2={this.state.team2} team3={this.state.team3} team4={this.state.team4}/>: null}
-            {team3 !== "selecting" && team3 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam3} team={team3} players={this.state.team3Players} selectPlayer={this.addPlayerToTrade} tradeTo={tradeTo} team1={this.state.team1} team2={this.state.team2} team3={this.state.team3} team4={this.state.team4}/>: null}
-            {team4 !== "selecting" && team4 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam4} team={team4} players={this.state.team4Players} selectPlayer={this.addPlayerToTrade} tradeTo={tradeTo} team1={this.state.team1} team2={this.state.team2} team3={this.state.team3} team4={this.state.team4}/>: null}
+            {team1 !== "selecting" && team1 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam1} team={team1} players={this.state.team1Players} selectPlayer={this.addPlayerToTrade} tradeTo={tradeTo} team1={this.state.team1} team2={this.state.team2} team3={this.state.team3} team4={this.state.team4} tradePlayer={this.tradetonewTeam}/>: null}
+            {team2 !== "selecting" && team2 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam2} team={team2} players={this.state.team2Players} selectPlayer={this.addPlayerToTrade} tradeTo={tradeTo} team1={this.state.team1} team2={this.state.team2} team3={this.state.team3} team4={this.state.team4} tradePlayer={this.tradetonewTeam}/>: null}
+            {team3 !== "selecting" && team3 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam3} team={team3} players={this.state.team3Players} selectPlayer={this.addPlayerToTrade} tradeTo={tradeTo} team1={this.state.team1} team2={this.state.team2} team3={this.state.team3} team4={this.state.team4} tradePlayer={this.tradetonewTeam}/>: null}
+            {team4 !== "selecting" && team4 !== null && this.state.submitted !== true ? <RosterCard tradedPlayers={tradedPlayers} removeTeam={this.removeTeam4} team={team4} players={this.state.team4Players} selectPlayer={this.addPlayerToTrade} tradeTo={tradeTo} team1={this.state.team1} team2={this.state.team2} team3={this.state.team3} team4={this.state.team4} tradePlayer={this.tradetonewTeam}/>: null}
             {team1 === "selecting" ? <TeamList team={"team1"} teams={all_teams} chooseTeam={this.chooseTeam1} changeTeam={this.changeTeam1} removeTeam={this.removeTeam1}/>: null}
             {team2 === "selecting" ? <TeamList team={"team1"} teams={all_teams} chooseTeam={this.chooseTeam2} changeTeam={this.changeTeam2} removeTeam={this.removeTeam2}/>: null}
             {team3 === "selecting" ? <TeamList team={"team3"} dontaddteam={this.dontAddNewTeam} teams={all_teams} chooseTeam={this.chooseTeam3} changeTeam={this.changeTeam3} removeTeam={this.removeTeam3}/>: null}

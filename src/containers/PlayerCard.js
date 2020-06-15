@@ -36,7 +36,7 @@ const PlayerCard  = props => {
     </div>}
     content={
         <Dropdown.Menu>
-            {teamOptions.map(team => <Dropdown.Item onClick={}>Trade to {team.split(' ').slice(-1)[0]}</Dropdown.Item>)}
+            {teamOptions.map(team => <Dropdown.Item onClick={(e)=>props.tradePlayer(team)}>Trade to {team.split(' ').slice(-1)[0]}</Dropdown.Item>)}
         </Dropdown.Menu>
     }
     on='click'
