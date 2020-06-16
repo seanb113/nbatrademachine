@@ -91,7 +91,6 @@ class App extends Component {
       })
       .then(resp => resp.json())
       .then(r =>{
-        debugger
         this.state.users.push(r)
           this.setState({
             users: this.state.users,
@@ -120,7 +119,6 @@ class App extends Component {
   }
 
   addedNewTrade = (trade)=>{
-    debugger
     this.state.trades.push(trade)
     this.setState({
       trades: this.state.trades

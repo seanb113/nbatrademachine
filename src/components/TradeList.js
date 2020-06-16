@@ -67,7 +67,6 @@ class TradeList extends Component {
     }
 
     onFilterChange = (event) => {
-      debugger
         let teamName = event.target.innerText
         let arr = teamName !== "" && event.target.className !== "delete icon" ? this.state.value.push(teamName) : this.state.value
         console.log(arr)
@@ -95,7 +94,6 @@ class TradeList extends Component {
     }
 
     getSorted(){
-        debugger
         let value = this.state.sort
         if (value === 'none')
         return this.state.trades
