@@ -265,3 +265,23 @@ input#name.signingUp{
   visibility: hidden
 }
 
+#sortGrid {
+  display: flex;
+  justify-content: right;
+  color: #b1b1b1;
+  padding-left: 5rem
+}
+
+#sortGrid#text {
+  color: #cbcaca
+}
+
+.sortButton {
+  background-color: #424141;
+  background: linear-gradient(145deg, #d7d6d6, #ffffff);
+  box-shadow: inset 3px 3px 6px #cbcaca, 
+            inset -3px -3px 6px #ffffff;
+  margin-right: .5rem;
+  margin-left: .5rem;
+  
+}

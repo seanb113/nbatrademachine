@@ -151,15 +151,14 @@ class TradeList extends Component {
                     onChange={this.onFilterChange.bind(this)}
                     onEnter={this.onFilterChange.bind(this)}
                 />
-                </div>
-                <div>
-                <button onClick={()=>this.handleSort('hot')}>Hot</button>
-                <button onClick={()=>this.handleSort('new')}>New</button>
-                </div>
                 <br/>
+                </div>
+                <div id="sortGrid">
+                Sort by:
+                <button className="sortButton" onClick={()=>this.handleSort('hot')}>Hot</button>
+                <button className="sortButton" onClick={()=>this.handleSort('new')}>New</button>
+                </div>
             <div id="tradeLists" className="ui cards">
-        <br/>
-        <br/>
             <br />
         {groupToPlayers.map((t, i) => Object.keys(t).length === 2 ?
         <TradeCard teams={this.props.all_teams} dontrade1={this.selectPlayer} dontrade2={this.selectPlayer} dontrade3={this.selectPlayer} dontrade4={this.selectPlayer} deleteThisTrade={this.removeTrade} all_teams={this.props.all_teams} addVote={this.props.addVote} votes={this.props.votes} currentUser={this.props.currentUser} trade={tradeIds[i]} all_users={this.props.all_users} createdBy={this.props.all_users.filter(u => u.id === tradeUsers[i])} team1={this.props.all_teams.filter(team => team.id === parseInt(Object.keys(t)[0]))[0]} player1={t[Object.keys(t)[0]].map(p=> this.props.all_players.filter(player => player.id === p)).flat(1)}
