@@ -12,7 +12,6 @@ const TradeCard = props => {
     let tradeVetoes = tradeVotes.filter(v=> v.category === "veto")
 
     const returnNameFromId = (id) => {
-        
         let team = props.all_teams.filter(t => t.id === id)
         return team[0].name
     }

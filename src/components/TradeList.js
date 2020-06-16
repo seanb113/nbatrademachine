@@ -7,7 +7,8 @@ class TradeList extends Component {
         trades: this.props.trades,
         players: this.props.all_players,
         teams: this.props.all_teams,
-        value: []
+        value: [],
+        sort: 'none'
     }
 
     removeTrade =(id)=>{
@@ -80,6 +81,29 @@ class TradeList extends Component {
         })
     }
 
+    handleSort(sort){
+        this.setState({
+            sort
+        })
+    }
+
+
+    getVotes(trade){
+       let arr = this.props.votes.filter(v=>v.trade_id === trade.id)
+       return arr.length
+        console.log(arr)
+    }
+
+    getSorted(){
+        debugger
+        let value = this.state.sort
+        if (value === 'none')
+        return this.state.trades
+        else if (value === 'new')
+        return this.state.trades.sort((trade1, trade2) => trade1.created_at > trade2.created_at ? -1 : 1)
+        else
+        return this.state.trades.sort((trade1, trade2) => this.getVotes(trade1) > this.getVotes(trade2) ? -1 : 1)
+    }
 
     render(){
         const options= this.state.teams.map(t => {
@@ -87,7 +111,8 @@ class TradeList extends Component {
           teams.value = t.name
           teams.text = t.name
           return teams })
-        const swapped = this.state.trades.map(t => t.swaps)
+        const sortedTrades = this.getSorted()
+        const swapped = sortedTrades.map(t => t.swaps)
         const tradeUsers = this.state.trades.map(t => t.user_id)
         const tradeIds = this.state.trades.map(t => t) 
         const groupToPlayers = swapped.map(swap => swap.reduce(function (obj, item) {
@@ -128,6 +153,10 @@ class TradeList extends Component {
                     onChange={this.onFilterChange.bind(this)}
                     onEnter={this.onFilterChange.bind(this)}
                 />
+                </div>
+                <div>
+                <button onClick={()=>this.handleSort('hot')}>Hot</button>
+                <button onClick={()=>this.handleSort('new')}>New</button>
                 </div>
                 <br/>
             <div id="tradeLists" className="ui cards">
