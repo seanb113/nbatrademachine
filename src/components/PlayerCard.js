@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Popup, Dropdown, Button} from 'semantic-ui-react'
+import {Popup, Dropdown} from 'semantic-ui-react'
 
 class PlayerCard extends Component {
 
@@ -29,10 +29,13 @@ class PlayerCard extends Component {
     let theTeams = [this.props.team1, this.props.team2, this.props.team3, this.props.team4].filter( team => team ? team.id !== this.props.player.team_id : null)
     let teamOptions = theTeams.map(team => team.name).filter(t => t !== undefined)
     return(
-        this.props.selectPlayer ? 
+        this.props.selectPlayer
+        &&
+        this.props.team2 !== "selecting"
+        ? 
         <Popup
         trigger={
-    <div id={this.props.tradedPlayers !== undefined && this.disableCard(this.props.player) === true ? "ui-item-disabled" : "ui-item"} class="item" onClick={(event)=> this.props.selectPlayer ? this.props.selectPlayer(this.props.player) : console.log(event)}>
+    <div style={{cursor: "pointer"}} id={this.props.tradedPlayers !== undefined && this.disableCard(this.props.player) === true ? "ui-item-disabled" : "ui-item"} class="item" onClick={(event)=> this.props.selectPlayer ? this.props.selectPlayer(this.props.player) : console.log(event)}>
         <img alt="" class="ui avatar image" src={this.props.player.player_image}/>
         <div class="content">
     <div class="header">{this.props.player.name} {this.getInitials(this.props.player.position)}</div>
@@ -45,11 +48,11 @@ class PlayerCard extends Component {
     </div>}
     content={
         <Dropdown.Menu onClick={this.closePopup}>
-            {teamOptions.map(team => <Dropdown.Item onClick={(e)=>this.props.tradePlayer(team)}>Trade to {team.split(' ').slice(-1)[0]}</Dropdown.Item>)}
+            {teamOptions.map(team => <Dropdown.Item onClick={(e)=>this.props.tradePlayer(team)} content={`Trade to ${team.split(' ').slice(-1)[0]}`} style={{cursor: "pointer"}}></Dropdown.Item>)}
         </Dropdown.Menu>
     }
     on='click'
-    open={this.state.isOpen} 
+    open={this.state.isOpen}
     />
     :
     <div id={this.props.tradedPlayers !== undefined && this.disableCard(this.props.player) === true ? "ui-item-disabled" : "ui-item"} class="item" onClick={(event)=> this.props.selectPlayer ? this.props.selectPlayer(this.props.player) : console.log(event)}>

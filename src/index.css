@@ -269,7 +269,13 @@ input#name.signingUp{
   display: flex;
   justify-content: right;
   color: #b1b1b1;
-  padding-left: 5rem
+  padding-left: 1rem;
+  border: solid;
+  margin-left: 5rem;
+  margin-right: 84rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-radius: 4px
 }
 
 #sortGrid#text {
@@ -283,5 +289,7 @@ input#name.signingUp{
             inset -3px -3px 6px #ffffff;
   margin-right: .5rem;
   margin-left: .5rem;
+  border-radius: 4px;
+  font-weight: bold;
   
 }
