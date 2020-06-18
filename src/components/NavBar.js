@@ -18,7 +18,7 @@ class NavBar extends Component {
 
     return (     
     <div>
-    <Sticky>
+    <Sticky style={{backgroundColor: "rgba(0, 0, 0, 0)"}}>
         <i id="menuTab" className="content icon" onClick={this.handleShowClick}></i>
     </Sticky>
       <Sidebar

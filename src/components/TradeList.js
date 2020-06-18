@@ -140,6 +140,7 @@ class TradeList extends Component {
                 </div>
                 :
                 <div>
+                <div id="searchAndSort">
                 <div id="trade-dropdown">
               <Dropdown
                     placeholder='search by teams'
@@ -157,6 +158,7 @@ class TradeList extends Component {
                 Sort by:
                 <button className="sortButton" onClick={()=>this.handleSort('hot')}>Hot</button>
                 <button className="sortButton" onClick={()=>this.handleSort('new')}>New</button>
+                </div>
                 </div>
             <div id="tradeLists" className="ui cards">
         {groupToPlayers.map((t, i) => Object.keys(t).length === 2 ?
