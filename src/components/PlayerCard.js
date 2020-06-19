@@ -20,9 +20,9 @@ class PlayerCard extends Component {
     }
 
     closePopup = () => {
-        this.setState({
-            isOpen: false
-        })
+        this.setState(prevState => ({
+            isOpen: !prevState.isOpen
+        }))
     }
 
     render(){
@@ -36,8 +36,8 @@ class PlayerCard extends Component {
         <Popup
         trigger={
     <div style={{cursor: "pointer"}} id={this.props.tradedPlayers !== undefined && this.disableCard(this.props.player) === true ? "ui-item-disabled" : "ui-item"} class="item" onClick={(event)=> this.props.selectPlayer ? this.props.selectPlayer(this.props.player) : console.log(event)}>
-        <img alt="" class="ui avatar image" src={this.props.player.player_image}/>
-        <div class="content">
+        <img alt="" class="ui avatar image" src={this.props.player.player_image} onClick={this.closePopup}/>
+        <div class="content" onClick={this.closePopup}>
     <div class="header">{this.props.player.name} {this.getInitials(this.props.player.position)}</div>
     <div class="description">{this.props.player.salary === "-" ? "Two Way Contract" : "Salary: " + this.props.player.salary}</div>
     <div class="description">{parseInt(this.props.player.final_year_of_contract) - 2020} years</div>
@@ -53,6 +53,7 @@ class PlayerCard extends Component {
     }
     on='click'
     open={this.state.isOpen}
+
     />
     :
     <div id={this.props.tradedPlayers !== undefined && this.disableCard(this.props.player) === true ? "ui-item-disabled" : "ui-item"} class="item" onClick={(event)=> this.props.selectPlayer ? this.props.selectPlayer(this.props.player) : console.log(event)}>
