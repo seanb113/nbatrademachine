@@ -39,6 +39,7 @@ class TradeList extends Component {
     }
 
     filterTradesByTeams = (array) => {
+        debugger
         //refactor
         let a1 = array.length > 0 ? this.props.trades.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[0]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null) : null
         let a2 = array.length > 1 ? a1.map(t=>t.swaps.map(s=> s.team_id).includes(this.findTeamByName(array[1]).id) ?  t : null).filter(t=>t != null).filter(t=>t != null) : null
@@ -57,16 +58,19 @@ class TradeList extends Component {
     }
 
     deleteFilter = (event) => {
+        debugger
         let arr2 = this.state.value.filter(t => t !== event.target.parentElement.innerText)
-        let teamNames = arr2.length > 0 ? arr2 : []
+        let filtered = arr2.filter(Boolean)
+        let teamNames = filtered.length > 0 ? filtered : []
         this.setState({
-            value: arr2,
+            value: filtered,
             trades: this.filterTradesByTeams(teamNames)
 
         })
     }
 
     onFilterChange = (event) => {
+        let newarr = this.state.value.push(event.target.innerText)
         event.target.className === "delete icon"
         ?
         this.deleteFilter(event)
